@@ -94,16 +94,10 @@ namespace Scoring_MGDP.Controllers
         // GET: Proveedores/Create
         public ActionResult Create()
         {
-
-            var YesNoList = new[] {
-            new ListEntry { Id = "S", Name = "Si" },
-            new ListEntry { Id = "N", Name = "No" }
-            };
-
-            ViewBag.YesNoList = new SelectList(YesNoList, "Id", "Name");
-
-            ViewBag.id_ClasificacionProv = new SelectList(db.ClasificacionesProv, "id_ClasificacionProv", "DescripcionClasifProv");
-            return PartialView("Create");
+            var proveedorViewModel = new ProveedorViewModel();
+            var clasificacionesProveedoresViewModel = ModelMappingProfile.Mapper.Map<List<ClasificacionesProv>, List<ClasifProveedoresViewModel>>(db.ClasificacionesProv.ToList());
+            proveedorViewModel.ClasificacionesProveedores = new SelectList(clasificacionesProveedoresViewModel, "Id", "ClasificacionProv");
+            return PartialView("Create", proveedorViewModel);
         }
 
         // POST: Proveedores/Create
@@ -111,17 +105,20 @@ namespace Scoring_MGDP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_Proveedor,NombreProv,id_ClasificacionProv,EsAM,ModeloImplementado,NombreProvCompras,Gestion,Vigente")] Proveedores proveedores)
+        public ActionResult Create(ProveedorViewModel proveedorViewModel)
         {
             if (ModelState.IsValid)
             {
+                var proveedores = ModelMappingProfile.Mapper.Map<ProveedorViewModel, Proveedores>(proveedorViewModel);
                 db.Proveedores.Add(proveedores);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_ClasificacionProv = new SelectList(db.ClasificacionesProv, "id_ClasificacionProv", "DescripcionClasifProv", proveedores.id_ClasificacionProv);
-            return View(proveedores);
+            var clasificacionesProveedoresViewModel = ModelMappingProfile.Mapper.Map<List<ClasificacionesProv>, List<ClasifProveedoresViewModel>>(db.ClasificacionesProv.ToList());
+            proveedorViewModel.ClasificacionesProveedores = new SelectList(clasificacionesProveedoresViewModel, "Id", "ClasificacionProv", proveedorViewModel.ClasifProveedorId);
+
+            return View(proveedorViewModel);
         }
 
         // GET: Proveedores/Edit/5
@@ -137,14 +134,10 @@ namespace Scoring_MGDP.Controllers
                 return HttpNotFound();
             }
 
-            var YesNoList = new[] {
-            new ListEntry { Id = "S", Name = "Si" },
-            new ListEntry { Id = "N", Name = "No" }
-            };
-
-            ViewBag.YesNoList = new SelectList(YesNoList, "Id", "Name");
-            ViewBag.id_ClasificacionProv = new SelectList(db.ClasificacionesProv, "id_ClasificacionProv", "DescripcionClasifProv", proveedores.id_ClasificacionProv);
-            return PartialView(proveedores);
+            var proveedorViewModel = ModelMappingProfile.Mapper.Map<Proveedores, ProveedorViewModel>(proveedores);
+            var clasificacionesProveedoresViewModel = ModelMappingProfile.Mapper.Map<List<ClasificacionesProv>, List<ClasifProveedoresViewModel>>(db.ClasificacionesProv.ToList());
+            proveedorViewModel.ClasificacionesProveedores = new SelectList(clasificacionesProveedoresViewModel, "Id", "ClasificacionProv", proveedorViewModel.ClasifProveedoresViewModel.Id);
+            return PartialView(proveedorViewModel);
             //return PartialView("Edit");
         }
 
@@ -153,24 +146,20 @@ namespace Scoring_MGDP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Proveedor,NombreProv,id_ClasificacionProv,EsAM,ModeloImplementado,NombreProvCompras,Gestion,Vigente")] Proveedores proveedores)
+        public ActionResult Edit(ProveedorViewModel proveedorViewModel)
         {
             if (ModelState.IsValid)
             {
+                var proveedores = ModelMappingProfile.Mapper.Map<ProveedorViewModel, Proveedores>(proveedorViewModel);
                 db.Entry(proveedores).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            var YesNoList = new[] {
-            new ListEntry { Id = "S", Name = "Si" },
-            new ListEntry { Id = "N", Name = "No" }
-            };
+            var clasificacionesProveedoresViewModel = ModelMappingProfile.Mapper.Map<List<ClasificacionesProv>, List<ClasifProveedoresViewModel>>(db.ClasificacionesProv.ToList());
+            proveedorViewModel.ClasificacionesProveedores = new SelectList(clasificacionesProveedoresViewModel, "Id", "ClasificacionProv", proveedorViewModel.ClasifProveedorId);
 
-            ViewBag.YesNoList = new SelectList(YesNoList, "Id", "Name");
-
-            ViewBag.id_ClasificacionProv = new SelectList(db.ClasificacionesProv, "id_ClasificacionProv", "DescripcionClasifProv", proveedores.id_ClasificacionProv);
-            return View(proveedores);
+            return View(proveedorViewModel);
         }
 
         // GET: Proveedores/Delete/5

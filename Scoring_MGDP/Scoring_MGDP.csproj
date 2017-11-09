@@ -230,6 +230,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ClasifProveedoresViewModel.cs" />
     <Compile Include="ViewModel\ProveedorViewModel.cs" />
+    <Compile Include="ViewModel\YesNoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\bootstrap\css\bootstrap-theme.css" />

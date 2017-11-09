@@ -3,17 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Scoring_MGDP.ViewModel
 {
     public class ProveedorViewModel
     {
+        public ProveedorViewModel()
+        {
+            this.AMList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.AM);
+            this.ModeloImplementadoList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.ModeloImplementado);
+            this.VigenteList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.Vigente);
+        }
+
+
         [Display(Name = "Id")]
         public int Id { get; set; }
         [Display(Name = "Nombre")]
         public string NombreProveedor { get; set; }
         [Display(Name = "Clasificación")]
         public ClasifProveedoresViewModel ClasifProveedoresViewModel { get; set; }
+        [Display(Name = "Clasificación")]
+        public int ClasifProveedorId { get; set; }
         [Display(Name = "¿AM?")]
         public string AM { get; set; }
         [Display(Name = "¿Modelo implementado?")]
@@ -25,6 +36,10 @@ namespace Scoring_MGDP.ViewModel
         [Display(Name = "¿Activo?")]
         public string Vigente { get; set; }
 
+        public SelectList ClasificacionesProveedores { get; set; }
+        public SelectList AMList { get; set; }
+        public SelectList ModeloImplementadoList { get; set; }
+        public SelectList VigenteList { get; set; }
 
         //public string VigenteSiNo { get { if (Vigente == "S") return "Si"; else return "No"; } }
         public string VigenteSiNo { get { return (Vigente == "S" ? "Si" : "No"); } }
