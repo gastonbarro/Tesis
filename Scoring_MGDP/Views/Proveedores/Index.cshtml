@@ -90,7 +90,7 @@
                             @Html.DisplayFor(modelItem => item.VigenteSiNo)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ClasificacionProveedorId)
+                            @Html.DisplayFor(modelItem => item.ClasifProveedoresViewModel.ClasificacionProv)
                         </td>
                         <td class="text-center">
                             @Html.ActionLink("Editar", "Edit", "Proveedores", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
