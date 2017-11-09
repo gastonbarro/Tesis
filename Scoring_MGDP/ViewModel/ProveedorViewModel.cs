@@ -13,6 +13,7 @@ namespace Scoring_MGDP.ViewModel
         [Display(Name = "Nombre")]
         public string NombreProveedor { get; set; }
         [Display(Name = "Clasificación")]
+        public ClasifProveedoresViewModel ClasifProveedoresViewModel { get; set; }
         [Display(Name = "¿AM?")]
         public string AM { get; set; }
         [Display(Name = "¿Modelo implementado?")]
