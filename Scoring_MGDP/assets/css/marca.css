@@ -1,0 +1,84 @@
+﻿/* Pantallas chicas */
+
+.logoPrincipal
+{
+    margin-top: -5px;
+    margin-left: 5px;
+    width: 100px;
+    height: 80px;
+}
+
+/* Boton Desplegar menu en mobile */
+#boton_menu_mobile{top:6px;z-index:9999;}
+
+/* Colores Corporativos */
+
+/* Color de Texto */
+
+.azul{color:#00a9e0}
+.verde{color:#5bc500}
+.violeta{color:#954b98}
+.rosa{color:#e9426d}
+.naranjaOscuro{color:#ec6838}
+.naranjaClaro{color:#f59c00}
+
+.blanco{color:#FFFFFF}
+.negro{color:#000000}
+
+/* Grises del mas claro al mas oscuro */
+
+.gris1{color:#eaeae8}
+.gris2{color:#d4d4d4}
+.gris3{color:#b7b7b7}
+.gris4{color:#87888c}
+.gris5{color:#50535a}
+
+/* Colores links */
+
+a.azul {color: #00a9e0;}
+a.verde {color:#5bc500;}
+a.violeta{color:#954b98}
+a.rosa{color:#e9426d}
+a.naranjaOscuro{color:#ec6838}
+a.naranjaClaro{color:#f59c00}
+
+a.blanco {color: #FFF;}
+a.negro {color: #000;}
+
+a.gris1 {color:#eaeae8;}
+a.gris2 {color:#d4d4d4;}
+a.gris3 {color:#b7b7b7;}
+a.gris4 {color:#87888c;}
+a.gris5 {color:#50535a;}
+
+/* Color de fondo */
+
+.bg-azul{background-color:#00a9e0}
+.bg-verde{background-color:#5bc500}
+.bg-violeta{background-color:#954b98}
+.bg-rosa{background-color:#e9426d}
+.bg-naranjaOscuro{background-color:#ec6838}
+.bg-naranjaClaro{background-color:#f59c00}
+
+.bg-blanco{background-color:#FFFFFF}
+.bg-negro{background-color:#000000}
+
+/* Grises del mas claro al mas oscuro */
+
+.bg-gris1{background-color:#eaeae8}
+.bg-gris2{background-color:#d4d4d4}
+.bg-gris3{background-color:#b7b7b7}
+.bg-gris4{background-color:#87888c}
+.bg-gris5{background-color:#50535a}
+
+/* Pantallas grandes */
+
+@media (min-width: 768px) {
+    .logoPrincipal
+    {
+        margin-top: -8px;
+        width: 250px;
+        height: 90px;
+    }
+
+}

@@ -1,0 +1,292 @@
+﻿@{
+
+    //var fullname = "Usuario";
+    //var fullnameClaim = Request.GetOwinContext().Authentication.User.Claims.FirstOrDefault(c => c.Type == "fullname");
+    //if(fullnameClaim != null ) {
+    //    fullname = fullnameClaim.Value.ToString();
+    //}
+
+    var fullname = "Usuario";
+    var Identity = User.Identity;
+    if (Identity != null)
+    {
+        fullname = Identity.Name;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Clouders I+D+I</title>
+    <link rel = "icon" type="image/png" href="@Url.Content("~/")assets/img/marca/favicon.ico">
+    <meta content = "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @*<title>@ViewBag.Title</title>
+            @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/")assets/js/jquery.inputmask.bundle.js"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.ui.widget.js"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.fileupload.js"></script>
+    <script src="@Url.Content("~/")assets/bootstrap/js/bootstrap.min.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.slimscroll.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/dist/js/app.min.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.parallax.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/smoothscroll.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/wow.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/easing.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.toaster.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/funciones.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/validacion.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/Inicio.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/ajax.helpers.js"></script>
+    <script src="@Url.Content("~/")assets/js/tableau-2.min.js"></script>
+
+    <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/styles.css" />
+    <link rel="stylesheet" href="@Url.Content("~/")assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/bootstrap/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/marca.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/animaciones.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/preloader.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/fixes.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/efectos.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/fuentes.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/fondos.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/estilos.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/skin-blue.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/animate.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/custom-center.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/jquery.fileupload.css" />
+    
+    @*<!-- Piwik se puede borrar o generar un nuevo ID. Consultar con Gustavo Pavia-->
+    <script type="text/javascript">
+        var urlSplit = document.URL.split('/');
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "//" + urlSplit[2] + "/analytics/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
+            _paq.push(['setSiteId', -1]);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <noscript><p><img src="//" + urlSplit[2] + "/analytics/piwik.php?idsite=6&rec=1&bots=1" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->*@
+
+
+</head>
+<body class="skin-blue layout-top-nav fixed">
+
+    <!-- Preloader -->
+    <div id="faceoff">
+        <div id="preloader"></div>
+        <div class="preloader-section"></div>
+    </div>
+    <!-- Preloader -->
+
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Header Corporativo !-->
+            <nav id="HeaderCompleto" class="navbar navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <div class="pull-left visible-sm visible-md visible-lg"><img class="logoPrincipal" src="@Url.Content("~/")assets/img/marca/logo_movistar_lockup_h_VERDE.png" /></div>
+                    <div class="pull-right visible-sm visible-md visible-lg">
+                        <h1 class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="azul">WEB DE SCORING</span>&nbsp;<span class="verde">&</span>&nbsp;<span class="azul">MGDP</span></h1>
+                    </div>
+                <div class="datosUsuarioHeader hidden-xs hidden-sm">
+                <span><i class="fa fa-fw fa-user azul"></i></span>&nbsp;
+                <span id="lbl_usuario" class="gris4 textoGrande">@fullname</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="verde textoGrande">#</span>
+                <span class="azul textoGrande">Powered By Clouders</span><span class="verde textoGrande">_</span>&nbsp;&nbsp;&nbsp;
+                </div>
+                <button id="boton_menu_mobile" type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars fa-2x azul"></i></button>
+                </div>
+             </div>
+                    <div class="navbar-collapse collapse sombra1 bg-azul">
+                        <ul class="nav nav-justified">
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">
+                                    <span class="glyphicon glyphicon-home"></span>
+                                    Inicio
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Tableros Scoring
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("TableroScoring", "Tableros")">
+                                            <span class="glyphicon glyphicon-dashboard"></span>
+                                            Tablero de Scoring
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("TableroDetalleScoring", "Tableros")">
+                                            <span class="glyphicon glyphicon-dashboard"></span>
+                                            Tablero de Detalle Scoring
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Contact", "Home")">
+                                    <span class="glyphicon glyphicon-stats"></span>
+                                    Tablero de MGDP
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("About", "Home")">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Carga de Resultados
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("../Proveedores")">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                    Configuración Entidades
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+</nav>
+         </header>
+        <div id="viewContent">
+            @RenderBody()
+
+            <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // Initialize numeric spinner input boxes
+            //$(".numeric-spinner").spinedit();
+
+            // Initalize modal dialog
+            // attach modal-container bootstrap attributes to links with .modal-link class.
+            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+           
+
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+    </script>
+    <!-- Footer Corporativo !-->
+    <footer>
+        <div class="row row-centered">
+            <div class="visible-md visible-lg col-md-2">
+                <div class="pull-left">
+                    <span>
+                        <img class="img-responsive margen5" src="@Url.Content("~/")assets/img/marca/endoso_gris.png" width="160px" height="20px" />
+                    </span>
+                </div>
+            </div><div class="visible-xs visible-sm col-xs-12 col-sm-12">
+                <div>
+                    <span>
+                        <img class="centrar img-responsive margen5" src="@Url.Content("~/")assets/img/marca/endoso_gris.png" width="160px" height="20px" />
+                    </span>
+                </div>
+            </div>
+            <div class="visible-md visible-lg col-md-10">
+                <div class="pull-right">
+                    <br />
+                    <a href="#" class="gris4">Legales</a>
+                    <span class="gris2"> | </span>
+                    <a href="#" class="gris4">Términos y condiciones</a>
+                    <span class="gris2"> | </span>
+                    <a href="#" class="gris4">Aviso de privacidad</a>
+                    <span class="gris2"> | </span>
+                    <span class="azul">Clouders</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                    <br />
+                </div>
+            </div>
+            <div class="visible-xs visible-sm col-xs-12 col-sm-12">
+                <div>
+                    <a href="#" class="gris4">Legales</a>
+                </div>
+            </div>
+            <div class="visible-xs visible-sm col-xs-12 col-sm-12">
+                <div>
+                    <a href="#" class="gris4">Términos y condiciones</a>
+                </div>
+            </div>
+            <div class="visible-xs visible-sm col-xs-12 col-sm-12">
+                <div>
+                    <a href="#" class="gris4">Aviso de privacidad</a>
+                </div>
+                <div class="visible-xs visible-sm col-xs-12 col-sm-12">
+                    <div>
+                        <span>Clouders</span>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </footer>
+
+ 
+
+
+    @RenderSection("scripts", required: false)
+    <!-- Modal -->
+    <script>
+        $("#incidencia").click(function () {
+            $("#incidencia").hide();
+        });
+    </script>
+    <script>
+
+        $(function () {
+            'use strict';
+
+            // Mascaras
+
+            // 9 indica numero
+            // a indica caracter
+            // greedy: false indica si se muestra la mascara (guiones) o no
+
+            // Ejemplos
+            // {"mask": "(999) 999-9999"}
+            // "9", { repeat: 10 }
+
+
+            $("#txt_incidencia").inputmask("9", { repeat: 6, "placeholder": ""});
+
+
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ScoringMGDPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adhesiones">
+          <Key>
+            <PropertyRef Name="id_Dominio" />
+            <PropertyRef Name="id_Proveedor" />
+          </Key>
+          <Property Name="id_Dominio" Type="int" Nullable="false" />
+          <Property Name="id_Proveedor" Type="int" Nullable="false" />
+          <Property Name="PorcAdhesion" Type="float" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionProv.dbo.Auditorias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Auditorias">
+          <Key>
+            <PropertyRef Name="id_Auditoria" />
+            <PropertyRef Name="id_Proyecto" />
+            <PropertyRef Name="Pregunta" />
+            <PropertyRef Name="Ciclo" />
+            <PropertyRef Name="FechaEjecucionCiclo" />
+          </Key>
+          <Property Name="id_Auditoria" Type="int" Nullable="false" />
+          <Property Name="id_Proyecto" Type="int" Nullable="false" />
+          <Property Name="Pregunta" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ciclo" Type="int" Nullable="false" />
+          <Property Name="FechaEjecucionCiclo" Type="date" Nullable="false" />
+          <Property Name="ResultadoPregunta" Type="nchar" MaxLength="10" />
+          <Property Name="ResponsablePregunta" Type="nchar" MaxLength="10" />
+          <Property Name="id_Proveedor" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionProv.dbo.Auditorias_datos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Auditorias_datos">
+          <Key>
+            <PropertyRef Name="Proyecto" />
+            <PropertyRef Name="Id auditoría" />
+          </Key>
+          <Property Name="Proyecto" Type="int" Nullable="false" />
+          <Property Name="Id auditoría" Type="int" Nullable="false" />
+          <Property Name="Área proceso" Type="nvarchar" MaxLength="100" />
+          <Property Name="% Complimiento" Type="nvarchar" MaxLength="100" />
+          <Property Name="Q preguntas" Type="int" />
+          <Property Name="Q preguntas que adhieren" Type="int" />
+          <Property Name="Q preguntas N/A" Type="int" />
+          <Property Name="Áreas de proceso" Type="nvarchar(max)" />
+          <Property Name="Activos a revisar" Type="nvarchar(max)" />
+          <Property Name="F. planif 1° Revisión" Type="datetime" />
+          <Property Name="F. planif feedback" Type="datetime" />
+          <Property Name="F. planif 2° Revisión" Type="datetime" />
+          <Property Name="F. real 1° Revisión" Type="datetime" />
+          <Property Name="F. real feedback" Type="datetime" />
+          <Property Name="F. real 2° Revisión" Type="datetime" />
+          <Property Name="Auditor" Type="nvarchar" MaxLength="100" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="100" />
+          <Property Name="¿Fue replanificada?" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionProv.dbo.Auditorias_det_Pregunta' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Auditorias_det_Pregunta">
+          <Key>
+            <PropertyRef Name="Proyecto" />
+          </Key>
+          <Property Name="Proyecto" Type="int" Nullable="false" />
+          <Property Name="Id auditoría" Type="int" />
+          <Property Name="Área de proceso" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pregunta" Type="nvarchar(max)" />
+          <Property Name="¿Cumple?" Type="nvarchar" MaxLength="100" />
+          <Property Name="Proveedor" Type="nvarchar" MaxLength="100" />
+          <Property Name="Feedback" Type="nvarchar(max)" />
+          <Property Name="Normas" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CfgControlExtracciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="tabla" Type="nvarchar" MaxLength="50" />
+          <Property Name="ult_ejec" Type="datetime" />
+          <Property Name="registros_insertados" Type="int" />
+          <Property Name="registros_modificados" Type="int" />
+        </EntityType>
+        <EntityType Name="ClasificacionesProv">
+          <Key>
+            <PropertyRef Name="id_ClasificacionProv" />
+          </Key>
+          <Property Name="id_ClasificacionProv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionClasifProv" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ContratoProv">
+          <Key>
+            <PropertyRef Name="id_Contrato" />
+          </Key>
+          <Property Name="id_Contrato" Type="int" Nullable="false" />
+          <Property Name="NroContrato" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_Proveedor" Type="int" />
+          <Property Name="Responsable" Type="nvarchar" MaxLength="50" />
+          <Property Name="MontoContrato" Type="float" />
+        </EntityType>
+        <EntityType Name="DefMetricas">
+          <Key>
+            <PropertyRef Name="id_DefMetricas" />
+          </Key>
+          <Property Name="id_DefMetricas" Type="int" Nullable="false" />
+          <Property Name="id_Proveedor" Type="int" Nullable="false" />
+          <Property Name="id_Metricas" Type="int" Nullable="false" />
+          <Property Name="FechaDesde" Type="date" />
+          <Property Name="FechaHasta" Type="date" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ratio" Type="nvarchar" MaxLength="50" />
+          <Property Name="PesoPonderado" Type="float" />
+          <Property Name="Peso" Type="float" />
+          <Property Name="ObjCritico" Type="float" />
+          <Property Name="ObjMinimo" Type="float" />
+          <Property Name="ObjExcelencia" Type="float" />
+          <Property Name="id_TiposProyectos" Type="int" />
+          <Property Name="Hub_NoHub" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_vision" Type="int" />
+        </EntityType>
+        <EntityType Name="Dominios">
+          <Key>
+            <PropertyRef Name="id_Dominio" />
+          </Key>
+          <Property Name="id_Dominio" Type="int" Nullable="false" />
+          <Property Name="DescDominio" Type="nvarchar(max)" />
+          <Property Name="id_ClasificacionProv" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="EncuestaCompras">
+          <Key>
+            <PropertyRef Name="Proveedor" />
+          </Key>
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaSolicitante" Type="nvarchar" MaxLength="100" />
+          <Property Name="Contrato" Type="nvarchar" MaxLength="50" />
+          <Property Name="Proveedor" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Division" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gerencia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usuario" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContratoFechaInicio" Type="nchar" MaxLength="15" />
+          <Property Name="ContratoFechaFin" Type="nchar" MaxLength="15" />
+          <Property Name="DSC1" Type="char" MaxLength="1" />
+          <Property Name="DSC2" Type="char" MaxLength="1" />
+          <Property Name="DSC3" Type="char" MaxLength="1" />
+          <Property Name="DSC4" Type="char" MaxLength="1" />
+          <Property Name="DSC5" Type="char" MaxLength="1" />
+          <Property Name="DSC6" Type="char" MaxLength="1" />
+          <Property Name="DSS1" Type="char" MaxLength="1" />
+          <Property Name="DSS2" Type="char" MaxLength="1" />
+          <Property Name="CDS3" Type="char" MaxLength="1" />
+          <Property Name="CALIDAD" Type="char" MaxLength="1" />
+          <Property Name="SERVICIO" Type="char" MaxLength="1" />
+          <Property Name="PeriodoEncuestado" Type="date" />
+          <Property Name="FechaDesde" Type="date" />
+          <Property Name="FechaHasta" Type="date" />
+        </EntityType>
+        <EntityType Name="Encuestas">
+          <Key>
+            <PropertyRef Name="id_Encuesta" />
+            <PropertyRef Name="Pregunta" />
+            <PropertyRef Name="UsuarioEncuestado" />
+          </Key>
+          <Property Name="id_Encuesta" Type="int" Nullable="false" />
+          <Property Name="Id_Proyecto" Type="int" />
+          <Property Name="FechaEnvío" Type="date" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="date" />
+          <Property Name="Pregunta" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Puntuacion" Type="int" />
+          <Property Name="Respuesta" Type="nvarchar" MaxLength="70" />
+          <Property Name="Encuesta_Tipo" Type="nvarchar" MaxLength="70" />
+          <Property Name="UsuarioEncuestado" Type="nvarchar" MaxLength="70" Nullable="false" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaGestora" Type="nvarchar" MaxLength="255" />
+          <Property Name="NombreProveedor" Type="nvarchar" MaxLength="255" />
+          <Property Name="Id_Proveedor" Type="int" />
+          <Property Name="Ult_Actualizacion" Type="date" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'GestionProv.dbo.MedicionesMetricas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="MedicionesMetricas">
+          <Property Name="FechaMedicion" Type="date" />
+          <Property Name="id_DefMetricas" Type="int" />
+          <Property Name="id_TiposProyectos" Type="int" />
+          <Property Name="ValorMedido" Type="float" />
+          <Property Name="Calculado" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cump_Ratio" Type="float" />
+          <Property Name="Calcula_RatioSN" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="Metricas">
+          <Key>
+            <PropertyRef Name="id_Metrica" />
+          </Key>
+          <Property Name="id_Metrica" Type="int" Nullable="false" />
+          <Property Name="SiglaMetrica" Type="nvarchar" MaxLength="255" />
+          <Property Name="DescripcionMet" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_TipoMetrica" Type="int" />
+          <Property Name="id_UMedida" Type="int" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="id_Proveedor" />
+          </Key>
+          <Property Name="id_Proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreProv" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_ClasificacionProv" Type="int" Nullable="false" />
+          <Property Name="EsAM" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModeloImplementado" Type="nvarchar" MaxLength="50" />
+          <Property Name="NombreProvCompras" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gestion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Vigente" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Scoring_Configuracion">
+          <Key>
+            <PropertyRef Name="id_MetricasScoring" />
+          </Key>
+          <Property Name="id_MetricasScoring" Type="int" Nullable="false" />
+          <Property Name="Metrica" Type="nvarchar" MaxLength="100" />
+          <Property Name="Peso" Type="real" />
+          <Property Name="Ambito" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'GestionProv.dbo.Scoring_Totales' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="Scoring_Totales">
+          <Key>
+            <PropertyRef Name="id_Proveedor" />
+          </Key>
+          <Property Name="id_Proveedor" Type="int" Nullable="false" />
+          <Property Name="Proveedor" Type="nvarchar" MaxLength="100" />
+          <Property Name="Periodo" Type="datetime" />
+          <Property Name="RMetricaGestion" Type="real" />
+          <Property Name="RMetricaContractual" Type="real" />
+          <Property Name="REncPry" Type="real" />
+          <Property Name="REncCompras" Type="real" />
+          <Property Name="RAuditorias" Type="real" />
+          <Property Name="PESO_METRICAGESTION" Type="real" />
+          <Property Name="PESO_METRICACONTRACTUAL" Type="real" />
+          <Property Name="PESO_METRICA" Type="real" />
+          <Property Name="PESO_ENCPRY" Type="real" />
+          <Property Name="PESO_ENCCOMPRAS" Type="real" />
+          <Property Name="PESO_ENCUESTAS" Type="real" />
+          <Property Name="PESO_AUDITORIAS" Type="real" />
+        </EntityType>
+        <EntityType Name="TiposMetricas">
+          <Key>
+            <PropertyRef Name="id_TipoMetrica" />
+          </Key>
+          <Property Name="id_TipoMetrica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescripcionTipMet" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TiposProyectos">
+          <Key>
+            <PropertyRef Name="id_TiposProyectos" />
+          </Key>
+          <Property Name="id_TiposProyectos" Type="int" Nullable="false" />
+          <Property Name="DescTipoProyecto" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiglaTipoPry" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UnidadeDeMedidas">
+          <Key>
+            <PropertyRef Name="id_UMedida" />
+          </Key>
+          <Property Name="id_UMedida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UM" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Vision">
+          <Key>
+            <PropertyRef Name="id_vision" />
+          </Key>
+          <Property Name="id_vision" Type="int" Nullable="false" />
+          <Property Name="DescripcionVision" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Adhesiones_Dominios">
+          <End Role="Dominios" Type="Self.Dominios" Multiplicity="1" />
+          <End Role="Adhesiones" Type="Self.Adhesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dominios">
+              <PropertyRef Name="id_Dominio" />
+            </Principal>
+            <Dependent Role="Adhesiones">
+              <PropertyRef Name="id_Dominio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adhesiones_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Adhesiones" Type="Self.Adhesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="Adhesiones">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auditorias_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Auditorias" Type="Self.Auditorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="Auditorias">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoProv_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="ContratoProv" Type="Self.ContratoProv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="ContratoProv">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_Metricas1">
+          <End Role="Metricas" Type="Self.Metricas" Multiplicity="1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metricas">
+              <PropertyRef Name="id_Metrica" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_Metricas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_TiposProyectos">
+          <End Role="TiposProyectos" Type="Self.TiposProyectos" Multiplicity="0..1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_Vision">
+          <End Role="Vision" Type="Self.Vision" Multiplicity="0..1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vision">
+              <PropertyRef Name="id_vision" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_vision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dominios_ClasificacionesProv">
+          <End Role="ClasificacionesProv" Type="Self.ClasificacionesProv" Multiplicity="0..1" />
+          <End Role="Dominios" Type="Self.Dominios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClasificacionesProv">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Principal>
+            <Dependent Role="Dominios">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encuestas_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="Encuestas">
+              <PropertyRef Name="Id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.MedicionesMetricas', pero no se encuentra la tabla.
+        <Association Name="FK_MedicionesMetricas_DefMetricas1" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.MedicionesMetricas', pero no se encuentra la tabla.
+        <Association Name="FK_MedicionesMetricas_TiposProyectos1" />-->
+        <Association Name="FK_Metricas_TiposMetricas1">
+          <End Role="TiposMetricas" Type="Self.TiposMetricas" Multiplicity="0..1" />
+          <End Role="Metricas" Type="Self.Metricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposMetricas">
+              <PropertyRef Name="id_TipoMetrica" />
+            </Principal>
+            <Dependent Role="Metricas">
+              <PropertyRef Name="id_TipoMetrica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metricas_UnidadeDeMedidas1">
+          <End Role="UnidadeDeMedidas" Type="Self.UnidadeDeMedidas" Multiplicity="0..1" />
+          <End Role="Metricas" Type="Self.Metricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadeDeMedidas">
+              <PropertyRef Name="id_UMedida" />
+            </Principal>
+            <Dependent Role="Metricas">
+              <PropertyRef Name="id_UMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_ClasificacionesProv">
+          <End Role="ClasificacionesProv" Type="Self.ClasificacionesProv" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClasificacionesProv">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScoringMGDPModelStoreContainer">
+          <EntitySet Name="Adhesiones" EntityType="Self.Adhesiones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CfgControlExtracciones" EntityType="Self.CfgControlExtracciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClasificacionesProv" EntityType="Self.ClasificacionesProv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContratoProv" EntityType="Self.ContratoProv" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefMetricas" EntityType="Self.DefMetricas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dominios" EntityType="Self.Dominios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encuestas" EntityType="Self.Encuestas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Metricas" EntityType="Self.Metricas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scoring_Configuracion" EntityType="Self.Scoring_Configuracion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposMetricas" EntityType="Self.TiposMetricas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiposProyectos" EntityType="Self.TiposProyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadeDeMedidas" EntityType="Self.UnidadeDeMedidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vision" EntityType="Self.Vision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auditorias" EntityType="Self.Auditorias" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Auditorias].[id_Auditoria] AS [id_Auditoria], 
+    [Auditorias].[id_Proyecto] AS [id_Proyecto], 
+    [Auditorias].[Pregunta] AS [Pregunta], 
+    [Auditorias].[Ciclo] AS [Ciclo], 
+    [Auditorias].[FechaEjecucionCiclo] AS [FechaEjecucionCiclo], 
+    [Auditorias].[ResultadoPregunta] AS [ResultadoPregunta], 
+    [Auditorias].[ResponsablePregunta] AS [ResponsablePregunta], 
+    [Auditorias].[id_Proveedor] AS [id_Proveedor]
+    FROM [dbo].[Auditorias] AS [Auditorias]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Auditorias_datos" EntityType="Self.Auditorias_datos" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Auditorias_datos].[Proyecto] AS [Proyecto], 
+    [Auditorias_datos].[Id auditoría] AS [Id auditoría], 
+    [Auditorias_datos].[Área proceso] AS [Área proceso], 
+    [Auditorias_datos].[% Complimiento] AS [% Complimiento], 
+    [Auditorias_datos].[Q preguntas] AS [Q preguntas], 
+    [Auditorias_datos].[Q preguntas que adhieren] AS [Q preguntas que adhieren], 
+    [Auditorias_datos].[Q preguntas N/A] AS [Q preguntas N/A], 
+    [Auditorias_datos].[Áreas de proceso] AS [Áreas de proceso], 
+    [Auditorias_datos].[Activos a revisar] AS [Activos a revisar], 
+    [Auditorias_datos].[F. planif 1° Revisión] AS [F. planif 1° Revisión], 
+    [Auditorias_datos].[F. planif feedback] AS [F. planif feedback], 
+    [Auditorias_datos].[F. planif 2° Revisión] AS [F. planif 2° Revisión], 
+    [Auditorias_datos].[F. real 1° Revisión] AS [F. real 1° Revisión], 
+    [Auditorias_datos].[F. real feedback] AS [F. real feedback], 
+    [Auditorias_datos].[F. real 2° Revisión] AS [F. real 2° Revisión], 
+    [Auditorias_datos].[Auditor] AS [Auditor], 
+    [Auditorias_datos].[Estado] AS [Estado], 
+    [Auditorias_datos].[¿Fue replanificada?] AS [¿Fue replanificada?]
+    FROM [dbo].[Auditorias_datos] AS [Auditorias_datos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Auditorias_det_Pregunta" EntityType="Self.Auditorias_det_Pregunta" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Auditorias_det_Pregunta].[Proyecto] AS [Proyecto], 
+    [Auditorias_det_Pregunta].[Id auditoría] AS [Id auditoría], 
+    [Auditorias_det_Pregunta].[Área de proceso] AS [Área de proceso], 
+    [Auditorias_det_Pregunta].[Pregunta] AS [Pregunta], 
+    [Auditorias_det_Pregunta].[¿Cumple?] AS [¿Cumple?], 
+    [Auditorias_det_Pregunta].[Proveedor] AS [Proveedor], 
+    [Auditorias_det_Pregunta].[Feedback] AS [Feedback], 
+    [Auditorias_det_Pregunta].[Normas] AS [Normas]
+    FROM [dbo].[Auditorias_det_Pregunta] AS [Auditorias_det_Pregunta]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EncuestaCompras" EntityType="Self.EncuestaCompras" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EncuestaCompras].[Tipo] AS [Tipo], 
+    [EncuestaCompras].[AreaSolicitante] AS [AreaSolicitante], 
+    [EncuestaCompras].[Contrato] AS [Contrato], 
+    [EncuestaCompras].[Proveedor] AS [Proveedor], 
+    [EncuestaCompras].[Division] AS [Division], 
+    [EncuestaCompras].[Gerencia] AS [Gerencia], 
+    [EncuestaCompras].[Usuario] AS [Usuario], 
+    [EncuestaCompras].[ContratoFechaInicio] AS [ContratoFechaInicio], 
+    [EncuestaCompras].[ContratoFechaFin] AS [ContratoFechaFin], 
+    [EncuestaCompras].[DSC1] AS [DSC1], 
+    [EncuestaCompras].[DSC2] AS [DSC2], 
+    [EncuestaCompras].[DSC3] AS [DSC3], 
+    [EncuestaCompras].[DSC4] AS [DSC4], 
+    [EncuestaCompras].[DSC5] AS [DSC5], 
+    [EncuestaCompras].[DSC6] AS [DSC6], 
+    [EncuestaCompras].[DSS1] AS [DSS1], 
+    [EncuestaCompras].[DSS2] AS [DSS2], 
+    [EncuestaCompras].[CDS3] AS [CDS3], 
+    [EncuestaCompras].[CALIDAD] AS [CALIDAD], 
+    [EncuestaCompras].[SERVICIO] AS [SERVICIO], 
+    [EncuestaCompras].[PeriodoEncuestado] AS [PeriodoEncuestado], 
+    [EncuestaCompras].[FechaDesde] AS [FechaDesde], 
+    [EncuestaCompras].[FechaHasta] AS [FechaHasta]
+    FROM [dbo].[EncuestaCompras] AS [EncuestaCompras]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Scoring_Totales" EntityType="Self.Scoring_Totales" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Scoring_Totales].[id_Proveedor] AS [id_Proveedor], 
+    [Scoring_Totales].[Proveedor] AS [Proveedor], 
+    [Scoring_Totales].[Periodo] AS [Periodo], 
+    [Scoring_Totales].[RMetricaGestion] AS [RMetricaGestion], 
+    [Scoring_Totales].[RMetricaContractual] AS [RMetricaContractual], 
+    [Scoring_Totales].[REncPry] AS [REncPry], 
+    [Scoring_Totales].[REncCompras] AS [REncCompras], 
+    [Scoring_Totales].[RAuditorias] AS [RAuditorias], 
+    [Scoring_Totales].[PESO_METRICAGESTION] AS [PESO_METRICAGESTION], 
+    [Scoring_Totales].[PESO_METRICACONTRACTUAL] AS [PESO_METRICACONTRACTUAL], 
+    [Scoring_Totales].[PESO_METRICA] AS [PESO_METRICA], 
+    [Scoring_Totales].[PESO_ENCPRY] AS [PESO_ENCPRY], 
+    [Scoring_Totales].[PESO_ENCCOMPRAS] AS [PESO_ENCCOMPRAS], 
+    [Scoring_Totales].[PESO_ENCUESTAS] AS [PESO_ENCUESTAS], 
+    [Scoring_Totales].[PESO_AUDITORIAS] AS [PESO_AUDITORIAS]
+    FROM [dbo].[Scoring_Totales] AS [Scoring_Totales]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Adhesiones_Dominios" Association="Self.FK_Adhesiones_Dominios">
+            <End Role="Dominios" EntitySet="Dominios" />
+            <End Role="Adhesiones" EntitySet="Adhesiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adhesiones_Proveedores" Association="Self.FK_Adhesiones_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Adhesiones" EntitySet="Adhesiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auditorias_Proveedores" Association="Self.FK_Auditorias_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Auditorias" EntitySet="Auditorias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoProv_Proveedores" Association="Self.FK_ContratoProv_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="ContratoProv" EntitySet="ContratoProv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_Metricas1" Association="Self.FK_DefMetricas_Metricas1">
+            <End Role="Metricas" EntitySet="Metricas" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_Proveedores" Association="Self.FK_DefMetricas_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_TiposProyectos" Association="Self.FK_DefMetricas_TiposProyectos">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_Vision" Association="Self.FK_DefMetricas_Vision">
+            <End Role="Vision" EntitySet="Vision" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dominios_ClasificacionesProv" Association="Self.FK_Dominios_ClasificacionesProv">
+            <End Role="ClasificacionesProv" EntitySet="ClasificacionesProv" />
+            <End Role="Dominios" EntitySet="Dominios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encuestas_Proveedores" Association="Self.FK_Encuestas_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Encuestas" EntitySet="Encuestas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metricas_TiposMetricas1" Association="Self.FK_Metricas_TiposMetricas1">
+            <End Role="TiposMetricas" EntitySet="TiposMetricas" />
+            <End Role="Metricas" EntitySet="Metricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metricas_UnidadeDeMedidas1" Association="Self.FK_Metricas_UnidadeDeMedidas1">
+            <End Role="UnidadeDeMedidas" EntitySet="UnidadeDeMedidas" />
+            <End Role="Metricas" EntitySet="Metricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_ClasificacionesProv" Association="Self.FK_Proveedores_ClasificacionesProv">
+            <End Role="ClasificacionesProv" EntitySet="ClasificacionesProv" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ScoringMGDPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adhesiones">
+          <Key>
+            <PropertyRef Name="id_Dominio" />
+            <PropertyRef Name="id_Proveedor" />
+          </Key>
+          <Property Name="id_Dominio" Type="Int32" Nullable="false" />
+          <Property Name="id_Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="PorcAdhesion" Type="Double" />
+          <NavigationProperty Name="Dominios" Relationship="Self.FK_Adhesiones_Dominios" FromRole="Adhesiones" ToRole="Dominios" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Adhesiones_Proveedores" FromRole="Adhesiones" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="CfgControlExtracciones">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="tabla" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ult_ejec" Type="DateTime" Precision="3" />
+          <Property Name="registros_insertados" Type="Int32" />
+          <Property Name="registros_modificados" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ClasificacionesProv">
+          <Key>
+            <PropertyRef Name="id_ClasificacionProv" />
+          </Key>
+          <Property Name="id_ClasificacionProv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionClasifProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dominios" Relationship="Self.FK_Dominios_ClasificacionesProv" FromRole="ClasificacionesProv" ToRole="Dominios" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Proveedores_ClasificacionesProv" FromRole="ClasificacionesProv" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="ContratoProv">
+          <Key>
+            <PropertyRef Name="id_Contrato" />
+          </Key>
+          <Property Name="id_Contrato" Type="Int32" Nullable="false" />
+          <Property Name="NroContrato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_Proveedor" Type="Int32" />
+          <Property Name="Responsable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MontoContrato" Type="Double" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_ContratoProv_Proveedores" FromRole="ContratoProv" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="DefMetricas">
+          <Key>
+            <PropertyRef Name="id_DefMetricas" />
+          </Key>
+          <Property Name="id_DefMetricas" Type="Int32" Nullable="false" />
+          <Property Name="id_Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="id_Metricas" Type="Int32" Nullable="false" />
+          <Property Name="FechaDesde" Type="DateTime" Precision="0" />
+          <Property Name="FechaHasta" Type="DateTime" Precision="0" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ratio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PesoPonderado" Type="Double" />
+          <Property Name="Peso" Type="Double" />
+          <Property Name="ObjCritico" Type="Double" />
+          <Property Name="ObjMinimo" Type="Double" />
+          <Property Name="ObjExcelencia" Type="Double" />
+          <Property Name="id_TiposProyectos" Type="Int32" />
+          <Property Name="Hub_NoHub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_vision" Type="Int32" />
+          <NavigationProperty Name="Metricas" Relationship="Self.FK_DefMetricas_Metricas1" FromRole="DefMetricas" ToRole="Metricas" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_DefMetricas_Proveedores" FromRole="DefMetricas" ToRole="Proveedores" />
+          <NavigationProperty Name="TiposProyectos" Relationship="Self.FK_DefMetricas_TiposProyectos" FromRole="DefMetricas" ToRole="TiposProyectos" />
+          <NavigationProperty Name="Vision" Relationship="Self.FK_DefMetricas_Vision" FromRole="DefMetricas" ToRole="Vision" />
+        </EntityType>
+        <EntityType Name="Dominios">
+          <Key>
+            <PropertyRef Name="id_Dominio" />
+          </Key>
+          <Property Name="id_Dominio" Type="Int32" Nullable="false" />
+          <Property Name="DescDominio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id_ClasificacionProv" Type="Int32" />
+          <NavigationProperty Name="Adhesiones" Relationship="Self.FK_Adhesiones_Dominios" FromRole="Dominios" ToRole="Adhesiones" />
+          <NavigationProperty Name="ClasificacionesProv" Relationship="Self.FK_Dominios_ClasificacionesProv" FromRole="Dominios" ToRole="ClasificacionesProv" />
+        </EntityType>
+        <EntityType Name="Encuestas">
+          <Key>
+            <PropertyRef Name="id_Encuesta" />
+            <PropertyRef Name="Pregunta" />
+            <PropertyRef Name="UsuarioEncuestado" />
+          </Key>
+          <Property Name="id_Encuesta" Type="Int32" Nullable="false" />
+          <Property Name="Id_Proyecto" Type="Int32" />
+          <Property Name="FechaEnvío" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
+          <Property Name="Pregunta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puntuacion" Type="Int32" />
+          <Property Name="Respuesta" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Encuesta_Tipo" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioEncuestado" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaGestora" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProveedor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Proveedor" Type="Int32" />
+          <Property Name="Ult_Actualizacion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Encuestas_Proveedores" FromRole="Encuestas" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Metricas">
+          <Key>
+            <PropertyRef Name="id_Metrica" />
+          </Key>
+          <Property Name="id_Metrica" Type="Int32" Nullable="false" />
+          <Property Name="SiglaMetrica" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DescripcionMet" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_TipoMetrica" Type="Int32" />
+          <Property Name="id_UMedida" Type="Int32" />
+          <NavigationProperty Name="DefMetricas" Relationship="Self.FK_DefMetricas_Metricas1" FromRole="Metricas" ToRole="DefMetricas" />
+          <NavigationProperty Name="TiposMetricas" Relationship="Self.FK_Metricas_TiposMetricas1" FromRole="Metricas" ToRole="TiposMetricas" />
+          <NavigationProperty Name="UnidadeDeMedidas" Relationship="Self.FK_Metricas_UnidadeDeMedidas1" FromRole="Metricas" ToRole="UnidadeDeMedidas" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="id_Proveedor" />
+          </Key>
+          <Property Name="id_Proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreProv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_ClasificacionProv" Type="Int32" Nullable="false" />
+          <Property Name="EsAM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModeloImplementado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NombreProvCompras" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gestion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Vigente" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Adhesiones" Relationship="Self.FK_Adhesiones_Proveedores" FromRole="Proveedores" ToRole="Adhesiones" />
+          <NavigationProperty Name="ClasificacionesProv" Relationship="Self.FK_Proveedores_ClasificacionesProv" FromRole="Proveedores" ToRole="ClasificacionesProv" />
+          <NavigationProperty Name="ContratoProv" Relationship="Self.FK_ContratoProv_Proveedores" FromRole="Proveedores" ToRole="ContratoProv" />
+          <NavigationProperty Name="DefMetricas" Relationship="Self.FK_DefMetricas_Proveedores" FromRole="Proveedores" ToRole="DefMetricas" />
+          <NavigationProperty Name="Encuestas" Relationship="Self.FK_Encuestas_Proveedores" FromRole="Proveedores" ToRole="Encuestas" />
+          <NavigationProperty Name="Auditorias" Relationship="Self.FK_Auditorias_Proveedores" FromRole="Proveedores" ToRole="Auditorias" />
+        </EntityType>
+        <EntityType Name="Scoring_Configuracion">
+          <Key>
+            <PropertyRef Name="id_MetricasScoring" />
+          </Key>
+          <Property Name="id_MetricasScoring" Type="Int32" Nullable="false" />
+          <Property Name="Metrica" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Peso" Type="Single" />
+          <Property Name="Ambito" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TiposMetricas">
+          <Key>
+            <PropertyRef Name="id_TipoMetrica" />
+          </Key>
+          <Property Name="id_TipoMetrica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescripcionTipMet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Metricas" Relationship="Self.FK_Metricas_TiposMetricas1" FromRole="TiposMetricas" ToRole="Metricas" />
+        </EntityType>
+        <EntityType Name="TiposProyectos">
+          <Key>
+            <PropertyRef Name="id_TiposProyectos" />
+          </Key>
+          <Property Name="id_TiposProyectos" Type="Int32" Nullable="false" />
+          <Property Name="DescTipoProyecto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiglaTipoPry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DefMetricas" Relationship="Self.FK_DefMetricas_TiposProyectos" FromRole="TiposProyectos" ToRole="DefMetricas" />
+        </EntityType>
+        <EntityType Name="UnidadeDeMedidas">
+          <Key>
+            <PropertyRef Name="id_UMedida" />
+          </Key>
+          <Property Name="id_UMedida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Metricas" Relationship="Self.FK_Metricas_UnidadeDeMedidas1" FromRole="UnidadeDeMedidas" ToRole="Metricas" />
+        </EntityType>
+        <EntityType Name="Vision">
+          <Key>
+            <PropertyRef Name="id_vision" />
+          </Key>
+          <Property Name="id_vision" Type="Int32" Nullable="false" />
+          <Property Name="DescripcionVision" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DefMetricas" Relationship="Self.FK_DefMetricas_Vision" FromRole="Vision" ToRole="DefMetricas" />
+        </EntityType>
+        <EntityType Name="Auditorias">
+          <Key>
+            <PropertyRef Name="id_Auditoria" />
+            <PropertyRef Name="id_Proyecto" />
+            <PropertyRef Name="Pregunta" />
+            <PropertyRef Name="Ciclo" />
+            <PropertyRef Name="FechaEjecucionCiclo" />
+          </Key>
+          <Property Name="id_Auditoria" Type="Int32" Nullable="false" />
+          <Property Name="id_Proyecto" Type="Int32" Nullable="false" />
+          <Property Name="Pregunta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ciclo" Type="Int32" Nullable="false" />
+          <Property Name="FechaEjecucionCiclo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ResultadoPregunta" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ResponsablePregunta" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="id_Proveedor" Type="Int32" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK_Auditorias_Proveedores" FromRole="Auditorias" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Auditorias_datos">
+          <Key>
+            <PropertyRef Name="Proyecto" />
+            <PropertyRef Name="Id_auditoría" />
+          </Key>
+          <Property Name="Proyecto" Type="Int32" Nullable="false" />
+          <Property Name="Id_auditoría" Type="Int32" Nullable="false" />
+          <Property Name="Área_proceso" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="C__Complimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Q_preguntas" Type="Int32" />
+          <Property Name="Q_preguntas_que_adhieren" Type="Int32" />
+          <Property Name="Q_preguntas_N_A" Type="Int32" />
+          <Property Name="Áreas_de_proceso" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Activos_a_revisar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="F__planif_1__Revisión" Type="DateTime" Precision="3" />
+          <Property Name="F__planif_feedback" Type="DateTime" Precision="3" />
+          <Property Name="F__planif_2__Revisión" Type="DateTime" Precision="3" />
+          <Property Name="F__real_1__Revisión" Type="DateTime" Precision="3" />
+          <Property Name="F__real_feedback" Type="DateTime" Precision="3" />
+          <Property Name="F__real_2__Revisión" Type="DateTime" Precision="3" />
+          <Property Name="Auditor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="C_Fue_replanificada_" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Auditorias_det_Pregunta">
+          <Key>
+            <PropertyRef Name="Proyecto" />
+          </Key>
+          <Property Name="Proyecto" Type="Int32" Nullable="false" />
+          <Property Name="Id_auditoría" Type="Int32" />
+          <Property Name="Área_de_proceso" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pregunta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="C_Cumple_" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Normas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EncuestaCompras">
+          <Key>
+            <PropertyRef Name="Proveedor" />
+          </Key>
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaSolicitante" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Contrato" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Division" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gerencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContratoFechaInicio" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="ContratoFechaFin" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="DSC1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSC2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSC3" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSC4" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSC5" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSC6" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSS1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DSS2" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CDS3" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CALIDAD" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="SERVICIO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PeriodoEncuestado" Type="DateTime" Precision="0" />
+          <Property Name="FechaDesde" Type="DateTime" Precision="0" />
+          <Property Name="FechaHasta" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Scoring_Totales">
+          <Key>
+            <PropertyRef Name="id_Proveedor" />
+          </Key>
+          <Property Name="id_Proveedor" Type="Int32" Nullable="false" />
+          <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Periodo" Type="DateTime" Precision="3" />
+          <Property Name="RMetricaGestion" Type="Single" />
+          <Property Name="RMetricaContractual" Type="Single" />
+          <Property Name="REncPry" Type="Single" />
+          <Property Name="REncCompras" Type="Single" />
+          <Property Name="RAuditorias" Type="Single" />
+          <Property Name="PESO_METRICAGESTION" Type="Single" />
+          <Property Name="PESO_METRICACONTRACTUAL" Type="Single" />
+          <Property Name="PESO_METRICA" Type="Single" />
+          <Property Name="PESO_ENCPRY" Type="Single" />
+          <Property Name="PESO_ENCCOMPRAS" Type="Single" />
+          <Property Name="PESO_ENCUESTAS" Type="Single" />
+          <Property Name="PESO_AUDITORIAS" Type="Single" />
+        </EntityType>
+        <Association Name="FK_Adhesiones_Dominios">
+          <End Role="Dominios" Type="Self.Dominios" Multiplicity="1" />
+          <End Role="Adhesiones" Type="Self.Adhesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dominios">
+              <PropertyRef Name="id_Dominio" />
+            </Principal>
+            <Dependent Role="Adhesiones">
+              <PropertyRef Name="id_Dominio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adhesiones_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="Adhesiones" Type="Self.Adhesiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="Adhesiones">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dominios_ClasificacionesProv">
+          <End Role="ClasificacionesProv" Type="Self.ClasificacionesProv" Multiplicity="0..1" />
+          <End Role="Dominios" Type="Self.Dominios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClasificacionesProv">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Principal>
+            <Dependent Role="Dominios">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_ClasificacionesProv">
+          <End Role="ClasificacionesProv" Type="Self.ClasificacionesProv" Multiplicity="1" />
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClasificacionesProv">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="id_ClasificacionProv" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ContratoProv_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="ContratoProv" Type="Self.ContratoProv" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="ContratoProv">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_Metricas1">
+          <End Role="Metricas" Type="Self.Metricas" Multiplicity="1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Metricas">
+              <PropertyRef Name="id_Metrica" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_Metricas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_TiposProyectos">
+          <End Role="TiposProyectos" Type="Self.TiposProyectos" Multiplicity="0..1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DefMetricas_Vision">
+          <End Role="Vision" Type="Self.Vision" Multiplicity="0..1" />
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vision">
+              <PropertyRef Name="id_vision" />
+            </Principal>
+            <Dependent Role="DefMetricas">
+              <PropertyRef Name="id_vision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encuestas_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Encuestas" Type="Self.Encuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="Encuestas">
+              <PropertyRef Name="Id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metricas_TiposMetricas1">
+          <End Role="TiposMetricas" Type="Self.TiposMetricas" Multiplicity="0..1" />
+          <End Role="Metricas" Type="Self.Metricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposMetricas">
+              <PropertyRef Name="id_TipoMetrica" />
+            </Principal>
+            <Dependent Role="Metricas">
+              <PropertyRef Name="id_TipoMetrica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Metricas_UnidadeDeMedidas1">
+          <End Role="UnidadeDeMedidas" Type="Self.UnidadeDeMedidas" Multiplicity="0..1" />
+          <End Role="Metricas" Type="Self.Metricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadeDeMedidas">
+              <PropertyRef Name="id_UMedida" />
+            </Principal>
+            <Dependent Role="Metricas">
+              <PropertyRef Name="id_UMedida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Auditorias_Proveedores">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Auditorias" Type="Self.Auditorias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="id_Proveedor" />
+            </Principal>
+            <Dependent Role="Auditorias">
+              <PropertyRef Name="id_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ScoringMGDPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adhesiones" EntityType="Self.Adhesiones" />
+          <EntitySet Name="CfgControlExtracciones" EntityType="Self.CfgControlExtracciones" />
+          <EntitySet Name="ClasificacionesProv" EntityType="Self.ClasificacionesProv" />
+          <EntitySet Name="ContratoProv" EntityType="Self.ContratoProv" />
+          <EntitySet Name="DefMetricas" EntityType="Self.DefMetricas" />
+          <EntitySet Name="Dominios" EntityType="Self.Dominios" />
+          <EntitySet Name="Encuestas" EntityType="Self.Encuestas" />
+          <EntitySet Name="Metricas" EntityType="Self.Metricas" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+          <EntitySet Name="Scoring_Configuracion" EntityType="Self.Scoring_Configuracion" />
+          <EntitySet Name="TiposMetricas" EntityType="Self.TiposMetricas" />
+          <EntitySet Name="TiposProyectos" EntityType="Self.TiposProyectos" />
+          <EntitySet Name="UnidadeDeMedidas" EntityType="Self.UnidadeDeMedidas" />
+          <EntitySet Name="Vision" EntityType="Self.Vision" />
+          <EntitySet Name="Auditorias" EntityType="Self.Auditorias" />
+          <EntitySet Name="Auditorias_datos" EntityType="Self.Auditorias_datos" />
+          <EntitySet Name="Auditorias_det_Pregunta" EntityType="Self.Auditorias_det_Pregunta" />
+          <EntitySet Name="EncuestaCompras" EntityType="Self.EncuestaCompras" />
+          <EntitySet Name="Scoring_Totales" EntityType="Self.Scoring_Totales" />
+          <AssociationSet Name="FK_Adhesiones_Dominios" Association="Self.FK_Adhesiones_Dominios">
+            <End Role="Dominios" EntitySet="Dominios" />
+            <End Role="Adhesiones" EntitySet="Adhesiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adhesiones_Proveedores" Association="Self.FK_Adhesiones_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Adhesiones" EntitySet="Adhesiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dominios_ClasificacionesProv" Association="Self.FK_Dominios_ClasificacionesProv">
+            <End Role="ClasificacionesProv" EntitySet="ClasificacionesProv" />
+            <End Role="Dominios" EntitySet="Dominios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_ClasificacionesProv" Association="Self.FK_Proveedores_ClasificacionesProv">
+            <End Role="ClasificacionesProv" EntitySet="ClasificacionesProv" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ContratoProv_Proveedores" Association="Self.FK_ContratoProv_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="ContratoProv" EntitySet="ContratoProv" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_Metricas1" Association="Self.FK_DefMetricas_Metricas1">
+            <End Role="Metricas" EntitySet="Metricas" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_Proveedores" Association="Self.FK_DefMetricas_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_TiposProyectos" Association="Self.FK_DefMetricas_TiposProyectos">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DefMetricas_Vision" Association="Self.FK_DefMetricas_Vision">
+            <End Role="Vision" EntitySet="Vision" />
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encuestas_Proveedores" Association="Self.FK_Encuestas_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Encuestas" EntitySet="Encuestas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metricas_TiposMetricas1" Association="Self.FK_Metricas_TiposMetricas1">
+            <End Role="TiposMetricas" EntitySet="TiposMetricas" />
+            <End Role="Metricas" EntitySet="Metricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Metricas_UnidadeDeMedidas1" Association="Self.FK_Metricas_UnidadeDeMedidas1">
+            <End Role="UnidadeDeMedidas" EntitySet="UnidadeDeMedidas" />
+            <End Role="Metricas" EntitySet="Metricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Auditorias_Proveedores" Association="Self.FK_Auditorias_Proveedores">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Auditorias" EntitySet="Auditorias" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ScoringMGDPModelStoreContainer" CdmEntityContainer="ScoringMGDPEntities">
+          <EntitySetMapping Name="Adhesiones">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Adhesiones">
+              <MappingFragment StoreEntitySet="Adhesiones">
+                <ScalarProperty Name="id_Dominio" ColumnName="id_Dominio" />
+                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
+                <ScalarProperty Name="PorcAdhesion" ColumnName="PorcAdhesion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CfgControlExtracciones">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.CfgControlExtracciones">
+              <MappingFragment StoreEntitySet="CfgControlExtracciones">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tabla" ColumnName="tabla" />
+                <ScalarProperty Name="ult_ejec" ColumnName="ult_ejec" />
+                <ScalarProperty Name="registros_insertados" ColumnName="registros_insertados" />
+                <ScalarProperty Name="registros_modificados" ColumnName="registros_modificados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClasificacionesProv">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.ClasificacionesProv">
+              <MappingFragment StoreEntitySet="ClasificacionesProv">
+                <ScalarProperty Name="id_ClasificacionProv" ColumnName="id_ClasificacionProv" />
+                <ScalarProperty Name="DescripcionClasifProv" ColumnName="DescripcionClasifProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContratoProv">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.ContratoProv">
+              <MappingFragment StoreEntitySet="ContratoProv">
+                <ScalarProperty Name="id_Contrato" ColumnName="id_Contrato" />
+                <ScalarProperty Name="NroContrato" ColumnName="NroContrato" />
+                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="MontoContrato" ColumnName="MontoContrato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefMetricas">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.DefMetricas">
+              <MappingFragment StoreEntitySet="DefMetricas">
+                <ScalarProperty Name="id_DefMetricas" ColumnName="id_DefMetricas" />
+                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
+                <ScalarProperty Name="id_Metricas" ColumnName="id_Metricas" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Ratio" ColumnName="Ratio" />
+                <ScalarProperty Name="PesoPonderado" ColumnName="PesoPonderado" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="ObjCritico" ColumnName="ObjCritico" />
+                <ScalarProperty Name="ObjMinimo" ColumnName="ObjMinimo" />
+                <ScalarProperty Name="ObjExcelencia" ColumnName="ObjExcelencia" />
+                <ScalarProperty Name="id_TiposProyectos" ColumnName="id_TiposProyectos" />
+                <ScalarProperty Name="Hub_NoHub" ColumnName="Hub_NoHub" />
+                <ScalarProperty Name="id_vision" ColumnName="id_vision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dominios">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Dominios">
+              <MappingFragment StoreEntitySet="Dominios">
+                <ScalarProperty Name="id_Dominio" ColumnName="id_Dominio" />
+                <ScalarProperty Name="DescDominio" ColumnName="DescDominio" />
+                <ScalarProperty Name="id_ClasificacionProv" ColumnName="id_ClasificacionProv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encuestas">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Encuestas">
+              <MappingFragment StoreEntitySet="Encuestas">
+                <ScalarProperty Name="id_Encuesta" ColumnName="id_Encuesta" />
+                <ScalarProperty Name="Id_Proyecto" ColumnName="Id_Proyecto" />
+                <ScalarProperty Name="FechaEnvío" ColumnName="FechaEnvío" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Puntuacion" ColumnName="Puntuacion" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="Encuesta_Tipo" ColumnName="Encuesta_Tipo" />
+                <ScalarProperty Name="UsuarioEncuestado" ColumnName="UsuarioEncuestado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="AreaGestora" ColumnName="AreaGestora" />
+                <ScalarProperty Name="NombreProveedor" ColumnName="NombreProveedor" />
+                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
+                <ScalarProperty Name="Ult_Actualizacion" ColumnName="Ult_Actualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metricas">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Metricas">
+              <MappingFragment StoreEntitySet="Metricas">
+                <ScalarProperty Name="id_Metrica" ColumnName="id_Metrica" />
+                <ScalarProperty Name="SiglaMetrica" ColumnName="SiglaMetrica" />
+                <ScalarProperty Name="DescripcionMet" ColumnName="DescripcionMet" />
+                <ScalarProperty Name="id_TipoMetrica" ColumnName="id_TipoMetrica" />
+                <ScalarProperty Name="id_UMedida" ColumnName="id_UMedida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
+                <ScalarProperty Name="NombreProv" ColumnName="NombreProv" />
+                <ScalarProperty Name="id_ClasificacionProv" ColumnName="id_ClasificacionProv" />
+                <ScalarProperty Name="EsAM" ColumnName="EsAM" />
+                <ScalarProperty Name="ModeloImplementado" ColumnName="ModeloImplementado" />
+                <ScalarProperty Name="NombreProvCompras" ColumnName="NombreProvCompras" />
+                <ScalarProperty Name="Gestion" ColumnName="Gestion" />
+                <ScalarProperty Name="Vigente" ColumnName="Vigente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scoring_Configuracion">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Scoring_Configuracion">
+              <MappingFragment StoreEntitySet="Scoring_Configuracion">
+                <ScalarProperty Name="id_MetricasScoring" ColumnName="id_MetricasScoring" />
+                <ScalarProperty Name="Metrica" ColumnName="Metrica" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Ambito" ColumnName="Ambito" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposMetricas">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.TiposMetricas">
+              <MappingFragment StoreEntitySet="TiposMetricas">
+                <ScalarProperty Name="id_TipoMetrica" ColumnName="id_TipoMetrica" />
+                <ScalarProperty Name="DescripcionTipMet" ColumnName="DescripcionTipMet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposProyectos">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.TiposProyectos">
+              <MappingFragment StoreEntitySet="TiposProyectos">
+                <ScalarProperty Name="id_TiposProyectos" ColumnName="id_TiposProyectos" />
+                <ScalarProperty Name="DescTipoProyecto" ColumnName="DescTipoProyecto" />
+                <ScalarProperty Name="SiglaTipoPry" ColumnName="SiglaTipoPry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnidadeDeMedidas">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.UnidadeDeMedidas">
+              <MappingFragment StoreEntitySet="UnidadeDeMedidas">
+                <ScalarProperty Name="id_UMedida" ColumnName="id_UMedida" />
+                <ScalarProperty Name="UM" ColumnName="UM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vision">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Vision">
+              <MappingFragment StoreEntitySet="Vision">
+                <ScalarProperty Name="id_vision" ColumnName="id_vision" />
+                <ScalarProperty Name="DescripcionVision" ColumnName="DescripcionVision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auditorias">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Auditorias">
+              <MappingFragment StoreEntitySet="Auditorias">
+                <ScalarProperty Name="id_Auditoria" ColumnName="id_Auditoria" />
+                <ScalarProperty Name="id_Proyecto" ColumnName="id_Proyecto" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="Ciclo" ColumnName="Ciclo" />
+                <ScalarProperty Name="FechaEjecucionCiclo" ColumnName="FechaEjecucionCiclo" />
+                <ScalarProperty Name="ResultadoPregunta" ColumnName="ResultadoPregunta" />
+                <ScalarProperty Name="ResponsablePregunta" ColumnName="ResponsablePregunta" />
+                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auditorias_datos">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Auditorias_datos">
+              <MappingFragment StoreEntitySet="Auditorias_datos">
+                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+                <ScalarProperty Name="Id_auditoría" ColumnName="Id auditoría" />
+                <ScalarProperty Name="Área_proceso" ColumnName="Área proceso" />
+                <ScalarProperty Name="C__Complimiento" ColumnName="% Complimiento" />
+                <ScalarProperty Name="Q_preguntas" ColumnName="Q preguntas" />
+                <ScalarProperty Name="Q_preguntas_que_adhieren" ColumnName="Q preguntas que adhieren" />
+                <ScalarProperty Name="Q_preguntas_N_A" ColumnName="Q preguntas N/A" />
+                <ScalarProperty Name="Áreas_de_proceso" ColumnName="Áreas de proceso" />
+                <ScalarProperty Name="Activos_a_revisar" ColumnName="Activos a revisar" />
+                <ScalarProperty Name="F__planif_1__Revisión" ColumnName="F. planif 1° Revisión" />
+                <ScalarProperty Name="F__planif_feedback" ColumnName="F. planif feedback" />
+                <ScalarProperty Name="F__planif_2__Revisión" ColumnName="F. planif 2° Revisión" />
+                <ScalarProperty Name="F__real_1__Revisión" ColumnName="F. real 1° Revisión" />
+                <ScalarProperty Name="F__real_feedback" ColumnName="F. real feedback" />
+                <ScalarProperty Name="F__real_2__Revisión" ColumnName="F. real 2° Revisión" />
+                <ScalarProperty Name="Auditor" ColumnName="Auditor" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="C_Fue_replanificada_" ColumnName="¿Fue replanificada?" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auditorias_det_Pregunta">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Auditorias_det_Pregunta">
+              <MappingFragment StoreEntitySet="Auditorias_det_Pregunta">
+                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+                <ScalarProperty Name="Id_auditoría" ColumnName="Id auditoría" />
+                <ScalarProperty Name="Área_de_proceso" ColumnName="Área de proceso" />
+                <ScalarProperty Name="Pregunta" ColumnName="Pregunta" />
+                <ScalarProperty Name="C_Cumple_" ColumnName="¿Cumple?" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Normas" ColumnName="Normas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EncuestaCompras">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.EncuestaCompras">
+              <MappingFragment StoreEntitySet="EncuestaCompras">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="AreaSolicitante" ColumnName="AreaSolicitante" />
+                <ScalarProperty Name="Contrato" ColumnName="Contrato" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Gerencia" ColumnName="Gerencia" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="ContratoFechaInicio" ColumnName="ContratoFechaInicio" />
+                <ScalarProperty Name="ContratoFechaFin" ColumnName="ContratoFechaFin" />
+                <ScalarProperty Name="DSC1" ColumnName="DSC1" />
+                <ScalarProperty Name="DSC2" ColumnName="DSC2" />
+                <ScalarProperty Name="DSC3" ColumnName="DSC3" />
+                <ScalarProperty Name="DSC4" ColumnName="DSC4" />
+                <ScalarProperty Name="DSC5" ColumnName="DSC5" />
+                <ScalarProperty Name="DSC6" ColumnName="DSC6" />
+                <ScalarProperty Name="DSS1" ColumnName="DSS1" />
+                <ScalarProperty Name="DSS2" ColumnName="DSS2" />
+                <ScalarProperty Name="CDS3" ColumnName="CDS3" />
+                <ScalarProperty Name="CALIDAD" ColumnName="CALIDAD" />
+                <ScalarProperty Name="SERVICIO" ColumnName="SERVICIO" />
+                <ScalarProperty Name="PeriodoEncuestado" ColumnName="PeriodoEncuestado" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scoring_Totales">
+            <EntityTypeMapping TypeName="ScoringMGDPModel.Scoring_Totales">
+              <MappingFragment StoreEntitySet="Scoring_Totales">
+                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="RMetricaGestion" ColumnName="RMetricaGestion" />
+                <ScalarProperty Name="RMetricaContractual" ColumnName="RMetricaContractual" />
+                <ScalarProperty Name="REncPry" ColumnName="REncPry" />
+                <ScalarProperty Name="REncCompras" ColumnName="REncCompras" />
+                <ScalarProperty Name="RAuditorias" ColumnName="RAuditorias" />
+                <ScalarProperty Name="PESO_METRICAGESTION" ColumnName="PESO_METRICAGESTION" />
+                <ScalarProperty Name="PESO_METRICACONTRACTUAL" ColumnName="PESO_METRICACONTRACTUAL" />
+                <ScalarProperty Name="PESO_METRICA" ColumnName="PESO_METRICA" />
+                <ScalarProperty Name="PESO_ENCPRY" ColumnName="PESO_ENCPRY" />
+                <ScalarProperty Name="PESO_ENCCOMPRAS" ColumnName="PESO_ENCCOMPRAS" />
+                <ScalarProperty Name="PESO_ENCUESTAS" ColumnName="PESO_ENCUESTAS" />
+                <ScalarProperty Name="PESO_AUDITORIAS" ColumnName="PESO_AUDITORIAS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

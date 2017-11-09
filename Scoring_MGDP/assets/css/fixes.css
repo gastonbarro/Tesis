@@ -1,0 +1,60 @@
+﻿.modal-body {
+    max-height: calc(100vh - 100px); /*Para que quede centrado en la pantalla*/
+    overflow-y: auto;
+}
+
+.noBack li{
+    background:none !important;
+    background-color:none !important;
+    background-image: none !important;
+}
+
+.noBack li a{
+    background:none !important;
+    background-color:none !important;
+    background-image: none !important;
+}
+
+.noBack a{
+    background:none !important;
+    background-color:none !important;
+    background-image: none !important;
+}
+
+/* Correccion de overflow */
+
+.modal-open {
+    overflow: scroll;
+}
+body.modal-open {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* Para que el boton bootstrap no se deforme al tener texto largo */
+.btnWrap { white-space: normal; }
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+
+.vertical-top{
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+}
+
+@media (min-width: 768px) {
+    .modal70{width:70%;margin: 20px auto}
+    .modal80{width:80%;margin: 20px auto}
+    .fixV{margin-top:124px;}
+}
+
+@media (min-width: 768px) {
+    .modal70{width:70%;margin: 20px auto}
+    .modal80{width:80%;margin: 20px auto}
+    .fixVs{margin-top:70px;}
+}

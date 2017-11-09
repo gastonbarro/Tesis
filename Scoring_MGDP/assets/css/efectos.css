@@ -1,0 +1,33 @@
+﻿.sombraTexto{
+    text-shadow: 1px 1px 3px #AAA !important;
+}
+
+.glowTexto{
+    text-shadow: 0 0 5px #FF0000;
+}
+
+.sombra1{
+    -webkit-box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px -4px rgba(0,0,0,0.75);
+}
+
+.sombra2{
+    -webkit-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px 1px rgba(0,0,0,0.75);
+}
+
+.rnd{border-radius:4px !important;}
+
+.rndl{border-radius:0 4px 4px 0 !important;}
+
+.apagado {
+    opacity:0.55;   
+}
+
+.hundido{
+   -webkit-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+}

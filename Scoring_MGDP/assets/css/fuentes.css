@@ -1,0 +1,167 @@
+﻿
+/* Tipografias Corporativas */
+
+@font-face {
+	font-family: 'TelefonicaWeb-Bold';
+	src: local('☺'),
+		 url('../fonts/Bold/TelefonicaWeb-Bold.eot') format('embedded-opentype'),
+		 url('../fonts/Bold/TelefonicaWeb-Bold.woff') format('woff'),
+		 url('../fonts/Bold/TelefonicaWeb-Bold.otf') format('opentype'),
+		 url('../fonts/Bold/TelefonicaWeb-Bold.svg#TelefonicaWebBold') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TelefonicaWeb-ExtraLight';
+	src: local('☺'),
+		 url('../fonts/ExtraLight/TelefonicaWeb-ExtraLight.eot') format('embedded-opentype'),
+		 url('../fonts/ExtraLight/TelefonicaWeb-ExtraLight.woff') format('woff'),
+		 url('../fonts/ExtraLight/TelefonicaWeb-ExtraLight.otf') format('opentype'),
+		 url('../fonts/ExtraLight/TelefonicaWeb-ExtraLight.svg#TelefonicaWeb-ExtraLight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TelefonicaWeb-Hand';
+	src: local('☺'),
+		 url('../fonts/Hand/TelefonicaWeb-Hand.eot') format('embedded-opentype'),
+		 url('../fonts/Hand/TelefonicaWeb-Hand.woff') format('woff'),
+		 url('../fonts/Hand/TelefonicaWeb-Hand.otf') format('opentype'),
+		 url('../fonts/Hand/TelefonicaWeb-Hand.svg#TelefonicaWeb-Hand') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TelefonicaWeb-Light';
+	src: local('☺'),
+		 url('../fonts/Light/TelefonicaWeb-Light.eot') format('embedded-opentype'),
+		 url('../fonts/Light/TelefonicaWeb-Light.woff') format('woff'),
+		 url('../fonts/Light/TelefonicaWeb-Light.otf') format('opentype'),
+		 url('../fonts/Light/TelefonicaWeb-Light.svg#TelefonicaWeb-Light') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TelefonicaWeb-Regular';
+	src: local('☺'),
+		 url('../fonts/Regular/TelefonicaWeb-Regular.eot') format('embedded-opentype'),
+		 url('../fonts/Regular/TelefonicaWeb-Regular.woff') format('woff'),
+		 url('../fonts/Regular/TelefonicaWeb-Regular.otf') format('opentype'),
+		 url('../fonts/Regular/TelefonicaWeb-Regular.svg#TelefonicaWeb-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'TelefonicaWeb-RegularItalic';
+	src: local('☺'),
+		 url('../fonts/RegularItalic/TelefonicaWeb-RegularItalic.eot') format('embedded-opentype'),
+		 url('../fonts/RegularItalic/TelefonicaWeb-RegularItalic.woff') format('woff'),
+		 url('../fonts/RegularItalic/TelefonicaWeb-RegularItalic.otf') format('opentype'),
+		 url('../fonts/RegularItalic/TelefonicaWeb-RegularItalic.svg#TelefonicaWeb-RegularItalic') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.TelefonicaWebRegularItalic
+{
+	font-family: 'TelefonicaWeb-RegularItalic';
+}
+
+.TelefonicaWebRegular
+{
+	font-family: 'TelefonicaWeb-Regular';
+}
+
+.TelefonicaWebLight
+{
+	font-family: 'TelefonicaWeb-Light';
+}
+
+.TelefonicaWebHand
+{
+	font-family: 'TelefonicaWeb-Hand';
+}
+
+.TelefonicaWebBold
+{
+	font-family: 'TelefonicaWeb-Bold';
+}
+
+.TelefonicaWebExtraLight
+{
+	font-family: 'TelefonicaWeb-ExtraLight';
+}
+
+.interlineado2 {
+    letter-spacing: -2px;
+}
+
+.interlineadoVertical1 {
+    line-height: 70%;
+}
+
+.interlineadoVertical2 {
+    line-height: 80%;
+}
+
+.interlineadoVertical3 {
+    line-height: 90%;
+}
+
+.interlineadoVertical4 {
+    line-height: 100%;
+}
+
+.interlineadoVertical5 {
+    line-height: 280%;
+}
+
+.agrandado{
+   -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.textoIzquierda{text-align:left !important;}
+.textoDerecha{text-align:right !important;}
+.textoCentro{text-align:center !important;}
+.textoCentroVertical{vertical-align: middle !important;}
+
+/* Pantallas chicas */
+
+.tituloGrande{font-size:35px;}
+.tituloMediano{font-size:28px;}
+.tituloChico{font-size:24px;}
+
+.textoGrande{font-size:19px;}
+.textoMediano{font-size:15px;}
+.textoChico{font-size:13px;}
+
+.textoMensaje{font-size:22px;}
+
+/* Pantallas grandes */
+
+@media (min-width: 768px) {
+    .tituloGrande{font-size:65px;}
+    .tituloMediano{font-size:48px;}
+    .tituloChico{font-size:34px;}
+
+    .textoGrande{font-size:15px;}
+    .textoMediano{font-size:13px;}
+    .textoChico{font-size:10px;}
+}
+
+.izquierda {
+     position:absolute;
+    left:50px;
+}
+
+.derecha {
+    position:absolute;
+    right:50px;
+}

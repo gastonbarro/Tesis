@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="690e3a2ec9d64d888c5a781d07b6c34c" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionProvModel.Adhesiones" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.CfgControlExtracciones" Width="1.5" PointX="7.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.ClasificacionesProv" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.ContratoProv" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.DefMetricas" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.Dominios" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.Metricas" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.Proveedores" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.Scoring_Configuracion" Width="1.5" PointX="9.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.TiposMetricas" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.TiposProyectos" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.UnidadeDeMedidas" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.Vision" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.EncuestaCompras" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionProvModel.Scoring_Totales" Width="1.5" PointX="10.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="GestionProvModel.FK_Adhesiones_Dominios" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_Adhesiones_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_Dominios_ClasificacionesProv" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_Proveedores_ClasificacionesProv" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_ContratoProv_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_DefMetricas_Metricas1" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_DefMetricas_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_DefMetricas_TiposProyectos" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_DefMetricas_Vision" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_Metricas_TiposMetricas1" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionProvModel.FK_Metricas_UnidadeDeMedidas1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
