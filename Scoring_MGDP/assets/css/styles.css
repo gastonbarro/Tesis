@@ -1,0 +1,21 @@
+﻿.modal-content {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 80% !important;
+  transform: translate(-50%, -50%) !important;
+
+}
+
+.dropdown-menu {
+    background-color: #00AADF !important;
+}
+
+.dropdown-menu > li > a {
+		color: white !important;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #0098CA !important;
+    background-image: none !important;
+}

@@ -10,8 +10,8 @@
     <br />
     <br />
     <br />
-    <br />
-    
+
+    <h3 align="center">Clasificación de proveedor</h3>   
     <p>
         @Html.ActionLink("Nueva Clasificación", "Create", "ClasifProveedores", null, new { @class = "modal-link btn btn-primary" })
         @*@Html.ActionLink("Nuevo proveedor", "Create", "Proveedores", null, new { @class = "modal-link btn btn-primary" })*@
@@ -35,8 +35,8 @@
                     </td>
                     <td class="text-center">
                         @Html.ActionLink("Editar", "Edit", "ClasifProveedores", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        @*@Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
                     </td>
                 </tr>
             }

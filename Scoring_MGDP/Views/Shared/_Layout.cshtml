@@ -27,25 +27,7 @@
         @Scripts.Render("~/bundles/modernizr")*@
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="@Url.Content("~/")assets/js/jquery.inputmask.bundle.js"></script>
-    <script src="@Url.Content("~/")assets/js/jquery.ui.widget.js"></script>
-    <script src="@Url.Content("~/")assets/js/jquery.fileupload.js"></script>
-    <script src="@Url.Content("~/")assets/bootstrap/js/bootstrap.min.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/jquery.slimscroll.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/dist/js/app.min.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/jquery.parallax.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/smoothscroll.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/wow.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/easing.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/jquery.toaster.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/funciones.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/validacion.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/Inicio.js?v=482100005"></script>
-    <script src="@Url.Content("~/")assets/js/ajax.helpers.js"></script>
-    <script src="@Url.Content("~/")assets/js/tableau-2.min.js"></script>
 
-    <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/styles.css" />
     <link rel="stylesheet" href="@Url.Content("~/")assets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="@Url.Content("~/")assets/bootstrap/css/bootstrap-theme.css">
     <link rel="stylesheet" href="@Url.Content("~/")assets/font-awesome/css/font-awesome.min.css">
@@ -57,6 +39,7 @@
     <link rel="stylesheet" href="@Url.Content("~/")assets/css/fuentes.css">
     <link rel="stylesheet" href="@Url.Content("~/")assets/css/fondos.css">
     <link rel="stylesheet" href="@Url.Content("~/")assets/css/estilos.css">
+    <link rel="stylesheet" href="@Url.Content("~/")assets/css/styles.css"/>
     <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/AdminLTE.css">
     <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/skin-blue.css">
     <link rel="stylesheet" href="@Url.Content("~/")assets/css/animate.css">
@@ -116,25 +99,24 @@
                             <li>
                                 <a href="@Url.Action("Index", "Home")">
                                     <span class="glyphicon glyphicon-home"></span>
-                                    Inicio
+                                    &nbsp;Inicio
                                 </a>
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    Tableros Scoring
+                                    <span class="glyphicon glyphicon-dashboard"></span>
+                                    &nbsp;Scoring
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="@Url.Action("TableroScoring", "Tableros")">
-                                            <span class="glyphicon glyphicon-dashboard"></span>
-                                            Tablero de Scoring
+                                            Tablero Scoring Proveedores
                                         </a>
                                     </li>
                                     <li>
                                         <a href="@Url.Action("TableroDetalleScoring", "Tableros")">
-                                            <span class="glyphicon glyphicon-dashboard"></span>
-                                            Tablero de Detalle Scoring
+                                            Tablero Detalle Scoring Proveedores
                                         </a>
                                     </li>
                                 </ul>
@@ -142,21 +124,54 @@
                             <li>
                                 <a href="@Url.Action("Contact", "Home")">
                                     <span class="glyphicon glyphicon-stats"></span>
-                                    Tablero de MGDP
+                                    &nbsp;Tablero de MGDP
                                 </a>
                             </li>
 
                             <li>
                                 <a href="@Url.Action("About", "Home")">
                                     <span class="glyphicon glyphicon-list-alt"></span>
-                                    Carga de Resultados
+                                    &nbsp;Carga de Resultados
                                 </a>
                             </li>
-                            <li>
-                                <a href="@Url.Action("../Proveedores")">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <span class="glyphicon glyphicon-cog"></span>
-                                    Configuración Entidades
+                                    &nbsp;Configuración entidades
+                                    <span class="caret"></span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("Index", "ClasifProveedores")">
+                                            Clasificación proveedores
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Proveedores")">
+                                            Proveedores
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("", "")">
+                                            Nuevo
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("", "")">
+                                            Nuevo2
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("", "")">
+                                            Nuevo3
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Proveedores")">
+                                            Proveedores
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -257,9 +272,24 @@
         </div>
     </footer>
 
- 
-
-
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/")assets/js/jquery.inputmask.bundle.js"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.ui.widget.js"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.fileupload.js"></script>
+    <script src="@Url.Content("~/")assets/bootstrap/js/bootstrap.min.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.slimscroll.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/dist/js/app.min.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.parallax.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/smoothscroll.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/wow.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/easing.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/jquery.toaster.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/funciones.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/validacion.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/Inicio.js?v=482100005"></script>
+    <script src="@Url.Content("~/")assets/js/ajax.helpers.js"></script>
+    <script src="@Url.Content("~/")assets/js/tableau-2.min.js"></script>
+    
     @RenderSection("scripts", required: false)
     <!-- Modal -->
     <script>

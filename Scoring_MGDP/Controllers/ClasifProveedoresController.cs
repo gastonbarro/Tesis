@@ -51,7 +51,9 @@ namespace Scoring_MGDP.Controllers
         // GET: ClasifProveedores/Create
         public ActionResult Create()
         {
-            return PartialView("Create");
+            var clasifProveedoresViewModel = new ClasifProveedoresViewModel();
+            
+            return PartialView("Create", clasifProveedoresViewModel);
         }
 
         // POST: ClasifProveedores/Create
@@ -59,16 +61,17 @@ namespace Scoring_MGDP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_ClasificacionProv,DescripcionClasifProv")] ClasificacionesProv clasificacionesProv)
+        public ActionResult Create(ClasifProveedoresViewModel clasifProveedoresViewModel)
         {
             if (ModelState.IsValid)
             {
+                var clasificacionesProv = ModelMappingProfile.Mapper.Map<ClasifProveedoresViewModel,ClasificacionesProv> (clasifProveedoresViewModel);
                 db.ClasificacionesProv.Add(clasificacionesProv);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(clasificacionesProv);
+            return View(clasifProveedoresViewModel);
         }
 
         // GET: ClasifProveedores/Edit/5
@@ -83,7 +86,9 @@ namespace Scoring_MGDP.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView(clasificacionesProv);
+            var clasifProveedoresViewModel = ModelMappingProfile.Mapper.Map<ClasificacionesProv, ClasifProveedoresViewModel> (clasificacionesProv);
+            return PartialView(clasifProveedoresViewModel);
+            //return PartialView("Edit");
         }
 
         // POST: ClasifProveedores/Edit/5
@@ -91,15 +96,17 @@ namespace Scoring_MGDP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_ClasificacionProv,DescripcionClasifProv")] ClasificacionesProv clasificacionesProv)
+        public ActionResult Edit(ClasifProveedoresViewModel clasifProveedoresViewModel)
         {
             if (ModelState.IsValid)
             {
+                var clasificacionesProv = ModelMappingProfile.Mapper.Map<ClasifProveedoresViewModel, ClasificacionesProv>(clasifProveedoresViewModel);
                 db.Entry(clasificacionesProv).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(clasificacionesProv);
+
+            return View(clasifProveedoresViewModel);
         }
 
         // GET: ClasifProveedores/Delete/5
