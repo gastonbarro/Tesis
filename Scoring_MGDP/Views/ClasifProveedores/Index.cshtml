@@ -11,10 +11,9 @@
     <br />
     <br />
 
-    <h3 align="center">Clasificación de proveedor</h3>   
+    <h2 class="azul sombraTexto textoCentro">Clasificación de proveedor</h2>   
     <p>
         @Html.ActionLink("Nueva Clasificación", "Create", "ClasifProveedores", null, new { @class = "modal-link btn btn-primary" })
-        @*@Html.ActionLink("Nuevo proveedor", "Create", "Proveedores", null, new { @class = "modal-link btn btn-primary" })*@
     </p>
     <div class="visible-md visible-lg col-md-6">
         <table class="table table-striped table-sm">
@@ -35,8 +34,7 @@
                     </td>
                     <td class="text-center">
                         @Html.ActionLink("Editar", "Edit", "ClasifProveedores", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
-                        @*@Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                        @Html.ActionLink("Eliminar", "Delete", "ClasifProveedores", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
                     </td>
                 </tr>
             }

@@ -1,40 +1,36 @@
-﻿@model Scoring_MGDPData.ClasificacionesProv
+﻿@model Scoring_MGDP.ViewModel.ClasifProveedoresViewModel
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
-<body>
-    <h3>Are you sure you want to delete this?</h3>
-    <div>
-        <h4>ClasificacionesProv</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.DescripcionClasifProv)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DescripcionClasifProv)
-            </dd>
-    
-        </dl>
-    
-        @using (Html.BeginForm()) {
-            @Html.AntiForgeryToken()
-    
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+<div class="modal-content">
+        <h4 align="center">¿Está seguro de eliminar esta clasificación?</h4>
+        <div>
+            <hr />
+            <div class="form-group">
+                @Html.LabelFor(model => model.ClasificacionProv, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.DisplayFor(model => model.ClasificacionProv)
+                </div>
             </div>
-        }
-    </div>
-</body>
-</html>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="col-md-offset-10 col-md-10">
+                        <input type="submit" value="Borrar" class="btn btn-primary" id="approve-btn" />
+                    </div>
+                </div>
+                <br />
+            }
+        </div>
+        <br />
+        <br />
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-container').modal('hide');
+        });
+    });
+</script>

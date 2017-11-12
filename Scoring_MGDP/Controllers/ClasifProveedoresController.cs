@@ -121,7 +121,8 @@ namespace Scoring_MGDP.Controllers
             {
                 return HttpNotFound();
             }
-            return View(clasificacionesProv);
+            var clasifProveedoresViewModel = ModelMappingProfile.Mapper.Map<ClasificacionesProv, ClasifProveedoresViewModel>(clasificacionesProv);
+            return PartialView(clasifProveedoresViewModel);
         }
 
         // POST: ClasifProveedores/Delete/5
