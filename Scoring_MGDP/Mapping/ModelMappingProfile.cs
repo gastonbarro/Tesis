@@ -56,6 +56,22 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.id_ClasificacionProv, map => map.MapFrom(m => m.Id))
                 .ForMember(vm => vm.DescripcionClasifProv, map => map.MapFrom(m => m.ClasificacionProv));
 
+                cfg.CreateMap<UnidadeDeMedidas, UnidadesMedidasViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.id_UMedida))
+                .ForMember(vm => vm.UnidadMedida, map => map.MapFrom(m => m.UM));
+
+                cfg.CreateMap<UnidadesMedidasViewModel, UnidadeDeMedidas>()
+                .ForMember(vm => vm.id_UMedida, map => map.MapFrom(m => m.Id))
+                .ForMember(vm => vm.UM, map => map.MapFrom(m => m.UnidadMedida));
+
+                cfg.CreateMap<TiposMetricas, TiposMetricasViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.id_TipoMetrica))
+                .ForMember(vm => vm.TipoMetrica, map => map.MapFrom(m => m.DescripcionTipMet));
+
+                cfg.CreateMap<TiposMetricasViewModel, TiposMetricas>()
+                .ForMember(vm => vm.id_TipoMetrica, map => map.MapFrom(m => m.Id))
+                .ForMember(vm => vm.DescripcionTipMet, map => map.MapFrom(m => m.TipoMetrica));
+
             });
 
             Mapper = mapConfiguration.CreateMapper();

@@ -217,6 +217,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\TablerosController.cs" />
+    <Compile Include="Controllers\TiposMetricasController.cs" />
+    <Compile Include="Controllers\UnidadesMedidasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +233,8 @@
     <Compile Include="ViewModel\ClasifProveedoresViewModel.cs" />
     <Compile Include="ViewModel\ProveedorViewModel.cs" />
     <Compile Include="ViewModel\TipoGestionProvViewModel.cs" />
+    <Compile Include="ViewModel\TiposMetricasViewModel.cs" />
+    <Compile Include="ViewModel\UnidadesMedidasViewModel.cs" />
     <Compile Include="ViewModel\YesNoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -483,6 +487,14 @@
     <Content Include="Views\ClasifProveedores\Delete.cshtml" />
     <Content Include="Views\ClasifProveedores\Edit.cshtml" />
     <Content Include="Views\ClasifProveedores\Index.cshtml" />
+    <Content Include="Views\UnidadesMedidas\Create.cshtml" />
+    <Content Include="Views\UnidadesMedidas\Delete.cshtml" />
+    <Content Include="Views\UnidadesMedidas\Edit.cshtml" />
+    <Content Include="Views\UnidadesMedidas\Index.cshtml" />
+    <Content Include="Views\TiposMetricas\Create.cshtml" />
+    <Content Include="Views\TiposMetricas\Delete.cshtml" />
+    <Content Include="Views\TiposMetricas\Edit.cshtml" />
+    <Content Include="Views\TiposMetricas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

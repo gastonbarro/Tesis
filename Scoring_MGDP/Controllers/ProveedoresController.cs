@@ -22,12 +22,12 @@ namespace Scoring_MGDP.Controllers
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
-            var YesNoList = new[] {
-            new ListEntry { Id = "S", Name = "Si" },
-            new ListEntry { Id = "N", Name = "No" }
-            };
+            //var YesNoList = new[] {
+            //new ListEntry { Id = "S", Name = "Si" },
+            //new ListEntry { Id = "N", Name = "No" }
+            //};
 
-            ViewBag.YesNoList = new SelectList(YesNoList, "Id", "Name");
+            //ViewBag.YesNoList = new SelectList(YesNoList, "Id", "Name");
 
 
             ViewBag.CurrentSort = sortOrder;

@@ -1,0 +1,36 @@
+﻿@model Scoring_MGDP.ViewModel.UnidadesMedidasViewModel
+
+<div class="modal-content">
+    <h4 align="center">¿Está seguro de eliminar esta unidad?</h4>
+    <div>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnidadMedida, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-7">
+                @Html.DisplayFor(model => model.UnidadMedida)
+            </div>
+        </div>
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <div class="col-md-offset-10 col-md-5">
+                    <input type="submit" value="Borrar" class="btn btn-primary" id="approve-btn" />
+                </div>
+            </div>
+            <br />
+        }
+    </div>
+    <br />
+    <br />
+</div>
+
+<script type="text/javascript">
+        $(function () {
+            $('#approve-btn').click(function () {
+                $('#modal-container').modal('hide');
+            });
+        });
+</script>
