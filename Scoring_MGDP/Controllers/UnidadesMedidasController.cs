@@ -14,6 +14,7 @@ using Scoring_MGDP.Infrastructure;
 
 namespace Scoring_MGDP.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class UnidadesMedidasController : Controller
     {
         private Scoring_MGDPEntities db = new Scoring_MGDPEntities();
