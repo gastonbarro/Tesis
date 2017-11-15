@@ -32,6 +32,9 @@ namespace Scoring_MGDP.Controllers
             //    searchString = currentFilter;
             //}
 
+            //ACA ARRANCAN TODOS MIS PROBLEMAS:
+            //Sin el Order by me tira esta excepción: //{"El método 'Skip' solo se admite para entradas ordenadas en LINQ to Entities. Se debe llamar antes al método 'OrderBy' que al método 'Skip'."
+            //Con el order by me tira: {"Error mapping types.\r\n\r\nMapping types:\r\nIEnumerable`1 -> IEnumerable`1\r\nSystem.Collections.Generic.IEnumerable`1[[Scoring_MGDPData.ContratoProv, Scoring_MGDPData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[Scoring_MGDP.ViewModel.ContratoProvViewModel, Scoring_MGDP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"}
             var contratoProv = db.ContratoProv.Include(c => c.Proveedores).OrderBy(i => i.id_Contrato);
 
             //            if (!String.IsNullOrEmpty(searchString))
@@ -43,15 +46,15 @@ namespace Scoring_MGDP.Controllers
 
             int pageNumber = (page ?? 1);
 
-            //var contratoProvPageList = contratoProv.ToPagedList(pageNumber, pageSize);
-
-            //var contratoProvVmPageList = contratoProvPageList.ToMappedPagedList<ContratoProv, ContratoProvViewModel>();
-
-            //return View(contratoProvVmPageList);
-
             var contratoProvPageList = contratoProv.ToPagedList(pageNumber, pageSize);
 
-            return View(contratoProvPageList);
+            var contratoProvVmPageList = contratoProvPageList.ToMappedPagedList<ContratoProv, ContratoProvViewModel>();
+
+            return View(contratoProvVmPageList);
+
+            //var contratoProvPageList = contratoProv.ToPagedList(pageNumber, pageSize);
+
+            //return View(contratoProvPageList);
         }
 
         // GET: ContratoProv/Details/5

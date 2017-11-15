@@ -1,5 +1,5 @@
-﻿@*@model PagedList.IPagedList<Scoring_MGDP.ViewModel.ContratoProvViewModel>*@
-@model PagedList.IPagedList < Scoring_MGDPData.ContratoProv>
+﻿@model PagedList.IPagedList<Scoring_MGDP.ViewModel.ContratoProvViewModel>
+@*@model PagedList.IPagedList < Scoring_MGDPData.ContratoProv>*@
 @using PagedList.Mvc;
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -40,20 +40,20 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NroContrato)
+                        @Html.DisplayFor(modelItem => item.Numcontrato)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Responsable)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.MontoContrato)
+                        @Html.DisplayFor(modelItem => item.Monto)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Proveedores.NombreProv)
+                        @Html.DisplayFor(modelItem => item.ProveedorViewModel.NombreProveedor)
                     </td>
                     <td class="text-center">
-                        @Html.ActionLink("Editar", "Edit", "ContratoProv", new { id = item.id_Contrato }, new { @class = "modal-link btn btn-primary btn-sm" })
-                        @Html.ActionLink("Eliminar", "Delete","ContratoProv", new { id = item.id_Contrato }, new { @class = "modal-link btn btn-primary btn-sm" })
+                        @Html.ActionLink("Editar", "Edit", "ContratoProv", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete","ContratoProv", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
                     </td>
                 </tr>
             }
