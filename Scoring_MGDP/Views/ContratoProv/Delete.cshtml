@@ -1,0 +1,63 @@
+﻿@model Scoring_MGDP.ViewModel.ContratoProvViewModel
+
+
+    <div class="modal-content">
+    <h4 align="center">¿Está seguro de eliminar esta clasificación?</h4>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Numcontrato)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Numcontrato)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Responsable)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Responsable)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Monto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Monto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProveedorViewModel.NombreProveedor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProveedorViewModel.NombreProveedor)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <div class="col-md-offset-10 col-md-5">
+                    <input type="submit" value="Borrar" class="btn btn-primary" id="approve-btn" />
+                </div>
+            </div>
+                <br />
+        }
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-container').modal('hide');
+        });
+    });
+</script>

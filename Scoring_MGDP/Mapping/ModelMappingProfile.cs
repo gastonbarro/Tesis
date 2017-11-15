@@ -72,6 +72,22 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.id_TipoMetrica, map => map.MapFrom(m => m.Id))
                 .ForMember(vm => vm.DescripcionTipMet, map => map.MapFrom(m => m.TipoMetrica));
 
+                cfg.CreateMap<ContratoProv, ContratoProvViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.id_Contrato))
+                .ForMember(vm => vm.Numcontrato, map => map.MapFrom(m => m.NroContrato))
+                .ForMember(vm => vm.ProveedorViewModel, map => map.MapFrom(m => m.Proveedores))
+                .ForMember(vm => vm.IdProveedor, map => map.MapFrom(m => m.id_Proveedor))
+                .ForMember(vm => vm.Responsable, map => map.MapFrom(m => m.Responsable))
+                .ForMember(vm => vm.Monto, map => map.MapFrom(m => m.MontoContrato));
+
+                cfg.CreateMap<ContratoProvViewModel, ContratoProv>()
+                .ForMember(vm => vm.id_Contrato, map => map.MapFrom(m => m.Id))
+                .ForMember(vm => vm.NroContrato, map => map.MapFrom(m => m.Numcontrato))
+                .ForMember(vm => vm.Proveedores, map => map.MapFrom(m => m.ProveedorViewModel))
+                .ForMember(vm => vm.id_Proveedor, map => map.MapFrom(m => m.IdProveedor))
+                .ForMember(vm => vm.Responsable, map => map.MapFrom(m => m.Responsable))
+                .ForMember(vm => vm.MontoContrato, map => map.MapFrom(m => m.Monto));
+                
             });
 
             Mapper = mapConfiguration.CreateMapper();

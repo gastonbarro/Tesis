@@ -213,6 +213,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClasifProveedoresController.cs" />
+    <Compile Include="Controllers\ContratoProvController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ClasifProveedoresViewModel.cs" />
+    <Compile Include="ViewModel\ContratoProvViewModel.cs" />
     <Compile Include="ViewModel\ProveedorViewModel.cs" />
     <Compile Include="ViewModel\TipoGestionProvViewModel.cs" />
     <Compile Include="ViewModel\TiposMetricasViewModel.cs" />
@@ -495,6 +497,10 @@
     <Content Include="Views\TiposMetricas\Delete.cshtml" />
     <Content Include="Views\TiposMetricas\Edit.cshtml" />
     <Content Include="Views\TiposMetricas\Index.cshtml" />
+    <Content Include="Views\ContratoProv\Create.cshtml" />
+    <Content Include="Views\ContratoProv\Delete.cshtml" />
+    <Content Include="Views\ContratoProv\Edit.cshtml" />
+    <Content Include="Views\ContratoProv\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

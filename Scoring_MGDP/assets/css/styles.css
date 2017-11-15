@@ -19,3 +19,10 @@
     background-color: #0098CA !important;
     background-image: none !important;
 }
+
+th {
+    display: table-cell !important;
+    vertical-align: inherit !important;
+    font-weight: bold !important;
+    text-align: center !important;
+}
