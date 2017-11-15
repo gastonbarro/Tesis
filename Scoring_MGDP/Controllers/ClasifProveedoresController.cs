@@ -88,7 +88,7 @@ namespace Scoring_MGDP.Controllers
                 return HttpNotFound();
             }
             var clasifProveedoresViewModel = ModelMappingProfile.Mapper.Map<ClasificacionesProv, ClasifProveedoresViewModel> (clasificacionesProv);
-            return PartialView(clasifProveedoresViewModel);
+            return PartialView("Edit", clasifProveedoresViewModel);
             //return PartialView("Edit");
         }
 

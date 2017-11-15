@@ -16,12 +16,11 @@ namespace Scoring_MGDP.ViewModel
         [Display(Name = "Proveedor")]
         public ProveedorViewModel ProveedorViewModel { get; set; }
         [Display(Name = "Id proveedor")]
-        public int IdProveedor { get; set; }
+        public int? IdProveedor { get; set; }
         [Display(Name = "Responsable")]
         public string Responsable { get; set; }
         [Display(Name = "Monto")]
-        public double Monto { get; set; }
-
-        public SelectList Proveedores { get; set; }
+        public double? Monto { get; set; }
+        public SelectList ProveedoresList { get; set; }
     }
 }

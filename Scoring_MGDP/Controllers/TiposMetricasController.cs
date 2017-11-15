@@ -88,7 +88,7 @@ namespace Scoring_MGDP.Controllers
                 return HttpNotFound();
             }
             var tiposMetricasViewModel = ModelMappingProfile.Mapper.Map<TiposMetricas,TiposMetricasViewModel>(tiposMetricas);
-            return PartialView(tiposMetricasViewModel);
+            return PartialView("Edit", tiposMetricasViewModel);
         }
 
         // POST: TiposMetricas/Edit/5

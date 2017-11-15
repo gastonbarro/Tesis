@@ -89,7 +89,7 @@ namespace Scoring_MGDP.Controllers
                 return HttpNotFound();
             }
             var unidadesMedidasViewModel = ModelMappingProfile.Mapper.Map<UnidadeDeMedidas, UnidadesMedidasViewModel>(unidadeDeMedidas);
-            return PartialView(unidadesMedidasViewModel);
+            return PartialView("Edit", unidadesMedidasViewModel);
         }
 
         // POST: UnidadesMedidas/Edit/5

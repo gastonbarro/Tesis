@@ -80,7 +80,7 @@ namespace Scoring_MGDP.Controllers
             //ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv");
 
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            contratoProvViewModel.Proveedores = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
+            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
             return PartialView("Create", contratoProvViewModel);
 
         }
@@ -101,7 +101,7 @@ namespace Scoring_MGDP.Controllers
             }
 
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            contratoProvViewModel.Proveedores = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
+            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
             return View(contratoProvViewModel);
         }
 
@@ -119,8 +119,9 @@ namespace Scoring_MGDP.Controllers
             }
             var contratoProvViewModel = ModelMappingProfile.Mapper.Map<ContratoProv, ContratoProvViewModel>(contratoProv);
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            contratoProvViewModel.Proveedores = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.ProveedorViewModel.Id);
-            return PartialView(contratoProvViewModel);
+            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
+            
+            return PartialView("Edit", contratoProvViewModel);
             //ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv", contratoProv.id_Proveedor);
             //return View(contratoProv);
         }
@@ -140,7 +141,7 @@ namespace Scoring_MGDP.Controllers
                 return RedirectToAction("Index");
             }
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            contratoProvViewModel.Proveedores = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
+            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
             return View(contratoProvViewModel);
         }
 
@@ -158,7 +159,7 @@ namespace Scoring_MGDP.Controllers
             }
             var contratoProvViewModel = ModelMappingProfile.Mapper.Map<ContratoProv, ContratoProvViewModel>(contratoProv);
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            contratoProvViewModel.Proveedores = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.ProveedorViewModel.Id);
+            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
             return PartialView(contratoProvViewModel);
             //return View(contratoProv);
         }

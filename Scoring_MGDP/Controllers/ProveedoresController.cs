@@ -138,7 +138,7 @@ namespace Scoring_MGDP.Controllers
             var proveedorViewModel = ModelMappingProfile.Mapper.Map<Proveedores, ProveedorViewModel>(proveedores);
             var clasificacionesProveedoresViewModel = ModelMappingProfile.Mapper.Map<List<ClasificacionesProv>, List<ClasifProveedoresViewModel>>(db.ClasificacionesProv.ToList());
             proveedorViewModel.ClasificacionesProveedores = new SelectList(clasificacionesProveedoresViewModel, "Id", "ClasificacionProv", proveedorViewModel.ClasifProveedoresViewModel.Id);
-            return PartialView(proveedorViewModel);
+            return PartialView("Edit", proveedorViewModel);
             //return PartialView("Edit");
         }
 
