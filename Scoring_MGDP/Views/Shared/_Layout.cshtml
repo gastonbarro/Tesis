@@ -104,40 +104,61 @@
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span class="glyphicon glyphicon-dashboard"></span>
-                                    &nbsp;Scoring
+                                    <span class="glyphicon glyphicon-stats"></span>
+                                    &nbsp;Tableros
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="@Url.Action("TableroScoring", "Tableros")">
-                                            Tablero Scoring Proveedores
+                                            Scoring Proveedores
                                         </a>
                                     </li>
                                     <li>
                                         <a href="@Url.Action("TableroDetalleScoring", "Tableros")">
-                                            Tablero Detalle Scoring Proveedores
+                                            Detalle Scoring Proveedores
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Contact", "Home")">
+                                            MGDP
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="@Url.Action("Contact", "Home")">
-                                    <span class="glyphicon glyphicon-stats"></span>
-                                    &nbsp;Tablero de MGDP
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="@Url.Action("About", "Home")">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <span class="glyphicon glyphicon-list-alt"></span>
-                                    &nbsp;Carga de Resultados
+                                    &nbsp;Metricas y Proveedores
+                                    <span class="caret"></span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="@Url.Action("Index", "Proveedores")">
+                                            Proveedores
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "ContratoProv")">
+                                            Contratos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "Metricas")">
+                                            Catálogo de métricas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("About", "Home")">
+                                            Carga de métricas
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <span class="glyphicon glyphicon-cog"></span>
-                                    &nbsp;Configuración entidades
+                                    &nbsp;Configuración entidades base
                                     <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -147,18 +168,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Index", "Proveedores")">
-                                            Proveedores
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index", "Metricas")">
-                                            Catálogo de métricas
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="@Url.Action("Index", "ContratoProv")">
-                                            Contratos de proveedores
+                                        <a href="@Url.Action("Index", "TiposMetricas")">
+                                            Tipos de métricas
                                         </a>
                                     </li>
                                     <li>
@@ -166,9 +177,23 @@
                                             Unidades de medidas
                                         </a>
                                     </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <span class="glyphicon glyphicon-wrench"></span>
+                                    &nbsp;Configuración scoring
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
                                     <li>
-                                        <a href="@Url.Action("Index", "TiposMetricas")">
-                                            Tipos de métricas
+                                        <a href="@Url.Action("", "")">
+                                            Pesos 1
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("", "")">
+                                            Pesos 2
                                         </a>
                                     </li>
                                 </ul>
