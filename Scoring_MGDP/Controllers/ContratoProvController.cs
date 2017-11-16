@@ -20,26 +20,27 @@ namespace Scoring_MGDP.Controllers
         private Scoring_MGDPEntities db = new Scoring_MGDPEntities();
 
         // GET: ContratoProv
-        public ActionResult Index(string currentFilter, string searchString, int? page)
+        public ActionResult Index(int? currentFilter, int? search, int? page)
         {
 
-            //if (searchString != null)
+            //if (search != null)
             //{
             //    page = 1;
             //}
             //else
             //{
-            //    searchString = currentFilter;
+            //    search = currentFilter;
             //}
 
-            //ACA ARRANCAN TODOS MIS PROBLEMAS:
-            //Sin el Order by me tira esta excepción: //{"El método 'Skip' solo se admite para entradas ordenadas en LINQ to Entities. Se debe llamar antes al método 'OrderBy' que al método 'Skip'."
-            //Con el order by me tira: {"Error mapping types.\r\n\r\nMapping types:\r\nIEnumerable`1 -> IEnumerable`1\r\nSystem.Collections.Generic.IEnumerable`1[[Scoring_MGDPData.ContratoProv, Scoring_MGDPData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[Scoring_MGDP.ViewModel.ContratoProvViewModel, Scoring_MGDP, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]"}
-            var contratoProv = db.ContratoProv.Include(c => c.Proveedores).OrderBy(i => i.id_Contrato);
 
-            //            if (!String.IsNullOrEmpty(searchString))
+            //Sin el Order by me tira esta excepción: //{"El método 'Skip' solo se admite para entradas ordenadas en LINQ to Entities. Se debe llamar antes al método 'OrderBy' que al método 'Skip'."
+            //Será porque el Id_contrato no es automático?
+            var contratoProv = db.ContratoProv.Include(c => c.Proveedores).OrderByDescending(i => i.id_Contrato);
+
+            //No puedo hacer el filtrado por proveedor
+            //if (search == null)
             //{
-            //    contratoProv = contratoProv.Where(s => s.id_Proveedor.Contains(searchString));
+            //    contratoProv = contratoProv.Where(s => s.id_Proveedor == (search));
             //}
 
             int pageSize = 10;

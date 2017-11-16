@@ -1,0 +1,69 @@
+﻿@model Scoring_MGDP.ViewModel.MetricasViewModel
+
+<div class="modal-content">
+
+    @using (Html.BeginForm("Create", "Metricas", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4 align="center">Nueva Métrica</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdMetrica, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.IdMetrica, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IdMetrica, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sigla, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Sigla, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sigla, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TiposMetricasViewModel, "Métrica", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(m => m.IdMetrica, Model.TipoMetricaList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.TiposMetricasViewModel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UnidadesMedidasViewModel, "Unidad de medida", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(m => m.IdUnidad, Model.UnidadMedidaList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(model => model.UnidadesMedidasViewModel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-10 col-md-5">
+                    <input type="submit" value="Crear" class="btn btn-primary" id="approve-btn" />
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-container').modal('hide');
+        });
+    });
+</script>

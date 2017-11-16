@@ -87,7 +87,25 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.id_Proveedor, map => map.MapFrom(m => m.IdProveedor))
                 .ForMember(vm => vm.Responsable, map => map.MapFrom(m => m.Responsable))
                 .ForMember(vm => vm.MontoContrato, map => map.MapFrom(m => m.Monto));
-                
+
+                cfg.CreateMap<Metricas, MetricasViewModel>()
+                .ForMember(vm => vm.IdMetrica, map => map.MapFrom(m => m.id_Metrica))
+                .ForMember(vm => vm.Sigla, map => map.MapFrom(m => m.SiglaMetrica))
+                .ForMember(vm => vm.Descripcion, map => map.MapFrom(m => m.DescripcionMet))
+                .ForMember(vm => vm.TiposMetricasViewModel, map => map.MapFrom(m => m.TiposMetricas))
+                .ForMember(vm => vm.UnidadesMedidasViewModel, map => map.MapFrom(m => m.UnidadeDeMedidas))
+                .ForMember(vm => vm.IdTipo, map => map.MapFrom(m => m.id_TipoMetrica))
+                .ForMember(vm => vm.IdUnidad, map => map.MapFrom(m => m.id_UMedida));
+
+                cfg.CreateMap<MetricasViewModel, Metricas>()
+                .ForMember(vm => vm.id_Metrica, map => map.MapFrom(m => m.IdMetrica))
+                .ForMember(vm => vm.SiglaMetrica, map => map.MapFrom(m => m.Sigla))
+                .ForMember(vm => vm.DescripcionMet, map => map.MapFrom(m => m.Descripcion))
+                .ForMember(vm => vm.TiposMetricas, map => map.MapFrom(m => m.TiposMetricasViewModel))
+                .ForMember(vm => vm.UnidadeDeMedidas, map => map.MapFrom(m => m.UnidadesMedidasViewModel))
+                .ForMember(vm => vm.id_TipoMetrica, map => map.MapFrom(m => m.IdTipo))
+                .ForMember(vm => vm.id_UMedida, map => map.MapFrom(m => m.IdUnidad));
+
             });
 
             Mapper = mapConfiguration.CreateMapper();

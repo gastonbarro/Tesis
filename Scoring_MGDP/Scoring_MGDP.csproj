@@ -216,6 +216,7 @@
     <Compile Include="Controllers\ContratoProvController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MetricasController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\TablerosController.cs" />
     <Compile Include="Controllers\TiposMetricasController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ClasifProveedoresViewModel.cs" />
     <Compile Include="ViewModel\ContratoProvViewModel.cs" />
+    <Compile Include="ViewModel\MetricasViewModel.cs" />
     <Compile Include="ViewModel\ProveedorViewModel.cs" />
     <Compile Include="ViewModel\TipoGestionProvViewModel.cs" />
     <Compile Include="ViewModel\TiposMetricasViewModel.cs" />
@@ -501,6 +503,10 @@
     <Content Include="Views\ContratoProv\Delete.cshtml" />
     <Content Include="Views\ContratoProv\Edit.cshtml" />
     <Content Include="Views\ContratoProv\Index.cshtml" />
+    <Content Include="Views\Metricas\Create.cshtml" />
+    <Content Include="Views\Metricas\Delete.cshtml" />
+    <Content Include="Views\Metricas\Edit.cshtml" />
+    <Content Include="Views\Metricas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

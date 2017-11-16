@@ -1,0 +1,64 @@
+﻿@model Scoring_MGDPData.Metricas
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Metricas</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SiglaMetrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SiglaMetrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DescripcionMet)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DescripcionMet)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TiposMetricas.DescripcionTipMet)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TiposMetricas.DescripcionTipMet)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.UnidadeDeMedidas.UM)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.UnidadeDeMedidas.UM)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

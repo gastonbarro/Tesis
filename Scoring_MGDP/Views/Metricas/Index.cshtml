@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<Scoring_MGDP.ViewModel.MetricasViewModel>
+@using PagedList.Mvc;
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<div class="col-sm-12" style="background: white;">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <h2 class="azul sombraTexto textoCentro">Catálogo de Métricas</h2>
+    <p>
+
+    <p>
+        @Html.ActionLink("Nueva Métrica", "Create", "Metricas", null, new { @class = "modal-link btn btn-primary" })
+    </p>
+    <div class="visible-md visible-lg col-md-12">
+        <table class="table table-striped table-sm">
+            <tr class="active text-center">
+            <tr>
+                <th>
+                    Sigla
+                </th>
+                <th>
+                    Descripción
+                </th>
+                <th>
+                    Tipo
+                </th>
+                <th>
+                    Unidad de medida
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sigla)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TiposMetricasViewModel.TipoMetrica)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UnidadesMedidasViewModel.UnidadMedida)
+                    </td>
+                    <td class="text-center">
+                        @Html.ActionLink("Editar", "Edit", "Metricas", new { id = item.IdMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete", "Metricas", new { id = item.IdMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</div>
