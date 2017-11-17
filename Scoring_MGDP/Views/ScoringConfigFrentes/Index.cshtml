@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Scoring_MGDPData.Scoring_Configuracion>
+
+
+<div class="col-sm-12" style="background: white;">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Metrica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Peso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ambito)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Metrica)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Peso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ambito)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_MetricasScoring }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_MetricasScoring }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_MetricasScoring })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

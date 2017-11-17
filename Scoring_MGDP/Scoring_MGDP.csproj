@@ -218,6 +218,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MetricasController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\ScoringConfigFrentesController.cs" />
     <Compile Include="Controllers\TablerosController.cs" />
     <Compile Include="Controllers\TiposMetricasController.cs" />
     <Compile Include="Controllers\UnidadesMedidasController.cs" />
@@ -507,6 +508,10 @@
     <Content Include="Views\Metricas\Delete.cshtml" />
     <Content Include="Views\Metricas\Edit.cshtml" />
     <Content Include="Views\Metricas\Index.cshtml" />
+    <Content Include="Views\ScoringConfigFrentes\Create.cshtml" />
+    <Content Include="Views\ScoringConfigFrentes\Delete.cshtml" />
+    <Content Include="Views\ScoringConfigFrentes\Edit.cshtml" />
+    <Content Include="Views\ScoringConfigFrentes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
