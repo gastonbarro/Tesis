@@ -11,8 +11,7 @@ namespace Scoring_MGDPData
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Proveedores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,27 +21,18 @@ namespace Scoring_MGDPData
             this.ContratoProv = new HashSet<ContratoProv>();
             this.DefMetricas = new HashSet<DefMetricas>();
         }
-
-        [Display(Name = "Id")]
+    
         public int id_Proveedor { get; set; }
-        [Display(Name = "Nombre")]
         public string NombreProv { get; set; }
-        [Display(Name = "Clasificación")]
         public int id_ClasificacionProv { get; set; }
-        [Display(Name = "¿AM?")]
         public string EsAM { get; set; }
-        [Display(Name = "¿Modelo implementado?")]
         public string ModeloImplementado { get; set; }
-        [Display(Name = "Nombre compras")]
         public string NombreProvCompras { get; set; }
-        [Display(Name = "Tipo gestión")]
         public string Gestion { get; set; }
-        [Display(Name = "¿Activo?")]
         public string Vigente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adhesiones> Adhesiones { get; set; }
-        [Display(Name = "Clasificación")]
         public virtual ClasificacionesProv ClasificacionesProv { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ContratoProv> ContratoProv { get; set; }

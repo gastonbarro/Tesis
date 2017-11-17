@@ -19,7 +19,6 @@
         <EntityTypeShape EntityType="GestionProvModel.UnidadeDeMedidas" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionProvModel.Vision" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GestionProvModel.EncuestaCompras" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GestionProvModel.Scoring_Totales" Width="1.5" PointX="10.75" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="GestionProvModel.FK_Adhesiones_Dominios" ManuallyRouted="false" />
         <AssociationConnector Association="GestionProvModel.FK_Adhesiones_Proveedores" ManuallyRouted="false" />
         <AssociationConnector Association="GestionProvModel.FK_Dominios_ClasificacionesProv" ManuallyRouted="false" />

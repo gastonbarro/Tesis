@@ -11,8 +11,7 @@ namespace Scoring_MGDPData
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class ClasificacionesProv
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +20,8 @@ namespace Scoring_MGDPData
             this.Dominios = new HashSet<Dominios>();
             this.Proveedores = new HashSet<Proveedores>();
         }
+    
         public int id_ClasificacionProv { get; set; }
-        [Display(Name = "Clasificación")]
         public string DescripcionClasifProv { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

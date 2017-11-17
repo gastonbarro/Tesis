@@ -39,6 +39,5 @@ namespace Scoring_MGDPData
         public virtual DbSet<UnidadeDeMedidas> UnidadeDeMedidas { get; set; }
         public virtual DbSet<Vision> Vision { get; set; }
         public virtual DbSet<EncuestaCompras> EncuestaCompras { get; set; }
-        public virtual DbSet<Scoring_Totales> Scoring_Totales { get; set; }
     }
 }

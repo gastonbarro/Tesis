@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GestionProvModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GestionProvModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adhesiones">
           <Key>
             <PropertyRef Name="id_Dominio" />
@@ -35,11 +35,11 @@
           <Key>
             <PropertyRef Name="id_Contrato" />
           </Key>
-          <Property Name="id_Contrato" Type="int" Nullable="false" />
           <Property Name="NroContrato" Type="nvarchar" MaxLength="50" />
           <Property Name="id_Proveedor" Type="int" />
           <Property Name="Responsable" Type="nvarchar" MaxLength="50" />
           <Property Name="MontoContrato" Type="float" />
+          <Property Name="id_Contrato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="DefMetricas">
           <Key>
@@ -100,17 +100,6 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <Property Name="FechaDesde" Type="date" />
           <Property Name="FechaHasta" Type="date" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'GestionProv.dbo.MedicionesMetricas' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="MedicionesMetricas">
-          <Property Name="FechaMedicion" Type="date" />
-          <Property Name="id_DefMetricas" Type="int" />
-          <Property Name="id_TiposProyectos" Type="int" />
-          <Property Name="ValorMedido" Type="float" />
-          <Property Name="Calculado" Type="nvarchar" MaxLength="255" />
-          <Property Name="Cump_Ratio" Type="float" />
-          <Property Name="Calcula_RatioSN" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="Metricas">
           <Key>
             <PropertyRef Name="id_Metrica" />
@@ -143,28 +132,6 @@ advertencia 6013: La tabla o vista 'GestionProv.dbo.MedicionesMetricas' no tiene
           <Property Name="Peso" Type="real" />
           <Property Name="Ambito" Type="nvarchar" MaxLength="50" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'GestionProv.dbo.Scoring_Totales' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="Scoring_Totales">
-          <Key>
-            <PropertyRef Name="id_Proveedor" />
-          </Key>
-          <Property Name="id_Proveedor" Type="int" Nullable="false" />
-          <Property Name="Proveedor" Type="nvarchar" MaxLength="100" />
-          <Property Name="Periodo" Type="datetime" />
-          <Property Name="RMetricaGestion" Type="real" />
-          <Property Name="RMetricaContractual" Type="real" />
-          <Property Name="REncPry" Type="real" />
-          <Property Name="REncCompras" Type="real" />
-          <Property Name="RAuditorias" Type="real" />
-          <Property Name="PESO_METRICAGESTION" Type="real" />
-          <Property Name="PESO_METRICACONTRACTUAL" Type="real" />
-          <Property Name="PESO_METRICA" Type="real" />
-          <Property Name="PESO_ENCPRY" Type="real" />
-          <Property Name="PESO_ENCCOMPRAS" Type="real" />
-          <Property Name="PESO_ENCUESTAS" Type="real" />
-          <Property Name="PESO_AUDITORIAS" Type="real" />
         </EntityType>
         <EntityType Name="TiposMetricas">
           <Key>
@@ -291,12 +258,6 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.Scoring_Totales' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.MedicionesMetricas', pero no se encuentra la tabla.
-        <Association Name="FK_MedicionesMetricas_DefMetricas1" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.MedicionesMetricas', pero no se encuentra la tabla.
-        <Association Name="FK_MedicionesMetricas_TiposProyectos1" />-->
         <Association Name="FK_Metricas_TiposMetricas1">
           <End Role="TiposMetricas" Type="Self.TiposMetricas" Multiplicity="0..1" />
           <End Role="Metricas" Type="Self.Metricas" Multiplicity="*" />
@@ -374,25 +335,6 @@ error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.Mediciones
     [EncuestaCompras].[FechaHasta] AS [FechaHasta]
     FROM [dbo].[EncuestaCompras] AS [EncuestaCompras]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="Scoring_Totales" EntityType="Self.Scoring_Totales" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Scoring_Totales].[id_Proveedor] AS [id_Proveedor], 
-    [Scoring_Totales].[Proveedor] AS [Proveedor], 
-    [Scoring_Totales].[Periodo] AS [Periodo], 
-    [Scoring_Totales].[RMetricaGestion] AS [RMetricaGestion], 
-    [Scoring_Totales].[RMetricaContractual] AS [RMetricaContractual], 
-    [Scoring_Totales].[REncPry] AS [REncPry], 
-    [Scoring_Totales].[REncCompras] AS [REncCompras], 
-    [Scoring_Totales].[RAuditorias] AS [RAuditorias], 
-    [Scoring_Totales].[PESO_METRICAGESTION] AS [PESO_METRICAGESTION], 
-    [Scoring_Totales].[PESO_METRICACONTRACTUAL] AS [PESO_METRICACONTRACTUAL], 
-    [Scoring_Totales].[PESO_METRICA] AS [PESO_METRICA], 
-    [Scoring_Totales].[PESO_ENCPRY] AS [PESO_ENCPRY], 
-    [Scoring_Totales].[PESO_ENCCOMPRAS] AS [PESO_ENCCOMPRAS], 
-    [Scoring_Totales].[PESO_ENCUESTAS] AS [PESO_ENCUESTAS], 
-    [Scoring_Totales].[PESO_AUDITORIAS] AS [PESO_AUDITORIAS]
-    FROM [dbo].[Scoring_Totales] AS [Scoring_Totales]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Adhesiones_Dominios" Association="Self.FK_Adhesiones_Dominios">
             <End Role="Dominios" EntitySet="Dominios" />
             <End Role="Adhesiones" EntitySet="Adhesiones" />
@@ -438,8 +380,7 @@ error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.Mediciones
             <End Role="Proveedores" EntitySet="Proveedores" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GestionProvModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -620,26 +561,6 @@ error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.Mediciones
           <Property Name="FechaDesde" Type="DateTime" Precision="0" />
           <Property Name="FechaHasta" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="Scoring_Totales">
-          <Key>
-            <PropertyRef Name="id_Proveedor" />
-          </Key>
-          <Property Name="id_Proveedor" Type="Int32" Nullable="false" />
-          <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Periodo" Type="DateTime" Precision="3" />
-          <Property Name="RMetricaGestion" Type="Single" />
-          <Property Name="RMetricaContractual" Type="Single" />
-          <Property Name="REncPry" Type="Single" />
-          <Property Name="REncCompras" Type="Single" />
-          <Property Name="RAuditorias" Type="Single" />
-          <Property Name="PESO_METRICAGESTION" Type="Single" />
-          <Property Name="PESO_METRICACONTRACTUAL" Type="Single" />
-          <Property Name="PESO_METRICA" Type="Single" />
-          <Property Name="PESO_ENCPRY" Type="Single" />
-          <Property Name="PESO_ENCCOMPRAS" Type="Single" />
-          <Property Name="PESO_ENCUESTAS" Type="Single" />
-          <Property Name="PESO_AUDITORIAS" Type="Single" />
-        </EntityType>
         <Association Name="FK_Adhesiones_Dominios">
           <End Role="Dominios" Type="Self.Dominios" Multiplicity="1" />
           <End Role="Adhesiones" Type="Self.Adhesiones" Multiplicity="*" />
@@ -787,7 +708,6 @@ error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.Mediciones
           <EntitySet Name="UnidadeDeMedidas" EntityType="Self.UnidadeDeMedidas" />
           <EntitySet Name="Vision" EntityType="Self.Vision" />
           <EntitySet Name="EncuestaCompras" EntityType="Self.EncuestaCompras" />
-          <EntitySet Name="Scoring_Totales" EntityType="Self.Scoring_Totales" />
           <AssociationSet Name="FK_Adhesiones_Dominios" Association="Self.FK_Adhesiones_Dominios">
             <End Role="Dominios" EntitySet="Dominios" />
             <End Role="Adhesiones" EntitySet="Adhesiones" />
@@ -1003,27 +923,6 @@ error 6004: Una relación hace referencia a la tabla 'GestionProv.dbo.Mediciones
                 <ScalarProperty Name="PeriodoEncuestado" ColumnName="PeriodoEncuestado" />
                 <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
                 <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Scoring_Totales">
-            <EntityTypeMapping TypeName="GestionProvModel.Scoring_Totales">
-              <MappingFragment StoreEntitySet="Scoring_Totales">
-                <ScalarProperty Name="id_Proveedor" ColumnName="id_Proveedor" />
-                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
-                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
-                <ScalarProperty Name="RMetricaGestion" ColumnName="RMetricaGestion" />
-                <ScalarProperty Name="RMetricaContractual" ColumnName="RMetricaContractual" />
-                <ScalarProperty Name="REncPry" ColumnName="REncPry" />
-                <ScalarProperty Name="REncCompras" ColumnName="REncCompras" />
-                <ScalarProperty Name="RAuditorias" ColumnName="RAuditorias" />
-                <ScalarProperty Name="PESO_METRICAGESTION" ColumnName="PESO_METRICAGESTION" />
-                <ScalarProperty Name="PESO_METRICACONTRACTUAL" ColumnName="PESO_METRICACONTRACTUAL" />
-                <ScalarProperty Name="PESO_METRICA" ColumnName="PESO_METRICA" />
-                <ScalarProperty Name="PESO_ENCPRY" ColumnName="PESO_ENCPRY" />
-                <ScalarProperty Name="PESO_ENCCOMPRAS" ColumnName="PESO_ENCCOMPRAS" />
-                <ScalarProperty Name="PESO_ENCUESTAS" ColumnName="PESO_ENCUESTAS" />
-                <ScalarProperty Name="PESO_AUDITORIAS" ColumnName="PESO_AUDITORIAS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

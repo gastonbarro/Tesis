@@ -102,9 +102,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Scoring_MGDPModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Scoring_Totales.cs">
-      <DependentUpon>Scoring_MGDPModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TiposMetricas.cs">
       <DependentUpon>Scoring_MGDPModel.tt</DependentUpon>
     </Compile>
