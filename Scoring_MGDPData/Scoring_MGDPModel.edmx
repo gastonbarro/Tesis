@@ -104,11 +104,11 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <Key>
             <PropertyRef Name="id_Metrica" />
           </Key>
-          <Property Name="id_Metrica" Type="int" Nullable="false" />
           <Property Name="SiglaMetrica" Type="nvarchar" MaxLength="255" />
           <Property Name="DescripcionMet" Type="nvarchar" MaxLength="255" />
           <Property Name="id_TipoMetrica" Type="int" />
           <Property Name="id_UMedida" Type="int" />
+          <Property Name="id_Metrica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedores">
           <Key>
@@ -195,18 +195,6 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
             </Principal>
             <Dependent Role="ContratoProv">
               <PropertyRef Name="id_Proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DefMetricas_Metricas1">
-          <End Role="Metricas" Type="Self.Metricas" Multiplicity="1" />
-          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Metricas">
-              <PropertyRef Name="id_Metrica" />
-            </Principal>
-            <Dependent Role="DefMetricas">
-              <PropertyRef Name="id_Metricas" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,10 +334,6 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <AssociationSet Name="FK_ContratoProv_Proveedores" Association="Self.FK_ContratoProv_Proveedores">
             <End Role="Proveedores" EntitySet="Proveedores" />
             <End Role="ContratoProv" EntitySet="ContratoProv" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DefMetricas_Metricas1" Association="Self.FK_DefMetricas_Metricas1">
-            <End Role="Metricas" EntitySet="Metricas" />
-            <End Role="DefMetricas" EntitySet="DefMetricas" />
           </AssociationSet>
           <AssociationSet Name="FK_DefMetricas_Proveedores" Association="Self.FK_DefMetricas_Proveedores">
             <End Role="Proveedores" EntitySet="Proveedores" />

@@ -109,10 +109,10 @@ namespace Scoring_MGDP.Controllers
             var metricasViewModel = ModelMappingProfile.Mapper.Map<Metricas, MetricasViewModel>(metricas);
 
             var tipoMetricaViewModel = ModelMappingProfile.Mapper.Map<List<TiposMetricas>, List<TiposMetricasViewModel>>(db.TiposMetricas.ToList());
-            metricasViewModel.TipoMetricaList = new SelectList(tipoMetricaViewModel, "Id", "TipoMetrica", metricasViewModel.IdMetrica);
+            metricasViewModel.TipoMetricaList = new SelectList(tipoMetricaViewModel, "Id", "TipoMetrica", metricasViewModel.TiposMetricasViewModel.Id);
 
             var unidadMedidaViewModel = ModelMappingProfile.Mapper.Map<List<UnidadeDeMedidas>, List<UnidadesMedidasViewModel>>(db.UnidadeDeMedidas.ToList());
-            metricasViewModel.UnidadMedidaList = new SelectList(unidadMedidaViewModel, "Id", "UnidadMedida", metricasViewModel.IdUnidad);
+            metricasViewModel.UnidadMedidaList = new SelectList(unidadMedidaViewModel, "Id", "UnidadMedida", metricasViewModel.UnidadesMedidasViewModel.Id);
 
             return PartialView("Edit", metricasViewModel);
         }
@@ -133,10 +133,10 @@ namespace Scoring_MGDP.Controllers
             }
 
             var tipoMetricaViewModel = ModelMappingProfile.Mapper.Map<List<TiposMetricas>, List<TiposMetricasViewModel>>(db.TiposMetricas.ToList());
-            metricaViewModel.TipoMetricaList = new SelectList(tipoMetricaViewModel, "id_TipoMetrica", "DescripcionTipMet", metricaViewModel.IdMetrica);
+            metricaViewModel.TipoMetricaList = new SelectList(tipoMetricaViewModel, "Id", "TipoMetrica", metricaViewModel.IdMetrica);
 
             var unidadMedidaViewModel = ModelMappingProfile.Mapper.Map<List<UnidadeDeMedidas>, List<UnidadesMedidasViewModel>>(db.UnidadeDeMedidas.ToList());
-            metricaViewModel.UnidadMedidaList = new SelectList(unidadMedidaViewModel, "id_UMedida", "UM", metricaViewModel.IdUnidad);
+            metricaViewModel.UnidadMedidaList = new SelectList(unidadMedidaViewModel, "Id", "UnidadMedida", metricaViewModel.IdUnidad);
 
             return View(metricaViewModel);
         }
