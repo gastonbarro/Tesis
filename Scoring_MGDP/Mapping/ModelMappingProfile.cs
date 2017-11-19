@@ -106,6 +106,33 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.id_TipoMetrica, map => map.MapFrom(m => m.IdTipo))
                 .ForMember(vm => vm.id_UMedida, map => map.MapFrom(m => m.IdUnidad));
 
+                cfg.CreateMap<Scoring_Configuracion, ScoringConfigFrentesViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.id_MetricasScoring))
+                .ForMember(vm => vm.Metrica, map => map.MapFrom(m => m.Metrica))
+                .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
+                .ForMember(vm => vm.Ambito, map => map.MapFrom(m => m.Ambito))
+                .ForMember(vm => vm.Tipo, map => map.MapFrom(m => m.Tipo));
+
+                cfg.CreateMap<ScoringConfigFrentesViewModel, Scoring_Configuracion>()
+                .ForMember(vm => vm.id_MetricasScoring, map => map.MapFrom(m => m.Id))
+                .ForMember(vm => vm.Metrica, map => map.MapFrom(m => m.Metrica))
+                .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
+                .ForMember(vm => vm.Ambito, map => map.MapFrom(m => m.Ambito))
+                .ForMember(vm => vm.Tipo, map => map.MapFrom(m => m.Tipo));
+
+                cfg.CreateMap<Scoring_Configuracion, ScoringConfigMedidasViewModel>()
+                .ForMember(vm => vm.Id, map => map.MapFrom(m => m.id_MetricasScoring))
+                .ForMember(vm => vm.Metrica, map => map.MapFrom(m => m.Metrica))
+                .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
+                .ForMember(vm => vm.Ambito, map => map.MapFrom(m => m.Ambito))
+                .ForMember(vm => vm.Tipo, map => map.MapFrom(m => m.Tipo));
+
+                cfg.CreateMap<ScoringConfigMedidasViewModel, Scoring_Configuracion>()
+                .ForMember(vm => vm.id_MetricasScoring, map => map.MapFrom(m => m.Id))
+                .ForMember(vm => vm.Metrica, map => map.MapFrom(m => m.Metrica))
+                .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
+                .ForMember(vm => vm.Ambito, map => map.MapFrom(m => m.Ambito))
+                .ForMember(vm => vm.Tipo, map => map.MapFrom(m => m.Tipo));
             });
 
             Mapper = mapConfiguration.CreateMapper();

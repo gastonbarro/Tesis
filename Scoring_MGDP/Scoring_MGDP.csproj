@@ -219,6 +219,7 @@
     <Compile Include="Controllers\MetricasController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\ScoringConfigFrentesController.cs" />
+    <Compile Include="Controllers\ScoringConfigMedidasController.cs" />
     <Compile Include="Controllers\TablerosController.cs" />
     <Compile Include="Controllers\TiposMetricasController.cs" />
     <Compile Include="Controllers\UnidadesMedidasController.cs" />
@@ -234,6 +235,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ClasifProveedoresViewModel.cs" />
+    <Compile Include="ViewModel\ScoringConfigFrentesViewModel.cs" />
+    <Compile Include="ViewModel\ScoringConfigMedidasViewModel.cs" />
     <Compile Include="ViewModel\ContratoProvViewModel.cs" />
     <Compile Include="ViewModel\MetricasViewModel.cs" />
     <Compile Include="ViewModel\ProveedorViewModel.cs" />
@@ -512,6 +515,10 @@
     <Content Include="Views\ScoringConfigFrentes\Delete.cshtml" />
     <Content Include="Views\ScoringConfigFrentes\Edit.cshtml" />
     <Content Include="Views\ScoringConfigFrentes\Index.cshtml" />
+    <Content Include="Views\ScoringConfigMedidas\Create.cshtml" />
+    <Content Include="Views\ScoringConfigMedidas\Delete.cshtml" />
+    <Content Include="Views\ScoringConfigMedidas\Edit.cshtml" />
+    <Content Include="Views\ScoringConfigMedidas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

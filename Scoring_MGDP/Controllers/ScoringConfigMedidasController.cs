@@ -15,26 +15,27 @@ using Scoring_MGDP.Infrastructure;
 namespace Scoring_MGDP.Controllers
 {
     [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
-    public class ScoringConfigFrentesController : Controller
+    public class ScoringConfigMedidasController : Controller
     {
         private Scoring_MGDPEntities db = new Scoring_MGDPEntities();
 
-        // GET: ScoringConfigFrentes
+        // GET: ScoringConfigMedidas
         public ActionResult Index(int? page)
         {
-            var scoringConfigFrentes = db.Scoring_Configuracion.OrderByDescending(i => i.Metrica).Where(p => p.Tipo.Equals("Scoring"));
+            var scoringConfigMedidas = db.Scoring_Configuracion.OrderByDescending(i => i.Tipo).Where(p => !p.Tipo.Equals("Scoring"));
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            var scoringConfigFrentesPageList = scoringConfigFrentes.ToPagedList(pageNumber, pageSize);
+            var scoringConfigMedidasPageList = scoringConfigMedidas.ToPagedList(pageNumber, pageSize);
 
-            var scoringConfigFerntesVmPageList = scoringConfigFrentesPageList.ToMappedPagedList<Scoring_Configuracion, ScoringConfigFrentesViewModel>();
+            var scoringConfigMedidasVmPageList = scoringConfigMedidasPageList.ToMappedPagedList<Scoring_Configuracion, ScoringConfigMedidasViewModel>();
 
-            return View(scoringConfigFerntesVmPageList);
+            return View(scoringConfigMedidasVmPageList);
+
         }
 
-        // GET: ScoringConfigFrentes/Details/5
+        // GET: ScoringConfigMedidas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,33 +50,35 @@ namespace Scoring_MGDP.Controllers
             return View(scoring_Configuracion);
         }
 
-        // GET: ScoringConfigFrentes/Create
+        // GET: ScoringConfigMedidas/Create
         public ActionResult Create()
         {
-            var scoringConfigFrentesViewModel = new ScoringConfigFrentesViewModel();
 
-            return PartialView("Create", scoringConfigFrentesViewModel);
+            var scoringConfigMedidasViewModel = new ScoringConfigMedidasViewModel();
+
+            return PartialView("Create", scoringConfigMedidasViewModel);
+
         }
 
-        // POST: ScoringConfigFrentes/Create
+        // POST: ScoringConfigMedidas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ScoringConfigFrentesViewModel scoringConfigFrentesViewModel)
+        public ActionResult Create(ScoringConfigMedidasViewModel scoringConfigMedidasViewModel)
         {
             if (ModelState.IsValid)
             {
-                var scoring_Configuracion = ModelMappingProfile.Mapper.Map<ScoringConfigFrentesViewModel, Scoring_Configuracion>(scoringConfigFrentesViewModel);
+                var scoring_Configuracion = ModelMappingProfile.Mapper.Map<ScoringConfigMedidasViewModel, Scoring_Configuracion>(scoringConfigMedidasViewModel);
                 db.Scoring_Configuracion.Add(scoring_Configuracion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(scoringConfigFrentesViewModel);
+            return View(scoringConfigMedidasViewModel);
         }
 
-        // GET: ScoringConfigFrentes/Edit/5
+        // GET: ScoringConfigMedidas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,28 +90,28 @@ namespace Scoring_MGDP.Controllers
             {
                 return HttpNotFound();
             }
-            var scoringConfigFrentesViewModel = ModelMappingProfile.Mapper.Map<Scoring_Configuracion, ScoringConfigFrentesViewModel>(scoring_Configuracion);
-            return PartialView("Edit", scoringConfigFrentesViewModel);
+            var scoringConfigMedidasViewModel = ModelMappingProfile.Mapper.Map<Scoring_Configuracion, ScoringConfigMedidasViewModel>(scoring_Configuracion);
+            return PartialView("Edit", scoringConfigMedidasViewModel);
         }
 
-        // POST: ScoringConfigFrentes/Edit/5
+        // POST: ScoringConfigMedidas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ScoringConfigFrentesViewModel scoringConfigFrentesViewModel)
+        public ActionResult Edit(ScoringConfigMedidasViewModel scoringConfigMedidasViewModel)
         {
             if (ModelState.IsValid)
             {
-                var scoring_Configuracion = ModelMappingProfile.Mapper.Map<ScoringConfigFrentesViewModel, Scoring_Configuracion>(scoringConfigFrentesViewModel);
+                var scoring_Configuracion = ModelMappingProfile.Mapper.Map<ScoringConfigMedidasViewModel, Scoring_Configuracion>(scoringConfigMedidasViewModel);
                 db.Entry(scoring_Configuracion).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(scoringConfigFrentesViewModel);
+            return View(scoringConfigMedidasViewModel);
         }
 
-        // GET: ScoringConfigFrentes/Delete/5
+        // GET: ScoringConfigMedidas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,11 +123,11 @@ namespace Scoring_MGDP.Controllers
             {
                 return HttpNotFound();
             }
-            var scoringConfigFrentesViewModel = ModelMappingProfile.Mapper.Map<Scoring_Configuracion, ScoringConfigFrentesViewModel>(scoring_Configuracion);
-            return PartialView(scoringConfigFrentesViewModel);
+            var scoringConfigMedidasViewModel = ModelMappingProfile.Mapper.Map<Scoring_Configuracion, ScoringConfigMedidasViewModel>(scoring_Configuracion);
+            return PartialView(scoringConfigMedidasViewModel);
         }
 
-        // POST: ScoringConfigFrentes/Delete/5
+        // POST: ScoringConfigMedidas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

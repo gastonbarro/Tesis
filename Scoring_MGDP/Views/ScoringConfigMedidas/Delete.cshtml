@@ -1,41 +1,42 @@
-﻿@model Scoring_MGDP.ViewModel.ContratoProvViewModel
+﻿@model Scoring_MGDP.ViewModel.ScoringConfigMedidasViewModel
 
 
-    <div class="modal-content">
-    <h4 align="center">¿Está seguro de eliminar este contrato?</h4>
+
+<div class="modal-content">
+    <h4 align="center">¿Está seguro de eliminar esta medida?</h4>
     <div>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.Numcontrato)
+                @Html.DisplayNameFor(model => model.Metrica)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Numcontrato)
+                @Html.DisplayFor(model => model.Metrica)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Responsable)
+                @Html.DisplayNameFor(model => model.Peso)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Responsable)
+                @Html.DisplayFor(model => model.Peso)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Monto)
+                @Html.DisplayNameFor(model => model.Ambito)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Monto)
+                @Html.DisplayFor(model => model.Ambito)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.ProveedorViewModel.NombreProveedor)
+                @Html.DisplayNameFor(model => model.Tipo)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ProveedorViewModel.NombreProveedor)
+                @Html.DisplayFor(model => model.Tipo)
             </dd>
 
         </dl>
@@ -43,7 +44,6 @@
         @using (Html.BeginForm())
             {
             @Html.AntiForgeryToken()
-
             <div class="form-group">
                 <div class="col-md-offset-10 col-md-5">
                     <input type="submit" value="Borrar" class="btn btn-primary" id="approve-btn" />

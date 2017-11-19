@@ -127,11 +127,11 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <Key>
             <PropertyRef Name="id_MetricasScoring" />
           </Key>
-          <Property Name="id_MetricasScoring" Type="int" Nullable="false" />
           <Property Name="Metrica" Type="nvarchar" MaxLength="100" />
           <Property Name="Peso" Type="real" />
           <Property Name="Ambito" Type="nvarchar" MaxLength="50" />
           <Property Name="Tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_MetricasScoring" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="TiposMetricas">
           <Key>

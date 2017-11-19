@@ -1,27 +1,17 @@
-﻿@model Scoring_MGDPData.Scoring_Configuracion
+﻿@model Scoring_MGDP.ViewModel.ScoringConfigFrentesViewModel
 
-@{
-    Layout = null;
-}
+<div class="modal-content">
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="form-horizontal">
-            <h4>Scoring_Configuracion</h4>
+            <h4 align="center">Actualizar Frente</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.id_MetricasScoring)
-    
+            @Html.HiddenFor(model => model.Id)
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Metrica, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -29,7 +19,7 @@
                     @Html.ValidationMessageFor(model => model.Metrica, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -37,7 +27,7 @@
                     @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Ambito, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -45,7 +35,7 @@
                     @Html.ValidationMessageFor(model => model.Ambito, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -53,17 +43,21 @@
                     @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                <div class="col-md-offset-10 col-md-5">
+                    <input type="submit" value="Guardar" class="btn btn-primary" id="approve-btn" />
                 </div>
             </div>
         </div>
     }
-    
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-</body>
-</html>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-container').modal('hide');
+        });
+    });
+</script>

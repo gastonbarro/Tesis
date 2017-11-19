@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Scoring_MGDP.ViewModel.ScoringConfigFrentesViewModel>
+﻿@model PagedList.IPagedList<Scoring_MGDP.ViewModel.ScoringConfigMedidasViewModel>
 @using PagedList.Mvc;
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -12,16 +12,16 @@
     <br />
     <br />
 
-    <h2 class="azul sombraTexto textoCentro">Configuración Pesos Frentes</h2>
+    <h2 class="azul sombraTexto textoCentro">Configuración Pesos Medidas</h2>
 
     <p>
-        @Html.ActionLink("Nuevo Frente", "Create", "ScoringConfigFrentes", null, new { @class = "modal-link btn btn-primary" })
+        @Html.ActionLink("Nueva Medida", "Create", "ScoringConfigMedidas", null, new { @class = "modal-link btn btn-primary" })
     </p>
     <div class="visible-md visible-lg col-md-10">
         <table class="table table-striped table-sm">
             <tr class="active text-center">
                 <th>
-                    Frente
+                    Medida
                 </th>
                 <th>
                     Peso
@@ -67,4 +67,3 @@
                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
     </div>
 </div>
-

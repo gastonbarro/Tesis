@@ -1,4 +1,4 @@
-﻿@model Scoring_MGDP.ViewModel.ScoringConfigFrentesViewModel
+﻿@model Scoring_MGDP.ViewModel.ScoringConfigMedidasViewModel
 
 <div class="modal-content">
 
@@ -7,37 +7,38 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4 align="center">Nuevo Frente</h4>
+            <h4 align="center">Actualizar Frente</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Metrica, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-7">
+                @Html.LabelFor(model => model.Metrica, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
                     @Html.EditorFor(model => model.Metrica, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Metrica, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-7">
+                @Html.LabelFor(model => model.Peso, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
                     @Html.EditorFor(model => model.Peso, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Ambito, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-7">
+                @Html.LabelFor(model => model.Ambito, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
                     @Html.EditorFor(model => model.Ambito, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Ambito, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-7">
+                @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
                     @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
                 </div>
@@ -45,7 +46,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-10 col-md-5">
-                    <input type="submit" value="Crear" class="btn btn-primary" id="approve-btn" />
+                    <input type="submit" value="Guardar" class="btn btn-primary" id="approve-btn" />
                 </div>
             </div>
         </div>
