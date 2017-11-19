@@ -14,7 +14,7 @@ namespace Scoring_MGDP.ViewModel
         [Display(Name = "Medida")]
         public string Metrica { get; set; }
         [Display(Name = "Peso")]
-        public double? Peso { get; set; }
+        public float? Peso { get; set; }
         [Display(Name = "Ambito")]
         public string Ambito { get; set; }
         [Display(Name = "Tipo")]

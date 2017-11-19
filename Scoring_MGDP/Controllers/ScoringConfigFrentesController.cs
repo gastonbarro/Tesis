@@ -66,7 +66,7 @@ namespace Scoring_MGDP.Controllers
         {
             if (ModelState.IsValid)
             {
-                scoringConfigFrentesViewModel.Metrica = scoringConfigFrentesViewModel.Ambito;
+                scoringConfigFrentesViewModel.Ambito = scoringConfigFrentesViewModel.Metrica;
                 scoringConfigFrentesViewModel.Tipo = "Scoring";
 
                 var scoring_Configuracion = ModelMappingProfile.Mapper.Map<ScoringConfigFrentesViewModel, Scoring_Configuracion>(scoringConfigFrentesViewModel);
@@ -103,7 +103,7 @@ namespace Scoring_MGDP.Controllers
         {
             if (ModelState.IsValid)
             {
-                scoringConfigFrentesViewModel.Metrica = scoringConfigFrentesViewModel.Ambito;
+                scoringConfigFrentesViewModel.Ambito = scoringConfigFrentesViewModel.Metrica;
                 scoringConfigFrentesViewModel.Tipo = "Scoring";
 
                 var scoring_Configuracion = ModelMappingProfile.Mapper.Map<ScoringConfigFrentesViewModel, Scoring_Configuracion>(scoringConfigFrentesViewModel);

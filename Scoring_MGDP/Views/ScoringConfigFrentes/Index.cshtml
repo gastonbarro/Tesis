@@ -26,12 +26,12 @@
                 <th>
                     Peso
                 </th>
-                <th>
+                @*<th>
                     Ámbito
                 </th>
                 <th>
                     Tipo
-                </th>
+                </th>*@
                 <th>
                     Acciones
                 </th>
@@ -46,12 +46,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Peso)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.Ambito)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Tipo)
-                    </td>
+                    </td>*@
                     <td class="text-center">
                         @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
                         @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "modal-link btn btn-primary btn-sm" })
