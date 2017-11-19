@@ -32,9 +32,9 @@ namespace Scoring_MGDP.Controllers
                 search = currentFilter;
             }
 
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<IEnumerable<Proveedores>, IEnumerable<ProveedorViewModel>>(db.Proveedores.ToList());
+            ViewBag.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
 
-            //Sin el Order by me tira esta excepción: //{"El método 'Skip' solo se admite para entradas ordenadas en LINQ to Entities. Se debe llamar antes al método 'OrderBy' que al método 'Skip'."
-            //Será porque el Id_contrato no es automático?
             var contratoProvQuery = db.ContratoProv.Include(c => c.Proveedores);
             if (search.HasValue)
                 contratoProvQuery = contratoProvQuery.Where(s => s.id_Proveedor == (search));
@@ -49,7 +49,9 @@ namespace Scoring_MGDP.Controllers
 
             var contratoProvVmPageList = contratoProvPageList.ToMappedPagedList<ContratoProv, ContratoProvViewModel>();
 
-            return View(contratoProvVmPageList);
+
+         
+             return View(contratoProvVmPageList);
 
             //var contratoProvPageList = contratoProv.ToPagedList(pageNumber, pageSize);
 
