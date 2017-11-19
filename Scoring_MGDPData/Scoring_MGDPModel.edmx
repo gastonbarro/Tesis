@@ -100,6 +100,19 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <Property Name="FechaDesde" Type="date" />
           <Property Name="FechaHasta" Type="date" />
         </EntityType>
+        <EntityType Name="MedicionesMetricas">
+          <Key>
+            <PropertyRef Name="id_Medicion_Metrica" />
+          </Key>
+          <Property Name="FechaMedicion" Type="date" />
+          <Property Name="id_DefMetricas" Type="int" />
+          <Property Name="id_TiposProyectos" Type="int" />
+          <Property Name="ValorMedido" Type="float" />
+          <Property Name="Calculado" Type="nvarchar" MaxLength="255" />
+          <Property Name="Cump_Ratio" Type="float" />
+          <Property Name="Calcula_RatioSN" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_Medicion_Metrica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Metricas">
           <Key>
             <PropertyRef Name="id_Metrica" />
@@ -258,6 +271,30 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MedicionesMetricas_DefMetricas">
+          <End Role="DefMetricas" Type="Self.DefMetricas" Multiplicity="0..1" />
+          <End Role="MedicionesMetricas" Type="Self.MedicionesMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefMetricas">
+              <PropertyRef Name="id_DefMetricas" />
+            </Principal>
+            <Dependent Role="MedicionesMetricas">
+              <PropertyRef Name="id_DefMetricas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicionesMetricas_TiposProyectos1">
+          <End Role="TiposProyectos" Type="Self.TiposProyectos" Multiplicity="0..1" />
+          <End Role="MedicionesMetricas" Type="Self.MedicionesMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Principal>
+            <Dependent Role="MedicionesMetricas">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Metricas_TiposMetricas1">
           <End Role="TiposMetricas" Type="Self.TiposMetricas" Multiplicity="0..1" />
           <End Role="Metricas" Type="Self.Metricas" Multiplicity="*" />
@@ -301,6 +338,7 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <EntitySet Name="ContratoProv" EntityType="Self.ContratoProv" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DefMetricas" EntityType="Self.DefMetricas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dominios" EntityType="Self.Dominios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicionesMetricas" EntityType="Self.MedicionesMetricas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Metricas" EntityType="Self.Metricas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Scoring_Configuracion" EntityType="Self.Scoring_Configuracion" Schema="dbo" store:Type="Tables" />
@@ -366,6 +404,14 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <AssociationSet Name="FK_Dominios_ClasificacionesProv" Association="Self.FK_Dominios_ClasificacionesProv">
             <End Role="ClasificacionesProv" EntitySet="ClasificacionesProv" />
             <End Role="Dominios" EntitySet="Dominios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicionesMetricas_DefMetricas" Association="Self.FK_MedicionesMetricas_DefMetricas">
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+            <End Role="MedicionesMetricas" EntitySet="MedicionesMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicionesMetricas_TiposProyectos1" Association="Self.FK_MedicionesMetricas_TiposProyectos1">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="MedicionesMetricas" EntitySet="MedicionesMetricas" />
           </AssociationSet>
           <AssociationSet Name="FK_Metricas_TiposMetricas1" Association="Self.FK_Metricas_TiposMetricas1">
             <End Role="TiposMetricas" EntitySet="TiposMetricas" />
@@ -448,6 +494,7 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <NavigationProperty Name="Proveedores" Relationship="Self.FK_DefMetricas_Proveedores" FromRole="DefMetricas" ToRole="Proveedores" />
           <NavigationProperty Name="TiposProyectos" Relationship="Self.FK_DefMetricas_TiposProyectos" FromRole="DefMetricas" ToRole="TiposProyectos" />
           <NavigationProperty Name="Vision" Relationship="Self.FK_DefMetricas_Vision" FromRole="DefMetricas" ToRole="Vision" />
+          <NavigationProperty Name="MedicionesMetricas" Relationship="GestionProvModel.FK_MedicionesMetricas_DefMetricas" FromRole="DefMetricas" ToRole="MedicionesMetricas" />
         </EntityType>
         <EntityType Name="Dominios">
           <Key>
@@ -515,6 +562,7 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
           <Property Name="DescTipoProyecto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SiglaTipoPry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DefMetricas" Relationship="Self.FK_DefMetricas_TiposProyectos" FromRole="TiposProyectos" ToRole="DefMetricas" />
+          <NavigationProperty Name="MedicionesMetricas" Relationship="GestionProvModel.FK_MedicionesMetricas_TiposProyectos1" FromRole="TiposProyectos" ToRole="MedicionesMetricas" />
         </EntityType>
         <EntityType Name="UnidadeDeMedidas">
           <Key>
@@ -752,7 +800,55 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
             <End Role="UnidadeDeMedidas" EntitySet="UnidadeDeMedidas" />
             <End Role="Metricas" EntitySet="Metricas" />
           </AssociationSet>
+          <EntitySet Name="MedicionesMetricas" EntityType="GestionProvModel.MedicionesMetricas" />
+          <AssociationSet Name="FK_MedicionesMetricas_DefMetricas" Association="GestionProvModel.FK_MedicionesMetricas_DefMetricas">
+            <End Role="DefMetricas" EntitySet="DefMetricas" />
+            <End Role="MedicionesMetricas" EntitySet="MedicionesMetricas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicionesMetricas_TiposProyectos1" Association="GestionProvModel.FK_MedicionesMetricas_TiposProyectos1">
+            <End Role="TiposProyectos" EntitySet="TiposProyectos" />
+            <End Role="MedicionesMetricas" EntitySet="MedicionesMetricas" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MedicionesMetricas">
+          <Key>
+            <PropertyRef Name="id_Medicion_Metrica" />
+          </Key>
+          <Property Name="FechaMedicion" Type="DateTime" Precision="0" />
+          <Property Name="id_DefMetricas" Type="Int32" />
+          <Property Name="id_TiposProyectos" Type="Int32" />
+          <Property Name="ValorMedido" Type="Double" />
+          <Property Name="Calculado" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Cump_Ratio" Type="Double" />
+          <Property Name="Calcula_RatioSN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_Medicion_Metrica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="DefMetricas" Relationship="GestionProvModel.FK_MedicionesMetricas_DefMetricas" FromRole="MedicionesMetricas" ToRole="DefMetricas" />
+          <NavigationProperty Name="TiposProyectos" Relationship="GestionProvModel.FK_MedicionesMetricas_TiposProyectos1" FromRole="MedicionesMetricas" ToRole="TiposProyectos" />
+        </EntityType>
+        <Association Name="FK_MedicionesMetricas_DefMetricas">
+          <End Type="GestionProvModel.DefMetricas" Role="DefMetricas" Multiplicity="0..1" />
+          <End Type="GestionProvModel.MedicionesMetricas" Role="MedicionesMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefMetricas">
+              <PropertyRef Name="id_DefMetricas" />
+            </Principal>
+            <Dependent Role="MedicionesMetricas">
+              <PropertyRef Name="id_DefMetricas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicionesMetricas_TiposProyectos1">
+          <End Type="GestionProvModel.TiposProyectos" Role="TiposProyectos" Multiplicity="0..1" />
+          <End Type="GestionProvModel.MedicionesMetricas" Role="MedicionesMetricas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProyectos">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Principal>
+            <Dependent Role="MedicionesMetricas">
+              <PropertyRef Name="id_TiposProyectos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -923,6 +1019,20 @@ advertencia 6002: La tabla o vista 'GestionProv.dbo.EncuestaCompras' no tiene de
                 <ScalarProperty Name="PeriodoEncuestado" ColumnName="PeriodoEncuestado" />
                 <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
                 <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicionesMetricas">
+            <EntityTypeMapping TypeName="GestionProvModel.MedicionesMetricas">
+              <MappingFragment StoreEntitySet="MedicionesMetricas">
+                <ScalarProperty Name="id_Medicion_Metrica" ColumnName="id_Medicion_Metrica" />
+                <ScalarProperty Name="Calcula_RatioSN" ColumnName="Calcula_RatioSN" />
+                <ScalarProperty Name="Cump_Ratio" ColumnName="Cump_Ratio" />
+                <ScalarProperty Name="Calculado" ColumnName="Calculado" />
+                <ScalarProperty Name="ValorMedido" ColumnName="ValorMedido" />
+                <ScalarProperty Name="id_TiposProyectos" ColumnName="id_TiposProyectos" />
+                <ScalarProperty Name="id_DefMetricas" ColumnName="id_DefMetricas" />
+                <ScalarProperty Name="FechaMedicion" ColumnName="FechaMedicion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

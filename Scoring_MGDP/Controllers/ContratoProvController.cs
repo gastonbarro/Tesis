@@ -34,6 +34,7 @@ namespace Scoring_MGDP.Controllers
 
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<IEnumerable<Proveedores>, IEnumerable<ProveedorViewModel>>(db.Proveedores.ToList());
             ViewBag.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
+            ViewBag.ProveedorId = search;
 
             var contratoProvQuery = db.ContratoProv.Include(c => c.Proveedores);
             if (search.HasValue)
@@ -74,14 +75,15 @@ namespace Scoring_MGDP.Controllers
         }
 
         // GET: ContratoProv/Create
-        public ActionResult Create()
+        public ActionResult Create(int? proveedorId)
         {
+
             var contratoProvViewModel = new ContratoProvViewModel();
 
             //ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv");
 
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
+            contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", proveedorId);
             return PartialView("Create", contratoProvViewModel);
 
         }

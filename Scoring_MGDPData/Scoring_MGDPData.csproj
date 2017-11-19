@@ -77,6 +77,9 @@
     <Compile Include="EncuestaCompras.cs">
       <DependentUpon>Scoring_MGDPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MedicionesMetricas.cs">
+      <DependentUpon>Scoring_MGDPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Metricas.cs">
       <DependentUpon>Scoring_MGDPModel.tt</DependentUpon>
     </Compile>

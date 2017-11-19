@@ -1,5 +1,4 @@
 ﻿@model PagedList.IPagedList<Scoring_MGDP.ViewModel.ContratoProvViewModel>
-
 @*@model PagedList.IPagedList < Scoring_MGDPData.ContratoProv>*@
 @using PagedList.Mvc;
 
@@ -15,23 +14,24 @@
 
     <h2 class="azul sombraTexto textoCentro">Contratos de proveedores</h2>
     <p>
-        @Html.ActionLink("Nuevo Contrato", "Create","ContratoProv", null, new { @class = "modal-link btn btn-primary" })
+        @*@Html.ActionLink("Nuevo Contrato", "Create","ContratoProv", null, new { @class = "modal-link btn btn-primary" })*@
+        @Html.ActionLink("Nuevo Contrato", "Create", "ContratoProv", new { proveedorId = ViewBag.ProveedorId }, new { @class = "modal-link btn btn-primary btn-sm" })
     </p>
 
     @using (Html.BeginForm("Index", "ContratoProv", FormMethod.Get, new { @class = "form-inline" }))
     {
 
 
-        <div class="visible-md visible-lg col-md-12">
-            <div class="input-group col-md-6">
-                @Html.DropDownList("search", ViewBag.ProveedoresList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control" })
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                </span>
-            </div>
+    <div class="visible-md visible-lg col-md-12">
+        <div class="input-group col-md-6">
+            @Html.DropDownList("search", ViewBag.ProveedoresList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control" })
+            <span class="input-group-btn">
+                <button class="btn btn-secondary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
         </div>
-        <br />
-        <br />
+    </div>
+    <br />
+    <br />
     }
 
     <div class="visible-md visible-lg col-md-12">

@@ -20,8 +20,6 @@
 
         @using (Html.BeginForm("Index", "Proveedores", FormMethod.Get, new { @class = "form-inline" }))
         {
-
-
             <div class="visible-md visible-lg col-md-12">
                 <div class="input-group col-md-6">
                     @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @type = "text", @class = "form-control input-sm", @placeholder = "Buscar por nombre proveedor o tipo de gestión:" })

@@ -18,6 +18,7 @@ namespace Scoring_MGDPData
         public TiposProyectos()
         {
             this.DefMetricas = new HashSet<DefMetricas>();
+            this.MedicionesMetricas = new HashSet<MedicionesMetricas>();
         }
     
         public int id_TiposProyectos { get; set; }
@@ -26,5 +27,7 @@ namespace Scoring_MGDPData
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DefMetricas> DefMetricas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicionesMetricas> MedicionesMetricas { get; set; }
     }
 }

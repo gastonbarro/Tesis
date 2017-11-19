@@ -30,6 +30,9 @@
         <AssociationConnector Association="GestionProvModel.FK_DefMetricas_Vision" ManuallyRouted="false" />
         <AssociationConnector Association="GestionProvModel.FK_Metricas_TiposMetricas1" ManuallyRouted="false" />
         <AssociationConnector Association="GestionProvModel.FK_Metricas_UnidadeDeMedidas1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GestionProvModel.MedicionesMetricas" Width="1.5" PointX="10.5" PointY="9" />
+        <AssociationConnector Association="GestionProvModel.FK_MedicionesMetricas_DefMetricas" />
+        <AssociationConnector Association="GestionProvModel.FK_MedicionesMetricas_TiposProyectos1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

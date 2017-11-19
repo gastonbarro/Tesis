@@ -14,6 +14,12 @@ namespace Scoring_MGDPData
     
     public partial class DefMetricas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DefMetricas()
+        {
+            this.MedicionesMetricas = new HashSet<MedicionesMetricas>();
+        }
+    
         public int id_DefMetricas { get; set; }
         public int id_Proveedor { get; set; }
         public int id_Metricas { get; set; }
@@ -34,5 +40,7 @@ namespace Scoring_MGDPData
         public virtual Proveedores Proveedores { get; set; }
         public virtual TiposProyectos TiposProyectos { get; set; }
         public virtual Vision Vision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MedicionesMetricas> MedicionesMetricas { get; set; }
     }
 }

@@ -133,6 +133,78 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
                 .ForMember(vm => vm.Ambito, map => map.MapFrom(m => m.Ambito))
                 .ForMember(vm => vm.Tipo, map => map.MapFrom(m => m.Tipo));
+
+                cfg.CreateMap<TiposProyectos, TiposProyectosViewModel>()
+                .ForMember(vm => vm.IdTipoProyecto, map => map.MapFrom(m => m.id_TiposProyectos))
+                .ForMember(vm => vm.Descripcion, map => map.MapFrom(m => m.DescTipoProyecto))
+                .ForMember(vm => vm.Sigla, map => map.MapFrom(m => m.SiglaTipoPry));
+
+                cfg.CreateMap<TiposProyectosViewModel, TiposProyectos>()
+                .ForMember(vm => vm.id_TiposProyectos, map => map.MapFrom(m => m.IdTipoProyecto))
+                .ForMember(vm => vm.DescTipoProyecto, map => map.MapFrom(m => m.Descripcion))
+                .ForMember(vm => vm.SiglaTipoPry, map => map.MapFrom(m => m.Sigla));
+
+                cfg.CreateMap<DefMetricas, DefMetricasViewModel>()
+                .ForMember(vm => vm.IdDefMetrica, map => map.MapFrom(m => m.id_DefMetricas))
+                .ForMember(vm => vm.IdTipoProyecto, map => map.MapFrom(m => m.id_TiposProyectos))
+                .ForMember(vm => vm.IdProveedor, map => map.MapFrom(m => m.id_Proveedor))
+                .ForMember(vm => vm.IdMetrica, map => map.MapFrom(m => m.id_Metricas))
+                .ForMember(vm => vm.IdVision, map => map.MapFrom(m => m.id_vision))
+                .ForMember(vm => vm.FechaDesde, map => map.MapFrom(m => m.FechaDesde))
+                .ForMember(vm => vm.FechaHasta, map => map.MapFrom(m => m.FechaHasta))
+                .ForMember(vm => vm.Clave, map => map.MapFrom(m => m.Clave))
+                .ForMember(vm => vm.Ratio, map => map.MapFrom(m => m.Ratio))
+                .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
+                .ForMember(vm => vm.PesoPonderado, map => map.MapFrom(m => m.PesoPonderado))
+                .ForMember(vm => vm.ObjCritico, map => map.MapFrom(m => m.ObjCritico))
+                .ForMember(vm => vm.ObjMinimo, map => map.MapFrom(m => m.ObjMinimo))
+                .ForMember(vm => vm.ObjExcelencia, map => map.MapFrom(m => m.ObjExcelencia))
+                .ForMember(vm => vm.HubNoHub, map => map.MapFrom(m => m.Hub_NoHub))
+                .ForMember(vm => vm.TiposProyectosViewModel, map => map.MapFrom(m => m.TiposProyectos))
+                .ForMember(vm => vm.ProveedorViewModel, map => map.MapFrom(m => m.Proveedores))
+                .ForMember(vm => vm.MetricasViewModel, map => map.MapFrom(m => m.Metricas));
+
+                cfg.CreateMap<DefMetricasViewModel, DefMetricas>()
+                .ForMember(vm => vm.id_DefMetricas, map => map.MapFrom(m => m.IdMetrica))
+                .ForMember(vm => vm.id_TiposProyectos, map => map.MapFrom(m => m.IdTipoProyecto))
+                .ForMember(vm => vm.id_Proveedor, map => map.MapFrom(m => m.IdProveedor))
+                .ForMember(vm => vm.id_Metricas, map => map.MapFrom(m => m.IdMetrica))
+                .ForMember(vm => vm.id_vision, map => map.MapFrom(m => m.IdVision))
+                .ForMember(vm => vm.FechaDesde, map => map.MapFrom(m => m.FechaDesde))
+                .ForMember(vm => vm.FechaHasta, map => map.MapFrom(m => m.FechaHasta))
+                .ForMember(vm => vm.Clave, map => map.MapFrom(m => m.Clave))
+                .ForMember(vm => vm.Ratio, map => map.MapFrom(m => m.Ratio))
+                .ForMember(vm => vm.Peso, map => map.MapFrom(m => m.Peso))
+                .ForMember(vm => vm.PesoPonderado, map => map.MapFrom(m => m.PesoPonderado))
+                .ForMember(vm => vm.ObjCritico, map => map.MapFrom(m => m.ObjCritico))
+                .ForMember(vm => vm.ObjMinimo, map => map.MapFrom(m => m.ObjMinimo))
+                .ForMember(vm => vm.ObjExcelencia, map => map.MapFrom(m => m.ObjExcelencia))
+                .ForMember(vm => vm.Hub_NoHub, map => map.MapFrom(m => m.HubNoHub))
+                .ForMember(vm => vm.TiposProyectos, map => map.MapFrom(m => m.TiposProyectosViewModel))
+                .ForMember(vm => vm.Proveedores, map => map.MapFrom(m => m.ProveedorViewModel))
+                .ForMember(vm => vm.Metricas, map => map.MapFrom(m => m.MetricasViewModel));
+
+                cfg.CreateMap<MedicionesMetricas, MedicionesMetricasViewModel>()
+                .ForMember(vm => vm.IdMedicionMetrica, map => map.MapFrom(m => m.id_Medicion_Metrica))
+                .ForMember(vm => vm.IdDefMetrica, map => map.MapFrom(m => m.id_DefMetricas))
+                .ForMember(vm => vm.IdTipoProyecto, map => map.MapFrom(m => m.id_TiposProyectos))
+                .ForMember(vm => vm.FechaMedicion, map => map.MapFrom(m => m.FechaMedicion))
+                .ForMember(vm => vm.ValorMedido, map => map.MapFrom(m => m.ValorMedido))
+                .ForMember(vm => vm.Calculado, map => map.MapFrom(m => m.Calculado))
+                .ForMember(vm => vm.Ratio, map => map.MapFrom(m => m.Cump_Ratio))
+                .ForMember(vm => vm.RatioSiNo, map => map.MapFrom(m => m.Calcula_RatioSN))
+                .ForMember(vm => vm.TiposProyectosViewModel, map => map.MapFrom(m => m.TiposProyectos));
+
+                cfg.CreateMap<MedicionesMetricasViewModel, MedicionesMetricas>()
+                .ForMember(vm => vm.id_Medicion_Metrica, map => map.MapFrom(m => m.IdMedicionMetrica))
+                .ForMember(vm => vm.id_DefMetricas, map => map.MapFrom(m => m.IdDefMetrica))
+                .ForMember(vm => vm.id_TiposProyectos, map => map.MapFrom(m => m.IdTipoProyecto))
+                .ForMember(vm => vm.FechaMedicion, map => map.MapFrom(m => m.FechaMedicion))
+                .ForMember(vm => vm.ValorMedido, map => map.MapFrom(m => m.ValorMedido))
+                .ForMember(vm => vm.Calculado, map => map.MapFrom(m => m.Calculado))
+                .ForMember(vm => vm.Cump_Ratio, map => map.MapFrom(m => m.Ratio))
+                .ForMember(vm => vm.Calcula_RatioSN, map => map.MapFrom(m => m.RatioSiNo))
+                .ForMember(vm => vm.TiposProyectos, map => map.MapFrom(m => m.TiposProyectosViewModel));
             });
 
             Mapper = mapConfiguration.CreateMapper();

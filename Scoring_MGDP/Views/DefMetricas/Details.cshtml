@@ -1,0 +1,138 @@
+﻿@model Scoring_MGDPData.DefMetricas
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>DefMetricas</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaDesde)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaDesde)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaHasta)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechaHasta)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Clave)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Clave)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Ratio)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Ratio)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PesoPonderado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PesoPonderado)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Peso)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Peso)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ObjCritico)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ObjCritico)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ObjMinimo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ObjMinimo)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ObjExcelencia)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ObjExcelencia)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Hub_NoHub)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Hub_NoHub)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Metricas.SiglaMetrica)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Metricas.SiglaMetrica)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Proveedores.NombreProv)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Proveedores.NombreProv)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TiposProyectos.DescTipoProyecto)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TiposProyectos.DescTipoProyecto)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Vision.DescripcionVision)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Vision.DescripcionVision)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id_DefMetricas }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
