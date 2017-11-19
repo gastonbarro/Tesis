@@ -23,25 +23,23 @@ namespace Scoring_MGDP.Controllers
         public ActionResult Index(int? currentFilter, int? search, int? page)
         {
 
-            //if (search != null)
-            //{
-            //    page = 1;
-            //}
-            //else
-            //{
-            //    search = currentFilter;
-            //}
+            if (search != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                search = currentFilter;
+            }
 
 
             //Sin el Order by me tira esta excepción: //{"El método 'Skip' solo se admite para entradas ordenadas en LINQ to Entities. Se debe llamar antes al método 'OrderBy' que al método 'Skip'."
             //Será porque el Id_contrato no es automático?
-            var contratoProv = db.ContratoProv.Include(c => c.Proveedores).OrderByDescending(i => i.id_Contrato);
+            var contratoProvQuery = db.ContratoProv.Include(c => c.Proveedores);
+            if (search.HasValue)
+                contratoProvQuery = contratoProvQuery.Where(s => s.id_Proveedor == (search));
 
-            //No puedo hacer el filtrado por proveedor
-            //if (search == null)
-            //{
-            //    contratoProv = contratoProv.Where(s => s.id_Proveedor == (search));
-            //}
+            var contratoProv = contratoProvQuery.OrderByDescending(i => i.id_Contrato);
 
             int pageSize = 10;
 
@@ -121,7 +119,7 @@ namespace Scoring_MGDP.Controllers
             var contratoProvViewModel = ModelMappingProfile.Mapper.Map<ContratoProv, ContratoProvViewModel>(contratoProv);
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
             contratoProvViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", contratoProvViewModel.IdProveedor);
-            
+
             return PartialView("Edit", contratoProvViewModel);
             //ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv", contratoProv.id_Proveedor);
             //return View(contratoProv);
