@@ -248,6 +248,7 @@
     <Compile Include="ViewModel\TiposMetricasViewModel.cs" />
     <Compile Include="ViewModel\TiposProyectosViewModel.cs" />
     <Compile Include="ViewModel\UnidadesMedidasViewModel.cs" />
+    <Compile Include="ViewModel\VisionViewModel.cs" />
     <Compile Include="ViewModel\YesNoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -526,7 +527,7 @@
     <Content Include="Views\ScoringConfigMedidas\Index.cshtml" />
     <Content Include="Views\MedicionesMetricas\Create.cshtml" />
     <Content Include="Views\MedicionesMetricas\Delete.cshtml" />
-    <Content Include="Views\MedicionesMetricas\Details.cshtml" />
+    <Content Include="Views\MedicionesMetricas\Edit.cshtml" />
     <Content Include="Views\MedicionesMetricas\Index.cshtml" />
     <Content Include="Views\DefMetricas\Create.cshtml" />
     <Content Include="Views\DefMetricas\Delete.cshtml" />

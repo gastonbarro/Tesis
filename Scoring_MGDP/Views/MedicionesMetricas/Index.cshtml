@@ -11,10 +11,10 @@
     <br />
     <br />
 
-    <h2 class="azul sombraTexto textoCentro">Contratos de proveedores</h2>
+    <h2 class="azul sombraTexto textoCentro">Medición de Métricas</h2>
     <p>
-        @*@Html.ActionLink("Nuevo Contrato", "Create","ContratoProv", null, new { @class = "modal-link btn btn-primary" })*@
-        @Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", new { proveedorId = ViewBag.ProveedorId }, new { @class = "modal-link btn btn-primary btn-sm" })
+        @Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", null, new { @class = "modal-link btn btn-primary" })
+        @*@Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", new { proveedorId = ViewBag.ProveedorId }, new { @class = "modal-link btn btn-primary btn-sm" })*@
     </p>
 
     @using (Html.BeginForm("Index", "Medicion", FormMethod.Get, new { @class = "form-inline" }))
@@ -23,7 +23,7 @@
 
         <div class="visible-md visible-lg col-md-12">
             <div class="input-group col-md-6">
-                @Html.DropDownList("search", ViewBag.ProveedoresList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control" })
+                @*@Html.DropDownList("search", ViewBag.ProveedoresList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control" })*@
                 <span class="input-group-btn">
                     <button class="btn btn-secondary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </span>
@@ -37,27 +37,29 @@
         <table class="table table-striped table-sm">
             <tr class="active text-center">
                 <th>
-                    @Html.DisplayNameFor(model => model.FechaMedicion)
+                    Fecha Medición
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ValorMedido)
+                    Valor Medido
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Calculado)
+                    ¿Calculado?
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Cump_Ratio)
+                    ¿Cumple ratio?
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Calcula_RatioSN)
+                    ¿Ratio calculado?
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DefMetricas.Clave)
+                    Definición métrica
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TiposProyectos.DescTipoProyecto)
+                    Descripción Proyecto
                 </th>
-                <th></th>
+                <th>
+                    Acciones
+                </th>
             </tr>
 
             @foreach (var item in Model)
@@ -73,21 +75,20 @@
                         @Html.DisplayFor(modelItem => item.Calculado)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Cump_Ratio)
+                        @Html.DisplayFor(modelItem => item.Ratio)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Calcula_RatioSN)
+                        @Html.DisplayFor(modelItem => item.RatioSiNo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DefMetricas.Clave)
+                        @Html.DisplayFor(modelItem => item.DefMetricasViewModel.IdDefMetrica)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TiposProyectos.DescTipoProyecto)
+                        @Html.DisplayFor(modelItem => item.TiposProyectosViewModel.Descripcion)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id_Medicion_Metrica }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.id_Medicion_Metrica }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id_Medicion_Metrica })
+                        @Html.ActionLink("Editar", "Edit", "MedicionesMetricas", new { id = item.IdDefMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete", "MedicionesMetricas", new { id = item.IdDefMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
                     </td>
                 </tr>
             }

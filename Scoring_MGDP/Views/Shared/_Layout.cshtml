@@ -149,13 +149,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("About", "Home")">
-                                            Carga de métricas
+                                        <a href="@Url.Action("Index", "DefMetricas")">
+                                            Definición de métricas
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Index", "DefMetricas")">
-                                            Definición Metrica
+                                        <a href="@Url.Action("Index", "MedicionesMetricas")">
+                                            Carga de métricas
                                         </a>
                                     </li>                                    
                                 </ul>
@@ -322,7 +322,7 @@
     
     @RenderSection("scripts", required: false)
     <!-- Modal -->
-    <script>
+    @*<script>
         $("#incidencia").click(function () {
             $("#incidencia").hide();
         });
@@ -347,6 +347,6 @@
 
 
     });
-    </script>
+    </script>*@
 </body>
 </html>

@@ -25,7 +25,6 @@ namespace Scoring_MGDP.ViewModel
         public double Ratio { get; set; }
         [Display(Name = "¿Cumple ratio?")]
         public string RatioSiNo { get; set; }
-
         [Display(Name = "Tipo Proyecto")]
         public TiposProyectosViewModel TiposProyectosViewModel { get; set; }
 

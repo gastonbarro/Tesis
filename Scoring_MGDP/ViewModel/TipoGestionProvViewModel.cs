@@ -14,7 +14,7 @@ namespace Scoring_MGDP.ViewModel
 
         public String Tipo { get; set; }
 
-        public static List<TipoGestionProvViewModel> GetYesNoList()
+        public static List<TipoGestionProvViewModel> TipoGestionList()
         {
             var TipoGestionList = new List<TipoGestionProvViewModel>();
             TipoGestionList.Add(new TipoGestionProvViewModel("Capacidad e Infraestructura Técnica"));

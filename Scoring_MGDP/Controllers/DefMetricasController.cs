@@ -27,8 +27,8 @@ namespace Scoring_MGDP.Controllers
 
             var defMetricasQuery = db.DefMetricas.Include(m => m.Proveedores).Include(m => m.Metricas)
                 .Include(m => m.TiposProyectos)
-                .Where(m => m.id_Metricas == metId
-                && m.id_Proveedor == provId);
+                .Where(m => m.id_Proveedor == provId 
+                && m.id_Metricas == metId);
 
             var defMetricas = defMetricasQuery.OrderBy(m => m.id_DefMetricas);
 
@@ -64,17 +64,44 @@ namespace Scoring_MGDP.Controllers
             {
                 return HttpNotFound();
             }
-            return View(defMetricas);
+
+            var defMetricasViewModel = ModelMappingProfile.Mapper.Map<DefMetricas, DefMetricasViewModel>(defMetricas);
+
+            var metricasViewModel = ModelMappingProfile.Mapper.Map<List<Metricas>, List<MetricasViewModel>>(db.Metricas.ToList());
+            defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion", defMetricasViewModel.IdMetrica);
+
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", defMetricasViewModel.IdProveedor);
+
+            var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
+            defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", defMetricasViewModel.IdTipoProyecto);
+
+            var visionViewModel = ModelMappingProfile.Mapper.Map<List<Vision>, List<VisionViewModel>>(db.Vision.ToList());
+            defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion", defMetricasViewModel.IdVision);
+
+            return PartialView("Details", defMetricasViewModel);
+
         }
 
         // GET: DefMetricas/Create
-        public ActionResult Create()
+        public ActionResult Create(int? proveedorId)
         {
-            ViewBag.id_Metricas = new SelectList(db.Metricas, "id_Metrica", "SiglaMetrica");
-            ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv");
-            ViewBag.id_TiposProyectos = new SelectList(db.TiposProyectos, "id_TiposProyectos", "DescTipoProyecto");
-            ViewBag.id_vision = new SelectList(db.Vision, "id_vision", "DescripcionVision");
-            return View();
+
+            var defMetricasViewModel = new DefMetricasViewModel();
+
+            var metricasViewModel = ModelMappingProfile.Mapper.Map<List<Metricas>, List<MetricasViewModel>>(db.Metricas.ToList());
+            defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion");
+
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", proveedorId);
+
+            var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
+            defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion");
+
+            var visionViewModel = ModelMappingProfile.Mapper.Map<List<Vision>, List<VisionViewModel>>(db.Vision.ToList());
+            defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion");
+
+            return PartialView("Create", defMetricasViewModel);
         }
 
         // POST: DefMetricas/Create
@@ -82,20 +109,29 @@ namespace Scoring_MGDP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_DefMetricas,id_Proveedor,id_Metricas,FechaDesde,FechaHasta,Clave,Ratio,PesoPonderado,Peso,ObjCritico,ObjMinimo,ObjExcelencia,id_TiposProyectos,Hub_NoHub,id_vision")] DefMetricas defMetricas)
+        public ActionResult Create(DefMetricasViewModel defMetricasViewModel)
         {
             if (ModelState.IsValid)
             {
+                var defMetricas = ModelMappingProfile.Mapper.Map<DefMetricasViewModel, DefMetricas>(defMetricasViewModel);
                 db.DefMetricas.Add(defMetricas);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_Metricas = new SelectList(db.Metricas, "id_Metrica", "SiglaMetrica", defMetricas.id_Metricas);
-            ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv", defMetricas.id_Proveedor);
-            ViewBag.id_TiposProyectos = new SelectList(db.TiposProyectos, "id_TiposProyectos", "DescTipoProyecto", defMetricas.id_TiposProyectos);
-            ViewBag.id_vision = new SelectList(db.Vision, "id_vision", "DescripcionVision", defMetricas.id_vision);
-            return View(defMetricas);
+            var metricasViewModel = ModelMappingProfile.Mapper.Map<List<Metricas>, List<MetricasViewModel>>(db.Metricas.ToList());
+            defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion", defMetricasViewModel.IdMetrica);
+
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor",defMetricasViewModel.IdProveedor);
+
+            var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
+            defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", defMetricasViewModel.IdTipoProyecto);
+
+            var visionViewModel = ModelMappingProfile.Mapper.Map<List<Vision>, List<VisionViewModel>>(db.Vision.ToList());
+            defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion", defMetricasViewModel.IdVision);
+
+            return View(defMetricasViewModel);
         }
 
         // GET: DefMetricas/Edit/5
@@ -110,11 +146,22 @@ namespace Scoring_MGDP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_Metricas = new SelectList(db.Metricas, "id_Metrica", "SiglaMetrica", defMetricas.id_Metricas);
-            ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv", defMetricas.id_Proveedor);
-            ViewBag.id_TiposProyectos = new SelectList(db.TiposProyectos, "id_TiposProyectos", "DescTipoProyecto", defMetricas.id_TiposProyectos);
-            ViewBag.id_vision = new SelectList(db.Vision, "id_vision", "DescripcionVision", defMetricas.id_vision);
-            return View(defMetricas);
+
+            var defMetricasViewModel = ModelMappingProfile.Mapper.Map<DefMetricas, DefMetricasViewModel>(defMetricas);
+
+            var metricasViewModel = ModelMappingProfile.Mapper.Map<List<Metricas>, List<MetricasViewModel>>(db.Metricas.ToList());
+            defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion", defMetricasViewModel.IdMetrica);
+
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", defMetricasViewModel.IdProveedor);
+
+            var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
+            defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", defMetricasViewModel.IdTipoProyecto);
+
+            var visionViewModel = ModelMappingProfile.Mapper.Map<List<Vision>, List<VisionViewModel>>(db.Vision.ToList());
+            defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion", defMetricasViewModel.IdVision);
+
+            return PartialView("Edit", defMetricasViewModel);
         }
 
         // POST: DefMetricas/Edit/5
@@ -122,19 +169,29 @@ namespace Scoring_MGDP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_DefMetricas,id_Proveedor,id_Metricas,FechaDesde,FechaHasta,Clave,Ratio,PesoPonderado,Peso,ObjCritico,ObjMinimo,ObjExcelencia,id_TiposProyectos,Hub_NoHub,id_vision")] DefMetricas defMetricas)
+        public ActionResult Edit(DefMetricasViewModel defMetricasViewModel)
         {
             if (ModelState.IsValid)
             {
+                var defMetricas = ModelMappingProfile.Mapper.Map<DefMetricasViewModel, DefMetricas>(defMetricasViewModel);
                 db.Entry(defMetricas).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_Metricas = new SelectList(db.Metricas, "id_Metrica", "SiglaMetrica", defMetricas.id_Metricas);
-            ViewBag.id_Proveedor = new SelectList(db.Proveedores, "id_Proveedor", "NombreProv", defMetricas.id_Proveedor);
-            ViewBag.id_TiposProyectos = new SelectList(db.TiposProyectos, "id_TiposProyectos", "DescTipoProyecto", defMetricas.id_TiposProyectos);
-            ViewBag.id_vision = new SelectList(db.Vision, "id_vision", "DescripcionVision", defMetricas.id_vision);
-            return View(defMetricas);
+
+            var metricasViewModel = ModelMappingProfile.Mapper.Map<List<Metricas>, List<MetricasViewModel>>(db.Metricas.ToList());
+            defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion", defMetricasViewModel.IdMetrica);
+
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", defMetricasViewModel.IdProveedor);
+
+            var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
+            defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", defMetricasViewModel.IdTipoProyecto);
+
+            var visionViewModel = ModelMappingProfile.Mapper.Map<List<Vision>, List<VisionViewModel>>(db.Vision.ToList());
+            defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion", defMetricasViewModel.IdVision);
+
+            return View(defMetricasViewModel);
         }
 
         // GET: DefMetricas/Delete/5
@@ -144,12 +201,28 @@ namespace Scoring_MGDP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             DefMetricas defMetricas = db.DefMetricas.Find(id);
             if (defMetricas == null)
             {
                 return HttpNotFound();
             }
-            return View(defMetricas);
+
+            var defMetricasViewModel = ModelMappingProfile.Mapper.Map<DefMetricas, DefMetricasViewModel>(defMetricas);
+
+            var metricasViewModel = ModelMappingProfile.Mapper.Map<List<Metricas>, List<MetricasViewModel>>(db.Metricas.ToList());
+            defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion", defMetricasViewModel.IdMetrica);
+
+            var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", defMetricasViewModel.IdProveedor);
+
+            var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
+            defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", defMetricasViewModel.IdTipoProyecto);
+
+            var visionViewModel = ModelMappingProfile.Mapper.Map<List<Vision>, List<VisionViewModel>>(db.Vision.ToList());
+            defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion", defMetricasViewModel.IdVision);
+
+            return PartialView("Delete", defMetricasViewModel);
         }
 
         // POST: DefMetricas/Delete/5

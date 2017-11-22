@@ -162,7 +162,8 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.HubNoHub, map => map.MapFrom(m => m.Hub_NoHub))
                 .ForMember(vm => vm.TiposProyectosViewModel, map => map.MapFrom(m => m.TiposProyectos))
                 .ForMember(vm => vm.ProveedorViewModel, map => map.MapFrom(m => m.Proveedores))
-                .ForMember(vm => vm.MetricasViewModel, map => map.MapFrom(m => m.Metricas));
+                .ForMember(vm => vm.MetricasViewModel, map => map.MapFrom(m => m.Metricas))
+                .ForMember(vm => vm.VisionViewModel, map => map.MapFrom(m => m.Vision));
 
                 cfg.CreateMap<DefMetricasViewModel, DefMetricas>()
                 .ForMember(vm => vm.id_DefMetricas, map => map.MapFrom(m => m.IdMetrica))
@@ -182,7 +183,8 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.Hub_NoHub, map => map.MapFrom(m => m.HubNoHub))
                 .ForMember(vm => vm.TiposProyectos, map => map.MapFrom(m => m.TiposProyectosViewModel))
                 .ForMember(vm => vm.Proveedores, map => map.MapFrom(m => m.ProveedorViewModel))
-                .ForMember(vm => vm.Metricas, map => map.MapFrom(m => m.MetricasViewModel));
+                .ForMember(vm => vm.Metricas, map => map.MapFrom(m => m.MetricasViewModel))
+                .ForMember(vm => vm.Vision, map => map.MapFrom(m => m.VisionViewModel));
 
                 cfg.CreateMap<MedicionesMetricas, MedicionesMetricasViewModel>()
                 .ForMember(vm => vm.IdMedicionMetrica, map => map.MapFrom(m => m.id_Medicion_Metrica))
@@ -205,6 +207,14 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.Cump_Ratio, map => map.MapFrom(m => m.Ratio))
                 .ForMember(vm => vm.Calcula_RatioSN, map => map.MapFrom(m => m.RatioSiNo))
                 .ForMember(vm => vm.TiposProyectos, map => map.MapFrom(m => m.TiposProyectosViewModel));
+
+                cfg.CreateMap<Vision, VisionViewModel>()
+                .ForMember(vm => vm.IdVision, map => map.MapFrom(m => m.id_vision))
+                .ForMember(vm => vm.Descripcion, map => map.MapFrom(m => m.DescripcionVision));
+
+                cfg.CreateMap<VisionViewModel, Vision>()
+                .ForMember(vm => vm.id_vision, map => map.MapFrom(m => m.IdVision))
+                .ForMember(vm => vm.DescripcionVision, map => map.MapFrom(m => m.Descripcion));
             });
 
             Mapper = mapConfiguration.CreateMapper();

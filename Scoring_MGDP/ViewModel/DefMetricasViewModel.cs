@@ -43,10 +43,12 @@ namespace Scoring_MGDP.ViewModel
         public TiposProyectosViewModel TiposProyectosViewModel { get; set; }
         public ProveedorViewModel ProveedorViewModel { get; set; }
         public MetricasViewModel MetricasViewModel { get; set; }
+        public VisionViewModel VisionViewModel { get; set; }
 
         public SelectList TiposProyectosList { get; set; }
         public SelectList ProveedoresList { get; set; }
         public SelectList MetricasList { get; set; }
+        public SelectList VisionList { get; set; }
         //Falta View Model de visión
 
     }
