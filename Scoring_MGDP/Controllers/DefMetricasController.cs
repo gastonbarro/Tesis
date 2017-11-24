@@ -27,7 +27,7 @@ namespace Scoring_MGDP.Controllers
 
             var defMetricasQuery = db.DefMetricas.Include(m => m.Proveedores).Include(m => m.Metricas)
                 .Include(m => m.TiposProyectos)
-                .Where(m => m.id_Proveedor == provId 
+                .Where(m => m.id_Proveedor == provId
                 && m.id_Metricas == metId);
 
             var defMetricas = defMetricasQuery.OrderBy(m => m.id_DefMetricas);
@@ -123,7 +123,7 @@ namespace Scoring_MGDP.Controllers
             defMetricasViewModel.MetricasList = new SelectList(metricasViewModel, "IdMetrica", "Descripcion", defMetricasViewModel.IdMetrica);
 
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<List<Proveedores>, List<ProveedorViewModel>>(db.Proveedores.ToList());
-            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor",defMetricasViewModel.IdProveedor);
+            defMetricasViewModel.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor", defMetricasViewModel.IdProveedor);
 
             var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
             defMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", defMetricasViewModel.IdTipoProyecto);
@@ -162,6 +162,25 @@ namespace Scoring_MGDP.Controllers
             defMetricasViewModel.VisionList = new SelectList(visionViewModel, "IdVision", "Descripcion", defMetricasViewModel.IdVision);
 
             return PartialView("Edit", defMetricasViewModel);
+        }
+
+
+        // GET: DefMetricas/Edit/5
+        public ActionResult Cargar(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DefMetricas defMetricas = db.DefMetricas.Find(id);
+            if (defMetricas == null)
+            {
+                return HttpNotFound();
+            }
+
+            return RedirectToAction("Index", "MedicionesMetricas", new { @idDefMetricas = defMetricas.id_DefMetricas
+                , @proveedorId = defMetricas.id_Proveedor
+                , @metricaId = defMetricas.id_Metricas });
         }
 
         // POST: DefMetricas/Edit/5

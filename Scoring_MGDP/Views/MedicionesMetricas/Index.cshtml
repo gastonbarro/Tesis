@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Scoring_MGDP.ViewModel.MedicionesMetricasViewModel>
+﻿@model Scoring_MGDP.ViewModel.MedicionesMetricasIndexViewModel
 @using PagedList.Mvc;
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -12,6 +12,9 @@
     <br />
 
     <h2 class="azul sombraTexto textoCentro">Medición de Métricas</h2>
+    @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, null)
+    
+    <br />
     <p>
         @Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", null, new { @class = "modal-link btn btn-primary" })
         @*@Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", new { proveedorId = ViewBag.ProveedorId }, new { @class = "modal-link btn btn-primary btn-sm" })*@
@@ -62,7 +65,7 @@
                 </th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.PagedMedicionesMetricas)
             {
                 <tr>
                     <td>
@@ -95,9 +98,11 @@
 
         </table>
         <br />
-        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        Página @(Model.PagedMedicionesMetricas.PageCount < Model.PagedMedicionesMetricas.PageNumber ? 0 : Model.PagedMedicionesMetricas.PageNumber) de @Model.PagedMedicionesMetricas.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("Index",
+        @Html.PagedListPager(Model.PagedMedicionesMetricas, page => Url.Action("Index",
                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        <br />
+        @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, null)
     </div>
 </div>

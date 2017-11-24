@@ -238,6 +238,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ClasifProveedoresViewModel.cs" />
     <Compile Include="ViewModel\DefMetricasViewModel.cs" />
+    <Compile Include="ViewModel\MedicionesMetricasIndexViewModel.cs" />
     <Compile Include="ViewModel\MedicionesMetricasViewModel.cs" />
     <Compile Include="ViewModel\ScoringConfigFrentesViewModel.cs" />
     <Compile Include="ViewModel\ScoringConfigMedidasViewModel.cs" />

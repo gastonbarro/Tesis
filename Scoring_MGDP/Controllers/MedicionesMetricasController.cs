@@ -20,13 +20,21 @@ namespace Scoring_MGDP.Controllers
         private Scoring_MGDPEntities db = new Scoring_MGDPEntities();
 
         // GET: MedicionesMetricas
-        public ActionResult Index(int? currentFilter, int? proveedorId, int? metricaId, int? page)
+        public ActionResult Index(int? currentFilter, int? idDefMetricas, int? proveedorId, int? metricaId, int? page)
         {
+            var response = new MedicionesMetricasIndexViewModel();
+            response.IdDefMetricas = idDefMetricas;
+            response.MetricaId = metricaId;
+            response.ProveedorId = proveedorId;
+
             var medicionesMetricasQuery = db.MedicionesMetricas.Include(m => m.DefMetricas)
                 .Include(m => m.TiposProyectos)
                 .Include(m => m.DefMetricas.Proveedores);
                 //.Where(m => m.DefMetricas.id_Metricas == metricaId.GetValueOrDefault()
                 //&& m.DefMetricas.id_Proveedor == proveedorId.GetValueOrDefault());
+          
+            if (idDefMetricas.HasValue)
+                medicionesMetricasQuery = medicionesMetricasQuery.Where(m => m.id_DefMetricas == idDefMetricas.Value);
 
             var medicionesMetricas = medicionesMetricasQuery.OrderBy(m => m.id_Medicion_Metrica);
 
@@ -45,8 +53,9 @@ namespace Scoring_MGDP.Controllers
             var medicionesMetricasPageList = medicionesMetricas.ToPagedList(pageNumber, pageSize);
 
             var medicionesMetricasVmPageList = medicionesMetricasPageList.ToMappedPagedList<MedicionesMetricas, MedicionesMetricasViewModel>();
+            response.PagedMedicionesMetricas = medicionesMetricasVmPageList;
 
-            return View(medicionesMetricasVmPageList);
+            return View(response);
 
 
         }
@@ -70,14 +79,14 @@ namespace Scoring_MGDP.Controllers
         public ActionResult Create()
         {
             var medicionesMetricasViewModel = new MedicionesMetricasViewModel();
-            
+
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
             medicionesMetricasViewModel.TiposProyectosList = new SelectList(defMetricasViewMolde, "IdDefMetrica", "Descripcion");
 
             var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
             medicionesMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion");
 
-            return PartialView("Create",medicionesMetricasViewModel);
+            return PartialView("Create", medicionesMetricasViewModel);
 
         }
 
@@ -126,7 +135,7 @@ namespace Scoring_MGDP.Controllers
             var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
             medicionesMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", medicionesMetricasViewModel.IdTipoProyecto);
 
-            return PartialView("Edit",medicionesMetricasViewModel);
+            return PartialView("Edit", medicionesMetricasViewModel);
         }
 
         // POST: MedicionesMetricas/Edit/5
@@ -174,7 +183,7 @@ namespace Scoring_MGDP.Controllers
             var tiposProyectosViewModel = ModelMappingProfile.Mapper.Map<List<TiposProyectos>, List<TiposProyectosViewModel>>(db.TiposProyectos.ToList());
             medicionesMetricasViewModel.TiposProyectosList = new SelectList(tiposProyectosViewModel, "IdTipoProyecto", "Descripcion", medicionesMetricasViewModel.IdTipoProyecto);
 
-            return PartialView("Delete",medicionesMetricasViewModel);
+            return PartialView("Delete", medicionesMetricasViewModel);
         }
 
         // POST: MedicionesMetricas/Delete/5
