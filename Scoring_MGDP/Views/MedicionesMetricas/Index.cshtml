@@ -13,7 +13,7 @@
 
     <h2 class="azul sombraTexto textoCentro">Medición de Métricas</h2>
     @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, null)
-    
+
     <br />
     <p>
         @Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", null, new { @class = "modal-link btn btn-primary" })
@@ -101,7 +101,7 @@
         Página @(Model.PagedMedicionesMetricas.PageCount < Model.PagedMedicionesMetricas.PageNumber ? 0 : Model.PagedMedicionesMetricas.PageNumber) de @Model.PagedMedicionesMetricas.PageCount
 
         @Html.PagedListPager(Model.PagedMedicionesMetricas, page => Url.Action("Index",
-                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+        new { page, sortOrder = ViewBag.CurrentSort, proveedorId = Model.ProveedorId, metricaId = Model.MetricaId, idDefMetricas = Model.IdDefMetricas }))
         <br />
         @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, null)
     </div>
