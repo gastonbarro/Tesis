@@ -22,7 +22,7 @@ namespace Scoring_MGDP.Controllers
         // GET: ScoringConfigFrentes
         public ActionResult Index(int? page)
         {
-            var scoringConfigFrentes = db.Scoring_Configuracion.OrderByDescending(i => i.id_MetricasScoring).Where(p => p.Tipo.Equals("Scoring"));
+            var scoringConfigFrentes = db.Scoring_Configuracion.OrderByDescending(i => i.id_MetricasScoring).Where(p => p.Tipo.Equals("Scoring Proveedor"));
 
             int pageSize = 10;
             int pageNumber = (page ?? 1);
