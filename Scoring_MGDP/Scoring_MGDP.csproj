@@ -257,6 +257,14 @@
     <Content Include="assets\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="assets\bootstrap\css\bootstrap.css" />
     <Content Include="assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\css\bootstrap-datepicker.css" />
+    <Content Include="assets\css\bootstrap-datepicker.min.css" />
+    <Content Include="assets\css\bootstrap-datepicker.standalone.css" />
+    <Content Include="assets\css\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="assets\css\bootstrap-datepicker3.css" />
+    <Content Include="assets\css\bootstrap-datepicker3.min.css" />
+    <Content Include="assets\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="assets\css\bootstrap-datepicker3.standalone.min.css" />
     <Content Include="assets\css\styles.css" />
     <Content Include="assets\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="assets\bootstrap\js\bootstrap.js" />
@@ -342,6 +350,8 @@
     <Content Include="assets\img\ui.totop.png" />
     <Content Include="assets\img\_underconstruction_cd3648c6.jpg" />
     <Content Include="assets\js\ajax.helpers.js" />
+    <Content Include="assets\js\bootstrap-datepicker.js" />
+    <Content Include="assets\js\bootstrap-datepicker.min.js" />
     <Content Include="assets\js\easing.js" />
     <Content Include="assets\js\funciones.js" />
     <Content Include="assets\js\Inicio.js" />
@@ -444,6 +454,14 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker.min.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker.standalone.min.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker3.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker3.min.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="assets\css\bootstrap-datepicker3.standalone.min.css.map" />
     <None Include="Properties\PublishProfiles\Desarrollo Clouders.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -538,6 +556,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets\locales\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.eot" />

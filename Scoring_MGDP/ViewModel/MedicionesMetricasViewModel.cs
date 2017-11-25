@@ -15,7 +15,7 @@ namespace Scoring_MGDP.ViewModel
         public int IdDefMetrica { get; set; }
         [Display(Name = "IdTipoProyecto")]
         public int IdTipoProyecto { get; set; }
-        [Display(Name = "Fecha Medición")]
+        [Display(Name = "Fecha Medición"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime FechaMedicion { get; set; }
         [Display(Name = "Valor Medido")]
         public double ValorMedido { get; set; }

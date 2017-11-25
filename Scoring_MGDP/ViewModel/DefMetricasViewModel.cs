@@ -19,9 +19,9 @@ namespace Scoring_MGDP.ViewModel
         public int IdMetrica { get; set; }
         [Display(Name = "IdVisión")]
         public int IdVision { get; set; }
-        [Display(Name = "Fecha Desde")]
+        [Display(Name = "Fecha Desde"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime FechaDesde { get; set; }
-        [Display(Name = "Fecha Hasta")]
+        [Display(Name = "Fecha Hasta"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime FechaHasta { get; set; }
         [Display(Name = "Clave")]
         public string Clave { get; set; }
