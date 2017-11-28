@@ -36,7 +36,7 @@ namespace Scoring_MGDP.Controllers
             if (idDefMetricas.HasValue)
                 medicionesMetricasQuery = medicionesMetricasQuery.Where(m => m.id_DefMetricas == idDefMetricas.Value);
 
-            var medicionesMetricas = medicionesMetricasQuery.OrderBy(m => m.id_Medicion_Metrica);
+            var medicionesMetricas = medicionesMetricasQuery.OrderByDescending(m => m.FechaMedicion);
 
             //var proveedoresViewModel = ModelMappingProfile.Mapper.Map<IEnumerable<Proveedores>, IEnumerable<ProveedorViewModel>>(db.Proveedores.ToList());
             //ViewBag.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
@@ -76,9 +76,11 @@ namespace Scoring_MGDP.Controllers
         }
 
         // GET: MedicionesMetricas/Create
-        public ActionResult Create()
+        public ActionResult Create(int defMetricaId)
         {
             var medicionesMetricasViewModel = new MedicionesMetricasViewModel();
+
+            medicionesMetricasViewModel.IdDefMetrica = defMetricaId;
 
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
             medicionesMetricasViewModel.TiposProyectosList = new SelectList(defMetricasViewMolde, "IdDefMetrica", "Descripcion");

@@ -12,11 +12,12 @@
     <br />
 
     <h2 class="azul sombraTexto textoCentro">Medición de Métricas</h2>
-    @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, null)
-
+    <br />
+    @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, new { @class = "modal-link btn btn-primary" })
+    <br />
     <br />
     <p>
-        @Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", null, new { @class = "modal-link btn btn-primary" })
+        @Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", new { defMetricaId = Model.IdDefMetricas }, new { @class = "modal-link btn btn-primary" })
         @*@Html.ActionLink("Nueva medición", "Create", "MedicionesMetricas", new { proveedorId = ViewBag.ProveedorId }, new { @class = "modal-link btn btn-primary btn-sm" })*@
     </p>
 
@@ -24,16 +25,15 @@
     {
 
 
-        <div class="visible-md visible-lg col-md-12">
+        @*<div class="visible-md visible-lg col-md-12">
             <div class="input-group col-md-6">
-                @*@Html.DropDownList("search", ViewBag.ProveedoresList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control" })*@
+                @Html.DropDownList("search", ViewBag.ProveedoresList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control" })
                 <span class="input-group-btn">
                     <button class="btn btn-secondary btn-sm" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </span>
             </div>
-        </div>
-        <br />
-        <br />
+        </div>*@
+
     }
 
     <div class="visible-md visible-lg col-md-12">
@@ -90,8 +90,8 @@
                         @Html.DisplayFor(modelItem => item.TiposProyectosViewModel.Descripcion)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Edit", "MedicionesMetricas", new { id = item.IdDefMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
-                        @Html.ActionLink("Eliminar", "Delete", "MedicionesMetricas", new { id = item.IdDefMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
+                        @Html.ActionLink("Editar", "Edit", "MedicionesMetricas", new { id = item.IdMedicionMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
+                        @Html.ActionLink("Eliminar", "Delete", "MedicionesMetricas", new { id = item.IdMedicionMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
                     </td>
                 </tr>
             }
@@ -103,6 +103,6 @@
         @Html.PagedListPager(Model.PagedMedicionesMetricas, page => Url.Action("Index",
         new { page, sortOrder = ViewBag.CurrentSort, proveedorId = Model.ProveedorId, metricaId = Model.MetricaId, idDefMetricas = Model.IdDefMetricas }))
         <br />
-        @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, null)
+        @Html.ActionLink("Volver a la lista", "Index", "DefMetricas", new { proveedorId = Model.ProveedorId, metricaId = Model.MetricaId }, new { @class = "modal-link btn btn-primary" })  
     </div>
 </div>

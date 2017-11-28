@@ -553,6 +553,7 @@
     <Content Include="Views\DefMetricas\Details.cshtml" />
     <Content Include="Views\DefMetricas\Edit.cshtml" />
     <Content Include="Views\DefMetricas\Index.cshtml" />
+    <Content Include="Views\Tableros\_TableroMGDP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
