@@ -14,7 +14,7 @@ namespace Scoring_MGDP.ViewModel
             this.AMList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.AM);
             this.ModeloImplementadoList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.ModeloImplementado);
             this.VigenteList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.Vigente);
-            this.TipoGestionList = new SelectList(TipoGestionProvViewModel.TipoGestionList(), "Tipo", this.Gestion);
+            this.TipoGestionList = new SelectList(TipoGestionProvViewModel.TipoGestionList(), "Tipo", "Tipo", this.Gestion);
         }
 
 

@@ -195,6 +195,7 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.Calculado, map => map.MapFrom(m => m.Calculado))
                 .ForMember(vm => vm.Ratio, map => map.MapFrom(m => m.Cump_Ratio))
                 .ForMember(vm => vm.RatioSiNo, map => map.MapFrom(m => m.Calcula_RatioSN))
+                .ForMember(vm => vm.DefMetricasViewModel, map => map.MapFrom(m => m.DefMetricas))
                 .ForMember(vm => vm.TiposProyectosViewModel, map => map.MapFrom(m => m.TiposProyectos));
 
                 cfg.CreateMap<MedicionesMetricasViewModel, MedicionesMetricas>()
@@ -206,6 +207,7 @@ namespace Scoring_MGDP.Mapping
                 .ForMember(vm => vm.Calculado, map => map.MapFrom(m => m.Calculado))
                 .ForMember(vm => vm.Cump_Ratio, map => map.MapFrom(m => m.Ratio))
                 .ForMember(vm => vm.Calcula_RatioSN, map => map.MapFrom(m => m.RatioSiNo))
+                .ForMember(vm => vm.DefMetricas, map => map.MapFrom(m => m.DefMetricasViewModel))
                 .ForMember(vm => vm.TiposProyectos, map => map.MapFrom(m => m.TiposProyectosViewModel));
 
                 cfg.CreateMap<Vision, VisionViewModel>()

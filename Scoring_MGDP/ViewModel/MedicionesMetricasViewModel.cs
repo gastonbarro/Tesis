@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -15,11 +16,11 @@ namespace Scoring_MGDP.ViewModel
             this.CalculadoList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.Calculado);
             this.RatioSiNoList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.RatioSiNo);
         }
-        
+       
         [Display(Name = "Id")]
         public int IdMedicionMetrica { get; set; }
         [Display(Name = "Definición Metrica")]
-        public int IdDefMetrica { get; set; }
+      public int IdDefMetrica { get; set; }
         [Display(Name = "IdTipoProyecto")]
         public int IdTipoProyecto { get; set; }
         [Display(Name = "Fecha Medición"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]

@@ -104,7 +104,14 @@ namespace Scoring_MGDP.Controllers
                 var medicionesMetricas = ModelMappingProfile.Mapper.Map<MedicionesMetricasViewModel, MedicionesMetricas>(medicionesMetricasViewModel);
                 db.MedicionesMetricas.Add(medicionesMetricas);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var defMetrica = db.DefMetricas.Find(medicionesMetricas.id_DefMetricas);
+               
+                return RedirectToAction("Index", new
+                {
+                    @idDefMetricas = medicionesMetricas.id_DefMetricas
+                    , @proveedorId = defMetrica.id_Proveedor
+                    , @metricaId = defMetrica.id_Metricas
+                });
             }
 
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
@@ -152,7 +159,9 @@ namespace Scoring_MGDP.Controllers
                 var medicionesMetricas = ModelMappingProfile.Mapper.Map<MedicionesMetricasViewModel, MedicionesMetricas>(medicionesMetricasViewModel);
                 db.Entry(medicionesMetricas).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var defMetrica = db.DefMetricas.Find(medicionesMetricas.id_DefMetricas);
+                return RedirectToAction("Index", new { @idDefMetricas = medicionesMetricas.id_DefMetricas
+                    ,@proveedorId = defMetrica.id_Proveedor,  @metricaId = defMetrica.id_Metricas });
             }
 
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
@@ -194,9 +203,21 @@ namespace Scoring_MGDP.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             MedicionesMetricas medicionesMetricas = db.MedicionesMetricas.Find(id);
+            var idDefMetricas = medicionesMetricas.id_DefMetricas;
+            var proveedorId = medicionesMetricas.DefMetricas.id_Proveedor;
+            var metricaId = medicionesMetricas.DefMetricas.id_Metricas;
+
             db.MedicionesMetricas.Remove(medicionesMetricas);
             db.SaveChanges();
-            return RedirectToAction("Index");
+             
+            return RedirectToAction("Index", new
+            {
+                @idDefMetricas = idDefMetricas
+                ,
+                @proveedorId = proveedorId
+                ,
+                @metricaId = metricaId
+            });
         }
 
         protected override void Dispose(bool disposing)
