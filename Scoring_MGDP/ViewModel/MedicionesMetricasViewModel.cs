@@ -9,9 +9,16 @@ namespace Scoring_MGDP.ViewModel
 {
     public class MedicionesMetricasViewModel
     {
+
+        public MedicionesMetricasViewModel()
+        {
+            this.CalculadoList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.Calculado);
+            this.RatioSiNoList = new SelectList(YesNoViewModel.GetYesNoList(), "Id", "Nombre", this.RatioSiNo);
+        }
+        
         [Display(Name = "Id")]
         public int IdMedicionMetrica { get; set; }
-        [Display(Name = "IdDefMetrica")]
+        [Display(Name = "Definición Metrica")]
         public int IdDefMetrica { get; set; }
         [Display(Name = "IdTipoProyecto")]
         public int IdTipoProyecto { get; set; }
@@ -31,6 +38,13 @@ namespace Scoring_MGDP.ViewModel
         public DefMetricasViewModel DefMetricasViewModel { get; set; }
 
         public SelectList TiposProyectosList{ get; set; }
+
+        public SelectList CalculadoList { get; set; }
+
+        public SelectList RatioSiNoList { get; set; }
+
+        public string CalculadoSN { get { return (Calculado == "S" ? "Si" : Calculado == "N" ? "No" : null); } }
+        public string RatioSN { get { return (RatioSiNo == "S" ? "Si" : RatioSiNo == "N" ? "No" : null); } }
 
     }
 }

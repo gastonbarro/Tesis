@@ -49,16 +49,16 @@
                     ¿Calculado?
                 </th>
                 <th>
-                    ¿Cumple ratio?
+                    Ratio
                 </th>
                 <th>
-                    ¿Ratio calculado?
+                    ¿Cumple Ratio?
                 </th>
-                <th>
+                @*<th>
                     Definición métrica
-                </th>
+                </th>*@
                 <th>
-                    Descripción Proyecto
+                    Tipo Proyecto
                 </th>
                 <th>
                     Acciones
@@ -75,21 +75,21 @@
                         @Html.DisplayFor(modelItem => item.ValorMedido)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Calculado)
+                        @Html.DisplayFor(modelItem => item.CalculadoSN)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Ratio)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.RatioSiNo)
+                        @Html.DisplayFor(modelItem => item.RatioSN)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.DefMetricasViewModel.IdDefMetrica)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.TiposProyectosViewModel.Descripcion)
                     </td>
-                    <td>
+                    <td class="text-center">
                         @Html.ActionLink("Editar", "Edit", "MedicionesMetricas", new { id = item.IdMedicionMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
                         @Html.ActionLink("Eliminar", "Delete", "MedicionesMetricas", new { id = item.IdMedicionMetrica }, new { @class = "modal-link btn btn-primary btn-sm" })
                     </td>

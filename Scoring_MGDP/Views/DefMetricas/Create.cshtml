@@ -49,7 +49,7 @@
                 @Html.LabelFor(model => model.FechaHasta, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
                     <div class="input-group">
-                        @Html.TextBoxFor(model => model.FechaHasta, new { @class = "form-control datepicker", @PlaceHolder = "Seleccione fecha hasta" })
+                        @Html.TextBoxFor(model => model.FechaHasta, new { @class = "form-control datepicker",  @PlaceHolder = "Seleccione fecha hasta" })
                         <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                         @Html.ValidationMessageFor(model => model.FechaHasta, "", new { @class = "text-danger" })
                     </div>
@@ -153,8 +153,22 @@
         format: "dd/mm/yyyy",
         language: "es",
         orientation: "bottom auto",
+        todayHighlight: true,
         autoclose: true,
     });
+
+    //$(function () {
+    //    $('#datetimepicker1').datetimepicker();
+    //    $('#datetimepicker2').datetimepicker({
+    //        useCurrent: false //Important! See issue #1075
+    //    });
+    //    $("#datetimepicker1").on("dp.change", function (e) {
+    //        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+    //    });
+    //    $("#datetimepicker2").on("dp.change", function (e) {
+    //        $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+    //    });
+    //});
 
     $(function () {
         $('#approve-btn').click(function () {

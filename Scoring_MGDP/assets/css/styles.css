@@ -20,6 +20,10 @@
     background-image: none !important;
 }
 
+.datepicker-dropdown {
+  background-color: white !important
+}
+
 th {
     display: table-cell !important;
     vertical-align: inherit !important;
