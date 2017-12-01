@@ -347,6 +347,7 @@
     <Content Include="assets\img\marca\logo_movistar_texto_blanco.png" />
     <Content Include="assets\img\marca\logo_movistar_texto_negro.png" />
     <Content Include="assets\img\marca\logo_movistar_texto_verde.png" />
+    <Content Include="assets\img\portadaWeb.png" />
     <Content Include="assets\img\ui.totop.png" />
     <Content Include="assets\img\_underconstruction_cd3648c6.jpg" />
     <Content Include="assets\js\ajax.helpers.js" />
