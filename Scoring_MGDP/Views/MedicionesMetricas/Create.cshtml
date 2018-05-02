@@ -75,7 +75,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.RatioSiNo, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
-                    @Html.DropDownListFor(m => m.RatioSiNo, Model.RatioSiNoList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required" })
+                    @Html.DropDownListFor(m => m.RatioSiNo, new List<SelectListItem> { new SelectListItem { Text = "Si", Value = "S" }, new SelectListItem { Text = "No", Value = "N", Selected = true } }, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required"})
                     @Html.ValidationMessageFor(model => model.RatioSiNo, "", new { @class = "text-danger" })
                 </div>
             </div>

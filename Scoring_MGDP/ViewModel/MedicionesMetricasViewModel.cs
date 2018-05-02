@@ -26,10 +26,11 @@ namespace Scoring_MGDP.ViewModel
         [Display(Name = "Fecha Medición"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime? FechaMedicion { get; set; }
         [Display(Name = "Valor Medido")]
-        public double ValorMedido { get; set; }
+        public double? ValorMedido { get; set; }
         [Display(Name = "¿Calculado?")]
         public string Calculado { get; set; }
         [Display(Name = "Ratio")]
+               
         public double? Ratio { get; set; }
         [Display(Name = "¿Cumple ratio?")]
         public string RatioSiNo { get; set; }
