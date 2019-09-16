@@ -35,9 +35,9 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.TiposMetricasViewModel, "Métrica", htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.LabelFor(model => model.TiposMetricasViewModel, "Tipo", htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
-                    @Html.DropDownListFor(m => m.IdMetrica, Model.TipoMetricaList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required" })
+                    @Html.DropDownListFor(m => m.IdTipo, Model.TipoMetricaList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.TiposMetricasViewModel, "", new { @class = "text-danger" })
                 </div>
             </div>

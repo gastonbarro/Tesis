@@ -109,7 +109,7 @@ namespace Scoring_MGDP.Controllers
             var metricasViewModel = ModelMappingProfile.Mapper.Map<Metricas, MetricasViewModel>(metricas);
 
             var tipoMetricaViewModel = ModelMappingProfile.Mapper.Map<List<TiposMetricas>, List<TiposMetricasViewModel>>(db.TiposMetricas.ToList());
-            metricasViewModel.TipoMetricaList = new SelectList(tipoMetricaViewModel, "Id", "TipoMetrica", metricasViewModel.IdMetrica);
+            metricasViewModel.TipoMetricaList = new SelectList(tipoMetricaViewModel, "Id", "TipoMetrica", metricasViewModel.IdTipo);
 
             var unidadMedidaViewModel = ModelMappingProfile.Mapper.Map<List<UnidadeDeMedidas>, List<UnidadesMedidasViewModel>>(db.UnidadeDeMedidas.ToList());
             metricasViewModel.UnidadMedidaList = new SelectList(unidadMedidaViewModel, "Id", "UnidadMedida", metricasViewModel.IdUnidad);

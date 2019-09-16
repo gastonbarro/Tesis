@@ -10,21 +10,35 @@
             <h4 align="center">Nueva Medición</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
+
+            @Html.HiddenFor(model => model.IdDefMetrica)
+
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.FechaMedicion, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
                     @Html.EditorFor(model => model.FechaMedicion, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.FechaMedicion, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.IdDefMetrica, "Def Metrica", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdDefMetrica, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
-                    @Html.DropDownList("id_DefMetricas", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.EditorFor(model => model.IdDefMetrica, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                     @Html.ValidationMessageFor(model => model.IdDefMetrica, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
+            
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaMedicion, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-7">
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.FechaMedicion, new { @class = "form-control datepicker", @PlaceHolder = "Seleccione mes de medición" })
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        @Html.ValidationMessageFor(model => model.FechaMedicion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.TiposProyectosViewModel, "Tipo Proyecto", htmlAttributes: new { @class = "control-label col-md-3" })
@@ -45,7 +59,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Calculado, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.Calculado, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(m => m.Calculado, Model.CalculadoList as SelectList, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required" })
                     @Html.ValidationMessageFor(model => model.Calculado, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -61,7 +75,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.RatioSiNo, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.RatioSiNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(m => m.RatioSiNo, new List<SelectListItem> { new SelectListItem { Text = "Si", Value = "S" }, new SelectListItem { Text = "No", Value = "N", Selected = true } }, "Seleccionar", htmlAttributes: new { @class = "form-control", required = "required"})
                     @Html.ValidationMessageFor(model => model.RatioSiNo, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -77,6 +91,17 @@
 </div>
 
 <script type="text/javascript">
+
+    $('.datepicker').datepicker({
+        format: "dd/mm/yyyy",
+        //startView: 1,
+        //minViewMode: 1,
+        language: "es",
+        orientation: "bottom auto",
+        todayHighlight: true,
+        autoclose: true
+    });
+
     $(function () {
         $('#approve-btn').click(function () {
             $('#modal-container').modal('hide');

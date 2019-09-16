@@ -36,7 +36,7 @@ namespace Scoring_MGDP.Controllers
             if (idDefMetricas.HasValue)
                 medicionesMetricasQuery = medicionesMetricasQuery.Where(m => m.id_DefMetricas == idDefMetricas.Value);
 
-            var medicionesMetricas = medicionesMetricasQuery.OrderBy(m => m.id_Medicion_Metrica);
+            var medicionesMetricas = medicionesMetricasQuery.OrderByDescending(m => m.FechaMedicion);
 
             //var proveedoresViewModel = ModelMappingProfile.Mapper.Map<IEnumerable<Proveedores>, IEnumerable<ProveedorViewModel>>(db.Proveedores.ToList());
             //ViewBag.ProveedoresList = new SelectList(proveedoresViewModel, "Id", "NombreProveedor");
@@ -76,9 +76,11 @@ namespace Scoring_MGDP.Controllers
         }
 
         // GET: MedicionesMetricas/Create
-        public ActionResult Create()
+        public ActionResult Create(int defMetricaId)
         {
             var medicionesMetricasViewModel = new MedicionesMetricasViewModel();
+
+            medicionesMetricasViewModel.IdDefMetrica = defMetricaId;
 
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
             medicionesMetricasViewModel.TiposProyectosList = new SelectList(defMetricasViewMolde, "IdDefMetrica", "Descripcion");
@@ -102,7 +104,14 @@ namespace Scoring_MGDP.Controllers
                 var medicionesMetricas = ModelMappingProfile.Mapper.Map<MedicionesMetricasViewModel, MedicionesMetricas>(medicionesMetricasViewModel);
                 db.MedicionesMetricas.Add(medicionesMetricas);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var defMetrica = db.DefMetricas.Find(medicionesMetricas.id_DefMetricas);
+               
+                return RedirectToAction("Index", new
+                {
+                    @idDefMetricas = medicionesMetricas.id_DefMetricas
+                    , @proveedorId = defMetrica.id_Proveedor
+                    , @metricaId = defMetrica.id_Metricas
+                });
             }
 
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
@@ -150,7 +159,9 @@ namespace Scoring_MGDP.Controllers
                 var medicionesMetricas = ModelMappingProfile.Mapper.Map<MedicionesMetricasViewModel, MedicionesMetricas>(medicionesMetricasViewModel);
                 db.Entry(medicionesMetricas).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var defMetrica = db.DefMetricas.Find(medicionesMetricas.id_DefMetricas);
+                return RedirectToAction("Index", new { @idDefMetricas = medicionesMetricas.id_DefMetricas
+                    ,@proveedorId = defMetrica.id_Proveedor,  @metricaId = defMetrica.id_Metricas });
             }
 
             var defMetricasViewMolde = ModelMappingProfile.Mapper.Map<List<DefMetricas>, List<DefMetricasViewModel>>(db.DefMetricas.ToList());
@@ -192,9 +203,21 @@ namespace Scoring_MGDP.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             MedicionesMetricas medicionesMetricas = db.MedicionesMetricas.Find(id);
+            var idDefMetricas = medicionesMetricas.id_DefMetricas;
+            var proveedorId = medicionesMetricas.DefMetricas.id_Proveedor;
+            var metricaId = medicionesMetricas.DefMetricas.id_Metricas;
+
             db.MedicionesMetricas.Remove(medicionesMetricas);
             db.SaveChanges();
-            return RedirectToAction("Index");
+             
+            return RedirectToAction("Index", new
+            {
+                @idDefMetricas = idDefMetricas
+                ,
+                @proveedorId = proveedorId
+                ,
+                @metricaId = metricaId
+            });
         }
 
         protected override void Dispose(bool disposing)

@@ -26,10 +26,19 @@ namespace Scoring_MGDP.Controllers
             var metId = metricaId.GetValueOrDefault();
 
             var defMetricasQuery = db.DefMetricas.Include(m => m.Proveedores).Include(m => m.Metricas)
-                .Include(m => m.TiposProyectos)
-                .Where(m => m.id_Proveedor == provId
-                && m.id_Metricas == metId);
+                .Include(m => m.TiposProyectos);
+                //.Where(m => m.id_Proveedor == provId
+                //&& m.id_Metricas == metId);
 
+            if (metricaId == 0)
+            {
+                defMetricasQuery = defMetricasQuery.Where(m => m.id_Proveedor == provId);
+            }
+            else
+            {
+                defMetricasQuery = defMetricasQuery.Where(m => m.id_Proveedor == provId && m.id_Metricas == metId);
+            }
+            
             var defMetricas = defMetricasQuery.OrderBy(m => m.id_DefMetricas);
 
             var proveedoresViewModel = ModelMappingProfile.Mapper.Map<IEnumerable<Proveedores>, IEnumerable<ProveedorViewModel>>(db.Proveedores.ToList());

@@ -20,9 +20,18 @@
     background-image: none !important;
 }
 
+.datepicker-dropdown {
+  background-color: white !important
+}
+
 th {
     display: table-cell !important;
     vertical-align: inherit !important;
     font-weight: bold !important;
     text-align: center !important;
+}
+
+img {
+    display: block;
+    margin: auto;
 }

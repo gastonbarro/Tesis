@@ -19,5 +19,9 @@ namespace Scoring_MGDP.Controllers
         {
             return View("_TableroDetalleScoring");
         }
+        public ActionResult TableroMGDP()
+        {
+            return View("_TableroMGDP");
+        }
     }
 }

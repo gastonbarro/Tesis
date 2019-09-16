@@ -19,24 +19,24 @@ namespace Scoring_MGDP.ViewModel
         public int IdMetrica { get; set; }
         [Display(Name = "IdVisión")]
         public int IdVision { get; set; }
-        [Display(Name = "Fecha Desde")]
-        public System.DateTime FechaDesde { get; set; }
-        [Display(Name = "Fecha Hasta")]
-        public System.DateTime FechaHasta { get; set; }
+        [Display(Name = "Fecha Desde"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public System.DateTime? FechaDesde { get; set; }
+        [Display(Name = "Fecha Hasta"), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public System.DateTime? FechaHasta { get; set; }
         [Display(Name = "Clave")]
         public string Clave { get; set; }
         [Display(Name = "Ratio")]
         public string Ratio { get; set; }
         [Display(Name = "Peso Ponderado")]
-        public double PesoPonderado { get; set; }
+        public double? PesoPonderado { get; set; }
         [Display(Name = "Peso")]
-        public double Peso { get; set; }
+        public double? Peso { get; set; }
         [Display(Name = "Objetivo Crítico")]
-        public double ObjCritico { get; set; }
+        public double? ObjCritico { get; set; }
         [Display(Name = "Objetivo Mínimo")]
-        public double ObjMinimo { get; set; }
+        public double? ObjMinimo { get; set; }
         [Display(Name = "Objetivo Excelencia")]
-        public double ObjExcelencia { get; set; }
+        public double? ObjExcelencia { get; set; }
         [Display(Name = "¿HUB?")]
         public string HubNoHub { get; set; }
 

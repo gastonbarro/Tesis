@@ -47,7 +47,6 @@
     <link rel="stylesheet" href="@Url.Content("~/")assets/dist/css/jquery.fileupload.css" />
     <link rel="stylesheet" href="@Url.Content("~/")assets/css/bootstrap-datepicker.css" />
     <link rel="stylesheet" href="@Url.Content("~/")assets/css/bootstrap-datepicker3.css" />
-
     
     @*<!-- Piwik se puede borrar o generar un nuevo ID. Consultar con Gustavo Pavia-->
     <script type="text/javascript">
@@ -123,7 +122,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action("Contact", "Home")">
+                                        <a href="@Url.Action("TableroMGDP", "Tableros")">
                                             MGDP
                                         </a>
                                     </li>
@@ -153,14 +152,14 @@
                                     </li>
                                     <li>
                                         <a href="@Url.Action("Index", "DefMetricas")">
-                                            Definición de métricas
+                                            Definición y carga de métricas
                                         </a>
                                     </li>
-                                    <li>
+                                    @*<li>
                                         <a href="@Url.Action("Index", "MedicionesMetricas")">
                                             Carga de métricas
                                         </a>
-                                    </li>                                    
+                                    </li>*@                                    
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -324,12 +323,7 @@
     <script src="@Url.Content("~/")assets/js/tableau-2.min.js"></script>
     <script src="@Url.Content("~/")assets/js/bootstrap-datepicker.js"></script>
     <script src="@Url.Content("~/")assets/js/bootstrap-datepicker.min.js"></script>
-    <script src="@Url.Content("~/")assets/locale/bootstrap-datepicker.es.min.js"></script>
-
-
-    bootstrap-datepicker.js
-    bootstrap-datepicker.min.js
-    bootstrap-datepicker.es.min.js
+    <script src="@Url.Content("~/")assets/locales/bootstrap-datepicker.es.min.js"></script>
     
     @RenderSection("scripts", required: false)
     <!-- Modal -->

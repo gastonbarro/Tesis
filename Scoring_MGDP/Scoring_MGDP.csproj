@@ -347,6 +347,7 @@
     <Content Include="assets\img\marca\logo_movistar_texto_blanco.png" />
     <Content Include="assets\img\marca\logo_movistar_texto_negro.png" />
     <Content Include="assets\img\marca\logo_movistar_texto_verde.png" />
+    <Content Include="assets\img\portadaWeb.png" />
     <Content Include="assets\img\ui.totop.png" />
     <Content Include="assets\img\_underconstruction_cd3648c6.jpg" />
     <Content Include="assets\js\ajax.helpers.js" />
@@ -553,6 +554,7 @@
     <Content Include="Views\DefMetricas\Details.cshtml" />
     <Content Include="Views\DefMetricas\Edit.cshtml" />
     <Content Include="Views\DefMetricas\Index.cshtml" />
+    <Content Include="Views\Tableros\_TableroMGDP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
