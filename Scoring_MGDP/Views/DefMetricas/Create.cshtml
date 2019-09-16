@@ -37,9 +37,11 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaDesde, htmlAttributes: new { @class = "control-label col-md-3" })
                 <div class="col-md-7">
-                    @Html.EditorFor(model => model.FechaDesde, new { htmlAttributes = new { @class = "form-control" } })
-                    @*@Html.EditorFor(model => model.FechaDesde, new { @class = "form-control datepicker", placeholder = "Enter Drop-off date here..." })*@
-                    @Html.ValidationMessageFor(model => model.FechaDesde, "", new { @class = "text-danger" })
+                    <div class="input-group">
+                        @Html.TextBoxFor(model => model.FechaDesde, new { @class = "form-control datepicker", @PlaceHolder = "Seleccione fecha desde"})
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                        @Html.ValidationMessageFor(model => model.FechaDesde, "", new { @class = "text-danger" })
+                    </div>
                 </div>
             </div>
 
@@ -144,8 +146,11 @@
 
 <script type="text/javascript">
 
-    $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker(); //Initialise any date pickers
+    $('.datepicker').datepicker({
+        format: "dd/mm/yyyy",
+        language: "es",
+        orientation: "bottom auto",
+        autoclose: true,
     });
 
     $(function () {
